@@ -4,5 +4,5 @@
 //
 
 // ignore_for_file: type=lint
-//subircarpeta
+
 void registerPlugins() {}

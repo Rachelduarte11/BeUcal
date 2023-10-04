@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:  EdgeInsets.fromLTRB(22, 0, 10, 0),
-      margin: EdgeInsets.only(top: 54),
+      margin: EdgeInsets.only(top: 24),
       //child: Center(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0,0,28,0),
+                  margin: EdgeInsets.fromLTRB(0,0,20,0),
                   //margin: EdgeInsets.only(left: 2),
                   child: Column(
                     crossAxisAlignment:  CrossAxisAlignment.start,

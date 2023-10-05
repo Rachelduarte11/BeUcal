@@ -1,3 +1,4 @@
+import 'package:becertus_proyecto/widgets/group_home.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
 import 'package:becertus_proyecto/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,25 @@ class HomeScreen extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           color: Color(0xfffafafa),
-
-        ),
+),
         child: const Scaffold(
           backgroundColor: Color.fromARGB(255, 246, 246, 246),
           appBar: CustomAppBar(),
           bottomNavigationBar: CustomeNavigationBar(),
-          
-        )
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                GroupMain(),
+                GroupHabilitys(),
+                Padding(
+                padding: EdgeInsets.all(20.0),
+                
+                ),
+              ]
+            ),
+          ) 
+          ),
+        
         );
   }
 }

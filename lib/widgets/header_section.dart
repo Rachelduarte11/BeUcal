@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:  EdgeInsets.fromLTRB(22, 0, 10, 0),
-      margin: EdgeInsets.only(top: 24),
+      margin: EdgeInsets.only(top: 30 ),
       //child: Center(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,5 +86,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(60.0);
+  Size get preferredSize => const Size.fromHeight(62.0);
 }

@@ -1,3 +1,5 @@
+import 'package:becertus_proyecto/screens/add_to_do.dart';
+import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: const HomeScreen(),
+      home: HomeScreen(),
       getPages: [
         GetPage(name: '/', page: () => const CustomAppBar()),
         // GetPage(name: '/song', page: ()=> const SongScreen()),

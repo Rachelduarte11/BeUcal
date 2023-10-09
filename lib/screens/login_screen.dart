@@ -32,8 +32,8 @@ SizedBox(
   width:  430,
   height:  340,
   child:  
-Image.network(
-  'https://i.pinimg.com/564x/bf/6b/58/bf6b58acda530c62c5c2d5ae6daad222.jpg',
+Image.asset(
+  'assets/elements/LOGOTIPO BECERTUS.png',
   width:  430,
   height:  340,
 ),

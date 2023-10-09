@@ -1,4 +1,6 @@
+import 'package:becertus_proyecto/models/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -8,67 +10,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:  EdgeInsets.fromLTRB(22, 0, 10, 0),
-      margin: EdgeInsets.only(top: 24),
-      //child: Center(
+      padding: EdgeInsets.fromLTRB(22, 0, 10, 0),
+      margin: EdgeInsets.only(top: 30),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           Container(
-            //margin: EdgeInsets.only(left: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0,0,20,0),
-                  //margin: EdgeInsets.only(left: 2),
-                  child: Column(
-                    crossAxisAlignment:  CrossAxisAlignment.start,
-                    children: [
-                    Container(
-                    child:
-                    Text(
-                      'Hola, Carlos',
-                      style: TextStyle(
-                        fontFamily: 'Mitr',
-                        fontSize: 36,
-                        fontWeight: FontWeight.w500,
-                        height: 1,
-                        color: Color(0xff313131),
-                      ),
-                    ),
-                  ),
-                  
-                    Text(
-                      // administraciondesistemasKXd (1:41)
-                      'Administracion de Sistemas',
-                      style: TextStyle(
-                        fontFamily: 'Mitr',
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        height: 1,
-                        color: Color(0xff313131),
-                      ),
-                    ),
-                
-                  ]
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            //margin: EdgeInsets.fromLTRB(0, 0, 0, 1),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Color(0xff9d9898),
-                width: 2.0,
-              ),
-            ),
+            alignment: Alignment.centerLeft,
             child: Center(
-              // ellipse17Cb (1:3)
               child: SizedBox(
                 width: 60,
                 height: 60,
@@ -80,11 +29,100 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 6, 44, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Text(
+                          'Buenos Dias,',
+                          style: TextStyle(
+                            fontFamily: 'Mitr',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            height: 1,
+                            color: Color(0xff313131),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Carlos',
+                        style: TextStyle(
+                          fontFamily: 'Mitr',
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                          height: 1,
+                          color: Color(0xff313131),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 6),
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // Distribuir elementos en el espacio disponible
+              children: [
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: greyLight, // Color de fondo rojo
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(10)),
+                         child: badges.Badge(
+                          badgeContent: Text('1'),
+                          child: Center(
+                            child: Icon(
+                              Icons.email,
+                              color: greyDark, // Color del icono blanco
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10), // Espacio entre los iconos
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: greyLight, // Color de fondo rojo
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(10)),
+                       child: badges.Badge(
+                          badgeContent: Text('3'),
+                          child: Center(
+                            child: Icon(
+                              Icons.notifications,
+                              color: greyDark, // Color del icono blanco
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(60.0);
+  Size get preferredSize => const Size.fromHeight(64.0);
 }

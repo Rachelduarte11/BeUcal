@@ -1,4 +1,5 @@
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/screens/add_to_do.dart';
 import 'package:flutter/material.dart';
 
 class CustomeNavigationBar extends StatelessWidget {
@@ -14,7 +15,6 @@ class CustomeNavigationBar extends StatelessWidget {
         topRight: Radius.circular(24.0), // Radio en la esquina superior derecha
       ),
       child: BottomNavigationBar(
-        
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xFFE2E2E2),
         showUnselectedLabels: false,
@@ -46,11 +46,16 @@ class CustomeNavigationBar extends StatelessWidget {
             label: 'Play',
           ),
           BottomNavigationBarItem(
-            icon: CustomAddIcon(
-              circleColor:
-                  Color(0xFFFD6A6A), // Cambia el color del círculo exterior
-              plusColor: Color.fromARGB(
-                  255, 255, 255, 255), // Cambia el color del signo "+"
+            icon: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (builder)=> AddToDo()));
+              },
+              child: CustomAddIcon(
+                circleColor:
+                    Color(0xFFFD6A6A), // Cambia el color del círculo exterior
+                plusColor: Color.fromARGB(
+                    255, 255, 255, 255), // Cambia el color del signo "+"
+              ),
             ),
             label: 'Add',
           )

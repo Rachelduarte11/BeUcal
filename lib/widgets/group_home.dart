@@ -195,6 +195,7 @@ class GroupMain extends StatelessWidget {
                 ),
                 //Dardos
                 Container(
+                  
                   margin: EdgeInsets.fromLTRB(2, 0, 1, 0),
                   padding: EdgeInsets.fromLTRB(40, 13, 28, 10),
                   width: double.infinity,

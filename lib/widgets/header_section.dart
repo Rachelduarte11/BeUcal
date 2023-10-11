@@ -31,40 +31,42 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 6, 44, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Text(
-                          'Buenos Dias,',
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 6, 44, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Text(
+                            'Buenos Dias,',
+                            style: TextStyle(
+                              fontFamily: 'Mitr',
+                              fontSize: 22,
+                              fontWeight: FontWeight.w300,
+                              height: 1,
+                              color: Color(0xff313131),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Carlos',
                           style: TextStyle(
                             fontFamily: 'Mitr',
-                            fontSize: 22,
-                            fontWeight: FontWeight.w300,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
                             height: 1,
                             color: Color(0xff313131),
                           ),
                         ),
-                      ),
-                      Text(
-                        'Carlos',
-                        style: TextStyle(
-                          fontFamily: 'Mitr',
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                          height: 1,
-                          color: Color(0xff313131),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Container(
@@ -124,5 +126,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64.0);
+  Size get preferredSize => const Size.fromHeight(68.0);
 }

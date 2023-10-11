@@ -8,6 +8,7 @@ Color redRadial = Color.fromARGB(153, 216, 47, 57); //GradientRadial
 Color verdeAzul = const Color(0xFF2D94AA);
 Color lightBlue = const Color(0xFF44C2DE);
 Color greyOpa = const Color(0x42D9D9D9); //elipses
+Color greyOpa2 =  const Color.fromRGBO(217, 217, 217, 161);
 Color greyLight = const Color(0xFFD9D9D9); //Otros elementos grises
 Color greyMenu = const Color(0xFFE2E2E2);//FONDO MENU
 

@@ -10,7 +10,7 @@ class GroupMain extends StatelessWidget {
       // group25cLf (186:11)
       margin: const EdgeInsets.fromLTRB(10, 20, 8, 2),
       width: double.infinity,
-      height: 260,
+      height: 244,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -24,14 +24,14 @@ class GroupMain extends StatelessWidget {
                 padding: EdgeInsets.zero,
               ),
               child: Container(
-                padding: EdgeInsets.fromLTRB(27.23, 20, 26.26, 25.96),
-                width: 195.48,
+                padding: EdgeInsets.fromLTRB(20.23, 15, 22.26, 19),
+                width: 188.48,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   gradient: const RadialGradient(
                     center: Alignment(0, -0),
                     radius: 0.5,
-                    colors: <Color>[Color(0x9bd72e38), Color(0xfffc6a6a)],
+                    colors: <Color>[Color.fromARGB(155, 239, 145, 14), Color(0xffF79521)],
                     stops: <double>[0, 0.984],
                   ),
                   boxShadow: [
@@ -117,10 +117,10 @@ class GroupMain extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.fromLTRB(1, 0, 1, 11.3),
-                  padding: const EdgeInsets.fromLTRB(40, 11, 28, 9.5),
+                  padding: const EdgeInsets.fromLTRB(35, 8, 24, 8),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Color(0xff2d93aa),
+                    color: Color(0xffC9D32B),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
@@ -150,7 +150,7 @@ class GroupMain extends StatelessWidget {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: greyOpa, // Color de fondo circular
+                                      color: greyOpa2, // Color de fondo circular
                                     ),
                                   ),
                                 ),
@@ -185,7 +185,7 @@ class GroupMain extends StatelessWidget {
                             fontFamily: 'Mitr',
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            height: 1.26,
+                            height: 1.1,
                             color: Color(0xfffafafa),
                           ),
                         ),
@@ -197,10 +197,10 @@ class GroupMain extends StatelessWidget {
                 Container(
                   
                   margin: EdgeInsets.fromLTRB(2, 0, 1, 0),
-                  padding: EdgeInsets.fromLTRB(40, 13, 28, 10),
+                  padding: EdgeInsets.fromLTRB(35, 8, 28, 8),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Color(0xff2d93aa),
+                    color: Color(0xffC9D32B),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
@@ -230,7 +230,7 @@ class GroupMain extends StatelessWidget {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: greyOpa, // Color de fondo circular
+                                      color: greyOpa2, // Color de fondo circular
                                     ),
                                   ),
                                 ),
@@ -288,7 +288,7 @@ class GroupHabilitys extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 120,
+      height: 140,
       child: Stack(
         children: [
           Align(
@@ -309,11 +309,11 @@ class GroupHabilitys extends StatelessWidget {
             child: Align(
               child: SizedBox(
                 width: 360,
-                height: 100,
+                height: 115,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(22),
-                    color: const Color(0xef43c2de),
+                    color: const Color(0xef0BB49D),
                     boxShadow: [
                       BoxShadow(
                         color: Color(0x3f000000),
@@ -322,12 +322,7 @@ class GroupHabilitys extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Image.asset(
-                    
-                    'assets/elements/Rectangle 17 (13).png', // Ruta del archivo SVG
-                    fit: BoxFit.cover,
-                    height: 90,
-                  ),
+                
                 ),
               ),
             ),
@@ -346,7 +341,7 @@ class GroupHabilitys extends StatelessWidget {
           const Positioned(
             // tushabilidades9YB (1:121)
             left: 107,
-            top: 19,
+            top: 30,
             child: Align(
               child: SizedBox(
                 width: 186,
@@ -367,7 +362,7 @@ class GroupHabilitys extends StatelessWidget {
           Positioned(
             // ellipse6rhV (1:80)
             left: 21,
-            top: 15,
+            top: 26,
             child: Align(
               child: SizedBox(
                 width: 80,
@@ -386,7 +381,7 @@ class GroupHabilitys extends StatelessWidget {
           Positioned(
             // premiumpsdrocket3diconillustra (1:79)
             left: 22,
-            top: 20,
+            top: 28,
             child: Align(
               child: SizedBox(
                 width: 80,
@@ -401,7 +396,7 @@ class GroupHabilitys extends StatelessWidget {
           Positioned(
             // miralashabilidadesquehasobteni (1:122)
             left: 112,
-            top: 59,
+            top: 66,
             child: Align(
               child: SizedBox(
                 width: 212,

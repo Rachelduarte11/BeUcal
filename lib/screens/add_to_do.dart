@@ -16,10 +16,7 @@ class _AddToDoState extends State<AddToDo> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [
-          Color(0xff1d1e26),
-          Color(0xff252041),
-        ])),
+           color: Colors.white),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +40,7 @@ class _AddToDoState extends State<AddToDo> {
                       'Apunte',
                       style: TextStyle(
                         fontSize: 33,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 32, 32, 32),
                         fontWeight: FontWeight.bold,
                         letterSpacing: 4,
                       ),
@@ -55,7 +52,7 @@ class _AddToDoState extends State<AddToDo> {
                       'Nueva Tarea',
                       style: TextStyle(
                         fontSize: 33,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 34, 34, 34),
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
                       ),
@@ -131,15 +128,11 @@ class _AddToDoState extends State<AddToDo> {
       decoration: BoxDecoration(
         color: Color(0xff2a2e3d),
         borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(colors: [
-          Color(0xff8a32f1),
-          Color(0xff8a32f9),
-
-        ])
+       
       ),
       child: const Center(child: Text('Agregar Tarea',
       style: TextStyle(
-        color: Colors.white,
+        color: Color.fromARGB(255, 53, 53, 53),
         fontSize: 15,
         fontWeight: FontWeight.w600,
       ),),)
@@ -182,7 +175,7 @@ class _AddToDoState extends State<AddToDo> {
       label: Text(
         label,
         style: TextStyle(
-          color: Colors.white,
+          color: const Color.fromARGB(255, 33, 33, 33),
           fontSize: 15,
           fontWeight: FontWeight.w600,
         ),
@@ -223,7 +216,7 @@ class _AddToDoState extends State<AddToDo> {
     return const Text(
       'Nombre de tarea',
       style: TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2),
+          color: Color.fromARGB(255, 32, 32, 32), fontWeight: FontWeight.bold, letterSpacing: 2),
     );
   }
 }

@@ -6,102 +6,101 @@ class MyProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          ClipPath(
-            clipper: CustomClipPath(),
-            //Contenedor superior (Celeste)
-            child: Container(
-              height: 300,
-              color: Color.fromARGB(255, 73, 196, 223),
-              child: Stack(
-                children: [
-                  const Positioned(
-                    //Texto (PERFIL)
-                    left: 30,
-                    top: 45,
-                    child: Text(
-                      "Perfil",
-                      style: TextStyle(
-                        color: Color(0xFF323232),
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Mitr",
+      body: SingleChildScrollView(
+        // Agregamos un SingleChildScrollView
+        child: Column(
+          children: [
+            ClipPath(
+              clipper: CustomClipPath(),
+              // Contenedor Celeste
+              child: Container(
+                height: 300,
+                color: Color.fromRGBO(18, 177, 158, 1),
+                child: Stack(
+                  children: [
+                    const Positioned(
+                      left: 30,
+                      top: 45,
+                      child: Text(
+                        "Perfil",
+                        style: TextStyle(
+                          color: Color(0xFF323232),
+                          fontSize: 40,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Mitr",
+                        ),
                       ),
                     ),
-                  ),
-                  //Icono (PENCIL)
-                  Positioned(
-                    bottom: 100,
-                    left: 220,
-                    child: Image.asset(
-                      'assets/images/lapiz.png',
-                      width: 250,
-                      height: 250,
+                    Positioned(
+                      bottom: 100,
+                      left: 220,
+                      child: Image.asset(
+                        'assets/images/lapiz.png',
+                        width: 250,
+                        height: 250,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          //Contenedor Padre (blanco)
-          Transform.translate(
-            offset: const Offset(
-                0, -190), // Ajusta la posición vertical del segundo contenedor
-            child: Stack(
-              children: [
-                Container(
-                  width: 330,
-                  height: 340,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    //Bordes del contenedor
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color:
-                            Color.fromARGB(255, 161, 161, 161).withOpacity(0.4),
-                        spreadRadius: 5,
-                        blurRadius: 6,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-
-                  //Texto Usuario
-                  child: const Center(
-                    child: Positioned(
-                      child: Text(
-                        "Alessandro Miguel Arias Marquina",
-                        style: TextStyle(
+            Transform.translate(
+              offset: const Offset(0, -190),
+              child: Stack(
+                children: [
+                  // Contenedor padre (blanco)
+                  Container(
+                    width: 330,
+                    height: 320,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 161, 161, 161)
+                              .withOpacity(0.4),
+                          spreadRadius: 5,
+                          blurRadius: 6,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Transform.translate(
+                        offset: const Offset(0, 10),
+                        child: const Text(
+                          "Alessandro Miguel Arias Marquina",
+                          style: TextStyle(
                             color: Colors.black,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700),
-                        textAlign: TextAlign.center,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                //Contenedor hijo (Gris)
-                Positioned(
-                  top: 210,
-                  left: 15,
-                  child: Container(
+                  Positioned(
+                    top: 210,
+                    left: 15,
+                    child: Container(
+                      // Contenedor gris
                       width: 300,
-                      height: 80,
+                      height: 90,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 234, 234, 234),
-                        borderRadius: BorderRadius.circular(15),
+                        color: const Color.fromARGB(255, 234, 234, 234),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: Transform.translate(
                         offset: const Offset(0, -170),
                         child: Center(
+                          // Contenedor hijo Imagen
                           child: Container(
-                            width: 95, // Aumenta el tamaño del contenedor
-                            height: 18, // Aumenta el tamaño del contenedor
+                            width: 90,
+                            height: 150,
                             decoration: BoxDecoration(
-                              color: Colors.grey, // Establece el fondo en gris
-                              borderRadius: BorderRadius.circular(40), // Radio para el contenedor circular
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(40),
                               boxShadow: const [
                                 BoxShadow(
                                   color: Colors.grey,
@@ -110,25 +109,153 @@ class MyProfile extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            // Imagen usuario
                             child: Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(40),
                                 child: Image.asset(
                                   "assets/images/StackPath.jpeg",
-                                  width: 90, 
-                                  height: 180, 
                                   fit: BoxFit.cover,
+                                  width: 100,
+                                  height: 100,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      )),
-                ),
-              ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 27,
+                    left: 30,
+                    child: Center(
+                      child: ClipRRect(
+                        child: Image.asset(
+                          "assets/images/iconos-usuario.png",
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          )
-        ],
+            // Contenido adicional fuera del primer contenedor
+            Transform.translate(
+              offset: const Offset(0.0,
+                  -180), // Ajusta este valor para mover el contenido verticalmente
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(
+                        right: 210,
+                      ), // Ajusta este valor para mover el texto "GENERAL" a la izquierda
+                      child: const Text(
+                        "GENERAL",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Mitr",
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 320,
+                      height: 50,
+                      color: const Color.fromARGB(255, 234, 234, 234),
+                      padding: EdgeInsetsDirectional.zero,
+                      child: Transform.translate(
+                        offset: const Offset(20.0,
+                            0.0), // Ajusta el valor de X según sea necesario
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              color: Color.fromRGBO(18, 177, 158, 1),
+                            ),
+                            SizedBox(width: 8),
+                            const Text(
+                              "Configuración de perfil",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: "Mitr",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox (height: 12), // Espacio entre los contenedores
+                    Container(
+                      width: 320,
+                      height: 50,
+                      color: const Color.fromARGB(255, 234, 234, 234),
+                      padding: EdgeInsetsDirectional.zero,
+                      child:Transform.translate(
+                        offset: const Offset(20.0,
+                            0.0), // Ajusta el valor de X según sea necesario
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              color: Color.fromRGBO(18, 177, 158, 1),
+                            ),
+                            SizedBox(width: 8),
+                            const Text(
+                              "Configuración de perfil",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: "Mitr",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12), // Espacio entre los contenedores
+                    Container(
+                      width: 320,
+                      height: 50,
+                      color: const Color.fromARGB(255, 234, 234, 234),
+                      padding: EdgeInsetsDirectional.zero,
+                      child: Transform.translate(
+                        offset: const Offset(20.0, 0.0), // Ajusta el valor de X según sea necesario
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              color: Color.fromRGBO(18, 177, 158, 1),
+                            ),
+                            SizedBox(width: 8),
+                            const Text(
+                              "Configuración de perfil",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: "Mitr",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class GroupMain extends StatelessWidget {
   const GroupMain({super.key});

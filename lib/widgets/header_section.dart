@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: Center(
+            child:const  Center(
               child: SizedBox(
                 width: 60,
                 height: 60,
@@ -94,7 +94,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 10), // Espacio entre los iconos
+                      const SizedBox(width: 10), // Espacio entre los iconos
                       Container(
                         width: 40,
                         height: 40,

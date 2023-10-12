@@ -1,6 +1,4 @@
-import 'dart:ffi';
 
-import 'package:becertus_proyecto/models/colors.dart';
 import 'package:flutter/material.dart';
 
 class ToDoCard extends StatelessWidget {

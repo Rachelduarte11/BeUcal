@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: const LoginScreen(),
+      home: Login (),
       getPages: [
         GetPage(name: '/', page: () => const CustomAppBar()),
         // GetPage(name: '/song', page: ()=> const SongScreen()),

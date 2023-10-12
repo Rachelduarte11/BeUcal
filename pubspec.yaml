@@ -64,7 +64,7 @@ flutter:
   assets:
      - assets/images/
      - assets/elements/
-     - assets/RiveAssets/
+  
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -93,6 +93,10 @@ flutter:
             weight: 400  # Peso de la fuente Regular
           - asset: assets/fonts/Mitr-SemiBold.ttf
             weight: 600  # Peso de la fuente SemiBold
-  #
+
+     - family: Arimo
+       fonts:
+          - asset: assets/fonts/Arimo-VariableFont_wght.ttf
+          
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,40 +1,21 @@
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:becertus_proyecto/screens/add_to_do.dart';
-/*import 'package:becertus_proyecto/screens/home_screen.dart';
-import 'package:becertus_proyecto/screens/performance_screen.dart';
-import 'package:becertus_proyecto/screens/profile.dart';*/
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-class CustomeNavigationBar extends StatefulWidget {
-  const CustomeNavigationBar({
-    super.key,
-  });
+typedef VoidCallbackParam = Function(int index);
 
-  @override
-  State<CustomeNavigationBar> createState() => _CustomeNavigationBarState();
-}
+// ignore: must_be_immutable
+class CustomeNavigationBar extends StatelessWidget {
+  VoidCallbackParam voidCallbackParam;
+  CustomeNavigationBar(this.voidCallbackParam, {super.key});
 
-class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
-  final isDialOpen = ValueNotifier(false);
-  int index = 0;
- /* final List<Widget> _tabList = [
-    HomeScreen(),
-    MyPerformance(),
-    MyProfile(),
-  ];*/
+ 
+
 //barra de menu
   @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: () async {
-          if (isDialOpen.value) {
-            isDialOpen.value = false;
-            return false;
-          } else {
-            return true;
-          }
-        },
-        child: ClipRRect(
+  Widget build(BuildContext context) {
+      return ClipRRect(
           borderRadius: const BorderRadius.only(
             topLeft:
                 Radius.circular(24.0), // Radio en la esquina superior izquierda
@@ -42,25 +23,21 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
                 Radius.circular(24.0), // Radio en la esquina superior derecha
           ),
           child: BottomNavigationBar(
+            onTap: voidCallbackParam,
             type: BottomNavigationBarType.fixed,
-            backgroundColor:const  Color(0xFFE2E2E2),
+            backgroundColor: const Color(0xFFE2E2E2),
             showUnselectedLabels: false,
             showSelectedLabels: false,
-            currentIndex: index,
+         //   currentIndex: index,
             unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
             selectedItemColor: greyDark,
-            onTap: (int i) {
-              setState(() {
-                index = i;
-              });
-            },
+            
             items: [
-               const BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                   icon: Icon(
                     Icons.home_rounded,
                     size: 32,
                   ),
-                  
                   label: 'Home',
                   backgroundColor: Colors.amber),
               const BottomNavigationBarItem(
@@ -70,7 +47,6 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
                 ),
                 label: 'Stack',
               ),
-             
               const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.person_outline_outlined,
@@ -86,7 +62,7 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
                     overlayColor: Colors.black,
                     overlayOpacity: 0.4,
                     spaceBetweenChildren: 5,
-                    child:  Icon(
+                    child: Icon(
                       Icons.add_rounded,
                       size: 36,
                     ),
@@ -124,7 +100,7 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
                       SpeedDialChild(
                         labelWidget: Container(
                           width: 180,
-                          padding:const  EdgeInsets.all(
+                          padding: const EdgeInsets.all(
                               4.0), // Espacio alrededor del contenedor
                           decoration: BoxDecoration(
                             color: redStatic, // Color de fondo personalizado
@@ -183,7 +159,8 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
                 label: 'Add',
               )
             ],
-          ),
         ),
+       
       );
+  }
 }

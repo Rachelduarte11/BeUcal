@@ -1,3 +1,5 @@
+import 'package:becertus_proyecto/screens/home_screen.dart';
+import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
@@ -58,7 +60,7 @@ class SecondScreen extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topCenter,
-                          child: Text(
+                          child: const Text(
                             '¡Te damos la Bienvenida!',
                             style: TextStyle(
                               decoration: TextDecoration.none,
@@ -72,6 +74,7 @@ class SecondScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 7,),
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 5),
                         child: SizedBox(
@@ -98,7 +101,7 @@ class SecondScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (builder) => SecondScreen()),
+                                builder: (builder) => HomeScreen()),
                           );
                         },
                         child: Container(

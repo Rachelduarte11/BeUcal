@@ -74,6 +74,7 @@ class OneScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 7,),
                       const SizedBox(
                         width: 300,
                         child: Text(

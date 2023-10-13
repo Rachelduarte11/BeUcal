@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomePage> {
         body:  CustomScrollView(
           slivers: [
             SliverAppBar(
+               automaticallyImplyLeading: false,
               expandedHeight: 64,
               backgroundColor:
                   Colors.transparent, // Altura expandida del app bar

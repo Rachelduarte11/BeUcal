@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Color(0xfffafafa),
       ),
       child: Scaffold(
+        
         backgroundColor: Color.fromARGB(255, 248, 248, 248),
         // appBar: CustomAppBar(),
         bottomNavigationBar: CustomeNavigationBar(onTab),

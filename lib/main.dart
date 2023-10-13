@@ -1,3 +1,4 @@
+import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/Started/screen_1.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: OneScreen(),
+      home: SplashScreen(),
       getPages: [
         GetPage(name: '/', page: () => const CustomAppBar()),
         // GetPage(name: '/song', page: ()=> const SongScreen()),

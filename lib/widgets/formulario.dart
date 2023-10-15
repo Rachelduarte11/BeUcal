@@ -11,26 +11,18 @@ Widget build(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.start,
             children:[
               Container(
-                color: Color.fromARGB(255, 213, 213, 213),
-                
+                color: Color.fromARGB(255, 213, 213, 213),                
                   child: 
-                      SizedBox(
-                        
-                          
+                      SizedBox(                         
                           height: 80,
                           width: 200,
-                          child: Stack(
-                            
+                          child: Stack(                           
                             alignment: Alignment.topLeft,
                             children: [
                               Image.asset('assets/elements/LOGOTIPO BECERTUS 1.png')
                             ],
-                          )
-                        
-                            
-                        ),
-                    
-                  
+                          )                                                
+                        ),                  
                 ),
                 ]
               

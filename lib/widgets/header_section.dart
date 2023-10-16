@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                         ),
                         Text(
-                          'Carlos',
+                          'Carla',
                           style: TextStyle(
                             fontFamily: 'Mitr',
                             fontSize: 30,

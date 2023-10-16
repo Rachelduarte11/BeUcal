@@ -1,4 +1,6 @@
+import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
+import 'package:becertus_proyecto/widgets/formulario.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,14 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false, // Pasa la instancia de User
+      debugShowCheckedModeBanner: false, 
       title: 'Flutter demo',
       theme: ThemeData(
           textTheme: Theme.of(context).textTheme.apply(
                 bodyColor: Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: MyProfile(),
+      home: Registro(),
       getPages: [
         GetPage(name: '/', page: () => const CustomAppBar()),
         // GetPage(name: '/song', page: ()=> const SongScreen()),

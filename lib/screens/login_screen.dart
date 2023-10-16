@@ -9,8 +9,13 @@ class Login extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
+        
+        
         child: Center(
+          
+          
           child: Column(
+            
         children: [
           SizedBox(height: 50,),
           
@@ -39,14 +44,16 @@ class Login extends StatelessWidget {
           Text(
             "Aprende, organiza y mejora",
             style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontFamily: 'Mitr',
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w300,
-                                    height: 1.3199999332,
-                                    color: Color(0xff000000),
+              decoration: TextDecoration.none,
+              fontFamily: 'Mitr',
+              fontSize: 24,
+              fontWeight: FontWeight.w300,
+              height: 1.3199999332,
+              color: Color(0xff000000),
             ),
           ),
+
+
 
           const SizedBox(height: 25,),
 
@@ -59,10 +66,12 @@ class Login extends StatelessWidget {
           MyTextfield(),
 
           const SizedBox(height: 25,),
+          
 
         ],
       ),
     ),
+    
       ),
     );
   }

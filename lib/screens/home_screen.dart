@@ -1,11 +1,9 @@
-import 'package:becertus_proyecto/models/to_do_card.dart';
+
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
-
 import 'package:becertus_proyecto/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget> fragments = const [HomePage(), MyPerformance(), MyProfile()];
+  List<Widget> fragments = const [HomePage(), MyPerformance(), MyProfile(),  ];
+  
   int currentIndex = 0;
 
   @override
@@ -25,15 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Color(0xfffafafa),
       ),
       child: Scaffold(
+        
         backgroundColor: Color.fromARGB(255, 248, 248, 248),
         // appBar: CustomAppBar(),
-        bottomNavigationBar: CustomeNavigationBar( onTab),
+        bottomNavigationBar: CustomeNavigationBar(onTab),
         body: fragments[currentIndex]
       ),
     );
   }
 
   onTab(int index) {
+    
     setState(() {
       currentIndex = index;
     });

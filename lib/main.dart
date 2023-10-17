@@ -1,14 +1,12 @@
-import 'package:becertus_proyecto/models/to_do_card.dart';
-import 'package:becertus_proyecto/screens/Started/loading.dart';
-import 'package:becertus_proyecto/screens/Started/screen_1.dart';
-import 'package:becertus_proyecto/screens/add_to_do.dart';
-import 'package:becertus_proyecto/screens/home_screen.dart';
-import 'package:becertus_proyecto/screens/profile.dart';
+
+import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+Future<void> main() async {
+   await initializeDateFormatting('es', null);
   runApp(const MyApp());
 }
 
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: AddToDo(),
+      home: Login(),
       getPages: [
         GetPage(name: '/', page: () => const CustomAppBar()),
         // GetPage(name: '/song', page: ()=> const SongScreen()),

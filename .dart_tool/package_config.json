@@ -92,6 +92,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "lints",
       "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
@@ -224,7 +230,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-10-13T01:12:05.511367Z",
+  "generated": "2023-10-17T13:12:01.258250Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

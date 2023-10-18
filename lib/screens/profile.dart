@@ -7,7 +7,6 @@ class MyProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        // Agregamos un SingleChildScrollView
         child: Column(
           children: [
             ClipPath(
@@ -140,10 +139,9 @@ class MyProfile extends StatelessWidget {
                 ],
               ),
             ),
-            // Contenido adicional fuera del primer contenedor
             Transform.translate(
               offset: const Offset(0.0,
-                  -180), // Ajusta este valor para mover el contenido verticalmente
+                  -180), 
               child: Container(
                 alignment: Alignment.bottomCenter,
                 child: Column(
@@ -151,7 +149,7 @@ class MyProfile extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(
                         right: 210,
-                      ), // Ajusta este valor para mover el texto "GENERAL" a la izquierda
+                      ),
                       child: const Text(
                         "GENERAL",
                         style: TextStyle(
@@ -169,7 +167,7 @@ class MyProfile extends StatelessWidget {
                       padding: EdgeInsetsDirectional.zero,
                       child: Transform.translate(
                         offset: const Offset(20.0,
-                            0.0), // Ajusta el valor de X según sea necesario
+                            0.0), 
                         child: Row(
                           children: [
                             Container(
@@ -191,7 +189,7 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox (height: 12), // Espacio entre los contenedores
+                    SizedBox (height: 12), 
                     Container(
                       width: 320,
                       height: 50,
@@ -199,7 +197,7 @@ class MyProfile extends StatelessWidget {
                       padding: EdgeInsetsDirectional.zero,
                       child:Transform.translate(
                         offset: const Offset(20.0,
-                            0.0), // Ajusta el valor de X según sea necesario
+                            0.0), 
                         child: Row(
                           children: [
                             Container(
@@ -228,7 +226,7 @@ class MyProfile extends StatelessWidget {
                       color: const Color.fromARGB(255, 234, 234, 234),
                       padding: EdgeInsetsDirectional.zero,
                       child: Transform.translate(
-                        offset: const Offset(20.0, 0.0), // Ajusta el valor de X según sea necesario
+                        offset: const Offset(20.0, 0.0), 
                         child: Row(
                           children: [
                             Container(

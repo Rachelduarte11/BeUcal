@@ -28,21 +28,37 @@ class MyPerformance extends StatelessWidget {
                   )
                 ]
               ),
-            child: Column(
+              child: Column(
               children: [
                 Row(
                   children: [
                     Container(
                       margin: const EdgeInsets.only(
-                        top: 10.0,
-                        left: 20.0),
-                      child: const Text("Carlos Paz",
-                      style: TextStyle(
-                        fontSize: 33,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Mitr"
-                        )
+                        top: 20.0,
+                        left: 20.0,
+                      ),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                           Text(
+                            "Carlos Paz",
+                            style: TextStyle(
+                              fontSize: 33,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Mitr",
+                            ),
+                          ),
+                          Text(
+                            "Arquitectura",
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Mitr",
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(width: 80),
@@ -66,8 +82,19 @@ class MyPerformance extends StatelessWidget {
                         ),
                       )
                     ]
-                  )
-                ],
+                  ),     
+                  /*Column(
+                    children: [
+                      Text("16,54"),
+                      Row(
+                        children: [
+                          Text("Alessandro arias"),
+                          SizedBox(width: 16.0,)
+                        ],
+                      )
+                    ],
+                  )*/
+                ]
               ),
             ),
           )

@@ -3,6 +3,7 @@ import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
 import 'package:becertus_proyecto/widgets/group_home.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
+import 'package:becertus_proyecto/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,10 +22,10 @@ class _HomeScreenState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xfffafafa),
+        color: Color(0xffE8F8F6),
       ),
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 248, 248, 248),
+        backgroundColor: Color(0xffE8F8F6),
         body:  CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -83,36 +84,23 @@ class _ToDoCard extends StatelessWidget {
       child: Column(
         children: [
           ToDoCard(
-            title: 'Wake up',
-            check: true,
-            time: '10am',
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          ToDoCard(
-            title: 'Leer la guía',
-            check: true,
-            time: '10am',
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          ToDoCard(
-            title: 'Wake up',
+            titleTask: 'Wake up',
+            timeTask: '11/11/2023',
             check: false,
-            time: '10am',
+            chip: chipData('Creatividad', 0xffC9D32B),
+            
           ),
-          SizedBox(
-            height: 5,
+           ToDoCard(
+            titleTask: 'Investigar Historia',
+            timeTask: '11/11/2023',
+            check: true,
+            chip: chipData('Teoría, Historia y...', 0xff44DECC),
           ),
-          ToDoCard(
-            title: 'Wake up',
+        ToDoCard(
+            titleTask: 'Planear',
+            timeTask: '30/10/2023',
             check: false,
-            time: '10am',
-          ),
-          SizedBox(
-            height: 5,
+            chip: chipData('Proyecto 1', 0xffFD6A6A),
           ),
         ],
       ),

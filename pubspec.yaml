@@ -99,6 +99,9 @@ flutter:
      - family: Arimo
        fonts:
           - asset: assets/fonts/Arimo-VariableFont_wght.ttf
+          - weight: 200
+          - asset: assets/fonts/Arimo-Bold.ttf
+          - weight: 600
           
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

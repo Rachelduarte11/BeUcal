@@ -1,6 +1,5 @@
 import 'package:becertus_proyecto/screens/Started/screen_2.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OneScreen extends StatelessWidget {
   const OneScreen({super.key});

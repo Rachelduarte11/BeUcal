@@ -6,6 +6,7 @@ class MyProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffEDFFFB),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -173,6 +173,7 @@ class MyPerformance extends StatelessWidget {
             padding: EdgeInsets.only(left: 20),
             child: Column(
               children: [
+<<<<<<< Updated upstream
                 SizedBox(
                   height: 210,
                 ),
@@ -253,7 +254,64 @@ class MyPerformance extends StatelessWidget {
                 )
               ),
             )
+=======
+              SizedBox (
+                height: 210,
+              ), 
+              Row(
+                children: [
+                  Text(
+                    "Ciclo:",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Mitr",
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Text("II",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFF44C2DE),
+                        fontWeight: FontWeight.w800,
+                        fontFamily: "II",
+                    )
+                  ),
+                  //Icono
+                  Icon(
+                    Icons.keyboard_arrow_down_sharp,
+                  ),
+                  SizedBox(width: 30),
+                  Text(
+                    "Curso:",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Mitr",
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Text("Todos",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFF44C2DE),
+                        fontFamily: "II",
+                        fontWeight: FontWeight.w800,
+                    )
+                  ),
+                   Icon(
+                    Icons.keyboard_arrow_down_sharp,
+                  ),
+                ],
+              ),
+              // Agregar más contenido aquí si es necesario
+            ],
+          ),
+>>>>>>> Stashed changes
           )
+         
         ],
       ),
     );

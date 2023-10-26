@@ -164,6 +164,7 @@ class MyPerformance extends StatelessWidget {
               ),
             ),
           ),
+          //Secciones desplegables para el ciclo y el curso, que son opciones de filtrado
           const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Column(

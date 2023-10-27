@@ -1,57 +1,75 @@
+import 'dart:ui';
+
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-
 typedef VoidCallbackParam = Function(int index);
 
 // ignore: must_be_immutable
-class CustomeNavigationBar extends StatelessWidget {
+class CustomeNavigationBar extends StatefulWidget {
   VoidCallbackParam voidCallbackParam;
   CustomeNavigationBar(this.voidCallbackParam, {super.key});
+
+  @override
+  State<CustomeNavigationBar> createState() => _CustomeNavigationBarState();
+}
+
+class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
+  int currentIndex = 0;
+
+  onTab(int index) {
+    setState(() {
+      currentIndex = index;
+      widget.voidCallbackParam(index);
+    });
+  }
 
 //barra de menu
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      child: BottomNavigationBar(
-        onTap: voidCallbackParam,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFFE2E2E2),
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
-        //   currentIndex: index,
-        unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
-        selectedItemColor: greyDark,
-
-        items: [
-          const BottomNavigationBarItem(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: BottomNavigationBar(
+          elevation: 0,
+          items: const [
+            BottomNavigationBarItem(
               icon: Icon(
                 Icons.home_rounded,
-                size: 32,
+                size: 28,
               ),
               label: 'Home',
-              backgroundColor: Colors.amber),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.stacked_bar_chart_rounded,
-              size: 32,
             ),
-            label: 'Stack',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline_outlined,
-              size: 32,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.stacked_bar_chart_rounded,
+                size: 28,
+              ),
+              label: 'Stack',
             ),
-            label: 'Play',
-          ),
-          BottomNavigationBarItem(
-            icon: SpeedButton(),
-            label: 'Add',
-          )
-        ],
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_outline_outlined,
+                size: 28,
+              ),
+              label: 'Play',
+            ),
+            BottomNavigationBarItem(
+              icon: SpeedButton(),
+              label: 'Add',
+            )
+          ],
+          onTap: onTab,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Color.fromARGB(31, 107, 107, 107),
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+          currentIndex: currentIndex,
+          unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
+          selectedItemColor: Color.fromARGB(255, 34, 34, 33),
+        ),
       ),
     );
   }
@@ -69,7 +87,7 @@ class SpeedButton extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       child: SpeedDial(
-        buttonSize: const Size.fromRadius(20),
+        buttonSize: const Size.fromRadius(15),
         backgroundColor: const Color(0xFFFD6A6A),
         overlayColor: Colors.black,
         overlayOpacity: 0.4,
@@ -87,7 +105,7 @@ class SpeedButton extends StatelessWidget {
                   horizontal: 8), // Espacio alrededor del contenedor
               decoration: BoxDecoration(
                 color: redStatic, // Color de fondo personalizado
-                borderRadius: BorderRadius.circular(30.0), // Bordes redondeados
+                borderRadius: BorderRadius.circular(25.0), // Bordes redondeados
               ),
               child: const Text(
                 'Calendario',
@@ -162,6 +180,7 @@ class SpeedButton extends StatelessWidget {
       ),
     );
   }
+  //Size get preferredSize => const Size.fromHeight(53.0);
 }
 
 void _showModalBottomSheet(BuildContext context) {
@@ -171,7 +190,7 @@ void _showModalBottomSheet(BuildContext context) {
     isScrollControlled: true,
     builder: (BuildContext context) {
       return Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Color(0XFFF3F3F3),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
@@ -208,14 +227,12 @@ void _showModalBottomSheet(BuildContext context) {
                       fontWeight: FontWeight.w500),
                 ),
                 InkWell(
-                  child: Container(
-                    child: Text(
-                      'Agregar',
-                      style: TextStyle(
-                        fontFamily: 'Mitr',
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                  child: const Text(
+                    'Agregar',
+                    style: TextStyle(
+                      fontFamily: 'Mitr',
+                      fontSize: 16,
+                      color: Colors.grey,
                     ),
                   ),
                   onTap: () {
@@ -247,23 +264,26 @@ void _showModalBottomSheet(BuildContext context) {
               chipData('Proyecto 1', 0xffFD6A6A),
               chipData('Inglés 1', 0xffEB078D),
             ]),
-            SizedBox(height: 12,),
-           _textUserOption('Elige la fecha'),
-            SizedBox(height: 12,),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _TimeElection(context, Icons.calendar_today, 'Hoy'),
-                        _TimeElection(context, Icons. calendar_view_week, 'Mañana'),
-                        _TimeElection(context, Icons.calendar_month, 'Proxima semana'),
-                        _TimeElection(context, Icons.edit_calendar, 'Fecha y hora'),
-                      ]
-                    ),
-                  ),
-               
+            SizedBox(
+              height: 12,
+            ),
+            _textUserOption('Elige la fecha'),
+            SizedBox(
+              height: 12,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _TimeElection(context, Icons.calendar_today, 'Hoy'),
+                    _TimeElection(context, Icons.calendar_view_week, 'Mañana'),
+                    _TimeElection(
+                        context, Icons.calendar_month, 'Proxima semana'),
+                    _TimeElection(context, Icons.edit_calendar, 'Fecha y hora'),
+                  ]),
+            ),
           ],
         ),
       );
@@ -275,12 +295,15 @@ Container _textUserOption(String textUser) {
   return Container(
     margin: EdgeInsets.only(left: 5),
     alignment: Alignment.centerLeft,
-    child: Text(textUser, style: TextStyle(fontSize: 16,
-            fontFamily: 'Mitr',
-            color: Color(0xff4B4B4B),
-            fontWeight: FontWeight.w500),
-            textAlign: TextAlign.start,
-            ),
+    child: Text(
+      textUser,
+      style: TextStyle(
+          fontSize: 16,
+          fontFamily: 'Mitr',
+          color: Color(0xff4B4B4B),
+          fontWeight: FontWeight.w500),
+      textAlign: TextAlign.start,
+    ),
   );
 }
 
@@ -290,14 +313,14 @@ Widget chipData(String label, int color) {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     label: Text(
       label,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w600,
         fontFamily: 'Arimo',
         color: Colors.white,
       ),
     ),
-    labelPadding: EdgeInsets.symmetric(horizontal: 6, vertical:0),
+    labelPadding: EdgeInsets.symmetric(horizontal: 6, vertical: 0),
   );
 }
 
@@ -317,40 +340,37 @@ Container _TextField(BuildContext context, double myHeight, String actionUser) {
       children: [
         Expanded(
           child: TextField(
-              decoration: InputDecoration(
-                
-                filled: true,
-                hintText: actionUser, //Eltexto que se ve dentro del contenedor
-                contentPadding: EdgeInsets.zero,
-                hintStyle: TextStyle(fontSize: 16, fontFamily: 'Arimo', color:Color(0xff4B4B4B) ),
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(20),
-                
-                ),
-                focusedBorder: InputBorder.none,
+            decoration: InputDecoration(
+              filled: true,
+              hintText: actionUser, //Eltexto que se ve dentro del contenedor
+              contentPadding: EdgeInsets.zero,
+              hintStyle: TextStyle(
+                  fontSize: 16, fontFamily: 'Arimo', color: Color(0xff4B4B4B)),
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(20),
               ),
-              style: TextStyle(
-                  color:Color(0xff4B4B4B),
-                  fontFamily: 'Arimo',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16),
-                  textAlign: TextAlign.start,),
+              focusedBorder: InputBorder.none,
+            ),
+            style: TextStyle(
+                color: Color(0xff4B4B4B),
+                fontFamily: 'Arimo',
+                fontWeight: FontWeight.w400,
+                fontSize: 16),
+            textAlign: TextAlign.start,
+          ),
         ),
       ],
     ),
   );
 }
 
-Container _TimeElection(BuildContext context, IconData optionIcon, String options) {
+Container _TimeElection(
+    BuildContext context, IconData optionIcon, String options) {
   return Container(
-    
-    child: Row(
-      
-      children: [
+    child: Row(children: [
       Container(
-        
         width: 80,
         child: Column(
           children: [
@@ -359,23 +379,24 @@ Container _TimeElection(BuildContext context, IconData optionIcon, String option
               width: 85,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20)
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              child: Icon(
+                optionIcon,
+                color: redStatic,
+                size: 40,
               ),
-              child: Icon(optionIcon,
-              color: redStatic,
-              size: 40,),
             ),
-            Text(options, style: TextStyle(
-              color: Color(0xff4B4B4B),
-              fontFamily: 'Arimo',
-              fontWeight: FontWeight.w500
-            ),
-            textAlign: TextAlign.center,)
+            Text(
+              options,
+              style: const TextStyle(
+                  color: Color(0xff4B4B4B),
+                  fontFamily: 'Arimo',
+                  fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            )
           ],
         ),
       )
-
     ]),
   );
 }

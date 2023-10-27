@@ -22,8 +22,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 width: 60,
                 height: 60,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://i.pinimg.com/564x/bf/6b/58/bf6b58acda530c62c5c2d5ae6daad222.jpg',
+                  backgroundImage: AssetImage(
+                    'assets/images/StackPath.jpeg',
                   ),
                 ),
               ),
@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          child: Text(
+                          child: const Text(
                             'Buenos Dias,',
                             style: TextStyle(
                               fontFamily: 'Mitr',
@@ -52,8 +52,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                         ),
-                        Text(
-                          'Carla',
+                        const Text(
+                          'Carlos ',
                           style: TextStyle(
                             fontFamily: 'Mitr',
                             fontSize: 30,
@@ -87,7 +87,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10)),
                          child: badges.Badge(
-                          badgeContent: Text('1'),
+                          badgeContent: Text('4'),
                           child: Center(
                             child: Icon(
                               Icons.email,

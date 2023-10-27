@@ -1,4 +1,6 @@
+import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
+import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
@@ -75,8 +77,8 @@ class SecondScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 7,),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
-                        child: SizedBox(
+                        margin: const EdgeInsets.symmetric(vertical: 5),
+                        child: const SizedBox(
                           width: 300,
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non ante nec quam sodales venenatis',
@@ -92,7 +94,7 @@ class SecondScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       GestureDetector(
@@ -100,7 +102,7 @@ class SecondScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (builder) => HomeScreen()),
+                                builder: (builder) => Login()),
                           );
                         },
                         child: Container(
@@ -134,7 +136,7 @@ class SecondScreen extends StatelessWidget {
                             width: 48,
                             height: 48,
                             child: ButtonTheme(
-                                child: Text(
+                                child: const Text(
                               'Bienvenido',
                               style: TextStyle(
                                   color: Colors.white,

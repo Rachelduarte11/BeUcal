@@ -91,6 +91,7 @@ class MyPerformance extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                             color: const Color(0xFFFD6A6A),
                           ),
+                          
                           child: const Center(
                             child: Text(
                               "16.54",

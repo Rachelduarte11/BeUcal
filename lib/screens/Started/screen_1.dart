@@ -15,7 +15,7 @@ class OneScreen extends StatelessWidget {
                 child: SizedBox(
                   height: 480,
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
                     child: Stack(
@@ -41,13 +41,13 @@ class OneScreen extends StatelessWidget {
               ),
               Container(
                 height: 300,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 247, 112, 33),
                 ),
                 child: Align(
                     child: Container(
                   height: 300,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(80),
@@ -59,7 +59,7 @@ class OneScreen extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.only(top: 10),
                           alignment: Alignment.topCenter,
-                          child: Text(
+                          child: const Text(
                             '¡Te damos la Bienvenida!',
                             style: TextStyle(
                               decoration: TextDecoration.none,
@@ -118,7 +118,7 @@ class OneScreen extends StatelessWidget {
                               width: 48,
                               height: 48,
                               child: ButtonTheme(
-                                  child: Icon(
+                                  child: const Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 color: Colors.white,
                                 size: 30,
@@ -127,7 +127,7 @@ class OneScreen extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            boxShadow: [
+                            boxShadow: const [
                         BoxShadow(
                           color: Color(0xffEB078D),
                           offset: Offset(0, 0),

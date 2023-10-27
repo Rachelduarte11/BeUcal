@@ -66,7 +66,7 @@ class ViewTasks extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height*0.92 ,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60),
@@ -89,7 +89,7 @@ class ViewTasks extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -226,7 +226,6 @@ class ViewTasks extends StatelessWidget {
   TaskApp() {
     //Intl.defaultLocale = 'es';
     DateTime now = DateTime.now();
-    // Formatea la fecha en el formato deseado (por ejemplo, "dd/MM/yyyy")
     String formattedDate = DateFormat("d 'de' MMMM", 'es').format(now);
 
     return AppBar(
@@ -252,7 +251,7 @@ class ViewTasks extends StatelessWidget {
         ],
       ),
       title: Container(
-        padding: EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 20),
         child: Text(
           'Mis Tareas',
           style: TextStyle(
@@ -307,7 +306,7 @@ class _DateListState extends State<DateList> {
                   todayIndex = 0;
                   selectedIndex = 0;
                 } else {
-                  previousTodayIndex = todayIndex; // Guarda el estado anterior
+                  previousTodayIndex = todayIndex; 
                   todayIndex =
                       -1; // Vuelve al estado inicial cualquier otro día seleccionado
                   selectedIndex = index;

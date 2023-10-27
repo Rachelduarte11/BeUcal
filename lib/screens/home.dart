@@ -15,16 +15,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomePage> {
+  
   List<Widget> fragments = const [HomePage(), MyPerformance(), MyProfile()];
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xffE8F8F6),
       ),
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Color(0xffE8F8F6),
         body:  CustomScrollView(
           slivers: [
@@ -91,6 +92,18 @@ class _ToDoCard extends StatelessWidget {
             
           ),
            ToDoCard(
+            titleTask: 'Investigar Historia',
+            timeTask: '11/11/2023',
+            check: true,
+            chip: chipData('Teoría, Historia y...', 0xff44DECC),
+          ),
+        ToDoCard(
+            titleTask: 'Planear',
+            timeTask: '30/10/2023',
+            check: false,
+            chip: chipData('Proyecto 1', 0xffFD6A6A),
+          ),
+            ToDoCard(
             titleTask: 'Investigar Historia',
             timeTask: '11/11/2023',
             check: true,

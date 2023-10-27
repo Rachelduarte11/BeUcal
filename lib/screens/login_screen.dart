@@ -1,4 +1,5 @@
 
+import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -16,7 +17,6 @@ class Login extends StatelessWidget {
               child: Container(
                 width: 245,
                 height: 255,
-
                 //alignment: Alignment.topRight,
                 child: Image.asset(
                   'assets/elements/Group 32.png',
@@ -44,7 +44,7 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //bienvenido
-              Text(
+              const Text(
                 '¡Bienvenido!',
                 style: TextStyle(
                   decoration: TextDecoration.none,
@@ -55,7 +55,7 @@ class Login extends StatelessWidget {
                   color: Color(0xff161616),
                 ),
               ),
-              Text(
+              const Text(
                 "Aprende, organiza y mejora",
                 style: TextStyle(
                   decoration: TextDecoration.none,
@@ -97,11 +97,11 @@ class Login extends StatelessWidget {
                   ],
                 ),
               ),
-               SizedBox(
+               const SizedBox(
                 height: 6,
               ),
-               CustomText(text: '¿Olvidaste tu contraseña?', fontSize: 14),
-              SizedBox(
+               const CustomText(text: '¿Olvidaste tu contraseña?', fontSize: 14),
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
@@ -115,14 +115,23 @@ class Login extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                             20)) // Color del texto en el botón
                     ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Text(
-                    'Ingresar',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Mitr',
-                      fontSize: 20,
+                child: GestureDetector(
+                  onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (builder) => HomeScreen()),
+                          );
+                        },
+                  child: const Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(
+                      'Ingresar',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Mitr',
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ), // Texto que se muestra en el botón

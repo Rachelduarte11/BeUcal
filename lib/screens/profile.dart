@@ -69,7 +69,7 @@ class MyProfile extends StatelessWidget {
                       child: Transform.translate(
                         offset: const Offset(0, 10),
                         child: const Text(
-                          "Alessandro Miguel Arias Marquina",
+                          "Carlos Andres Paz Obada",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 23,
@@ -161,37 +161,12 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 320,
-                      height: 50,
-                      color: const Color.fromARGB(255, 234, 234, 234),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: Transform.translate(
-                        offset: const Offset(20.0,
-                            0.0), 
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 20,
-                              height: 20,
-                              color: Color.fromRGBO(18, 177, 158, 1),
-                            ),
-                            SizedBox(width: 8),
-                            const Text(
-                              "Configuración de perfil",
-                              style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300,
-                                fontFamily: "Mitr",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    _containerSettings(context),
                     SizedBox (height: 12), 
-                    Container(
+                    _containerSettings(context),
+                    SizedBox (height: 12), 
+                    _containerSettings(context),
+                   /* Container(
                       width: 320,
                       height: 50,
                       color: const Color.fromARGB(255, 234, 234, 234),
@@ -248,7 +223,7 @@ class MyProfile extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -257,6 +232,43 @@ class MyProfile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container _containerSettings(BuildContext context) {
+    return Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: 50,
+                    
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white
+                    ),
+                    padding: EdgeInsetsDirectional.zero,
+                    child: Transform.translate(
+                      offset: const Offset(20.0,
+                          0.0), 
+                      child: Row(
+                        children: [
+                          Container(
+                            
+                            width: 20,
+                            height: 20,
+                            color: Color.fromRGBO(18, 177, 158, 1),
+                          ),
+                          SizedBox(width: 8),
+                          const Text(
+                            "Configuración de perfil",
+                            style: TextStyle(
+                              fontSize: 19,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: "Mitr",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
   }
 }
 

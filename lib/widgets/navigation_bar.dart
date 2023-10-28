@@ -32,7 +32,7 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   Widget build(BuildContext context) {
     return ClipRRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
         child: BottomNavigationBar(
           elevation: 0,
           items: const [
@@ -64,7 +64,7 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
           ],
           onTap: onTab,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Color.fromARGB(31, 107, 107, 107),
+          backgroundColor: Color.fromARGB(18, 107, 107, 107),
           showUnselectedLabels: false,
           showSelectedLabels: false,
           currentIndex: currentIndex,

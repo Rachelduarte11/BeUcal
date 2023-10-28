@@ -7,7 +7,7 @@ Widget chipData(String label, int color) {
     label: Text(
       label,
       style: const TextStyle(
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w600,
         fontFamily: 'Arimo',
         color: Colors.white,

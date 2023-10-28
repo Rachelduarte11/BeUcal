@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';
+import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -307,22 +308,7 @@ Container _textUserOption(String textUser) {
   );
 }
 
-Widget chipData(String label, int color) {
-  return Chip(
-    backgroundColor: Color(color),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    label: Text(
-      label,
-      style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        fontFamily: 'Arimo',
-        color: Colors.white,
-      ),
-    ),
-    labelPadding: EdgeInsets.symmetric(horizontal: 6, vertical: 0),
-  );
-}
+
 
 Container _TextField(BuildContext context, double myHeight, String actionUser) {
   return Container(

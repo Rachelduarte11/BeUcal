@@ -20,6 +20,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "blur",
+      "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/blur-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -176,6 +182,18 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "syncfusion_flutter_charts",
+      "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_charts-23.1.42",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "syncfusion_flutter_core",
+      "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_core-23.1.42",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "term_glyph",
       "rootUri": "file:///C:/Users/Rachel/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.1",
       "packageUri": "lib/",
@@ -230,7 +248,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-10-20T19:40:55.873258Z",
+  "generated": "2023-10-27T20:15:49.268819Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

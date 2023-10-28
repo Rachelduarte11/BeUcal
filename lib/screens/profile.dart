@@ -15,7 +15,7 @@ class MyProfile extends StatelessWidget {
               // Contenedor Celeste
               child: Container(
                 height: 300,
-                color: Color.fromRGBO(18, 177, 158, 1),
+                color: const Color.fromRGBO(18, 177, 158, 1),
                 child: Stack(
                   children: [
                     const Positioned(
@@ -161,17 +161,12 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    _containerSettings(context),
-                    SizedBox (height: 12), 
-                    _containerSettings(context),
-                    SizedBox (height: 12), 
-                    _containerSettings(context),
-                   /* Container(
+                    Container(
                       width: 320,
                       height: 50,
                       color: const Color.fromARGB(255, 234, 234, 234),
                       padding: EdgeInsetsDirectional.zero,
-                      child:Transform.translate(
+                      child: Transform.translate(
                         offset: const Offset(20.0,
                             0.0), 
                         child: Row(
@@ -195,35 +190,85 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 12), // Espacio entre los contenedores
+                    SizedBox (height: 12), 
                     Container(
                       width: 320,
-                      height: 50,
-                      color: const Color.fromARGB(255, 234, 234, 234),
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20)
+                        )
+                      ),
                       padding: EdgeInsetsDirectional.zero,
-                      child: Transform.translate(
-                        offset: const Offset(20.0, 0.0), 
+                      child:Transform.translate(
+                        offset: const Offset(20.0,
+                            0.0), 
                         child: Row(
                           children: [
                             Container(
-                              width: 20,
-                              height: 20,
-                              color: Color.fromRGBO(18, 177, 158, 1),
+                              width: 40,
+                              height: 40,
+                             decoration: const BoxDecoration(
+                                color:Color.fromARGB(255, 197, 239, 230),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(7)
+                                )
+                              ),
                             ),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             const Text(
                               "Configuración de perfil",
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w300,
+                                fontWeight: FontWeight.w400,
                                 fontFamily: "Mitr",
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ),*/
+                    ),
+                    const SizedBox(height: 12), // Espacio entre los contenedores
+                    Container(
+                      width: 320,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20)
+                        )
+                      ),
+                      padding: EdgeInsetsDirectional.zero,
+                      child: Transform.translate(
+                        offset: const Offset(20.0, 0.0), 
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                color:Color.fromARGB(255, 197, 239, 230),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(7)
+                                )
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              "Configuración de perfil",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Mitr",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

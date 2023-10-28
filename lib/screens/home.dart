@@ -1,11 +1,11 @@
 import 'package:becertus_proyecto/models/to_do_card.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
+import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:becertus_proyecto/widgets/group_home.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
-import 'package:becertus_proyecto/widgets/navigation_bar.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomePage> {
-  
   List<Widget> fragments = const [HomePage(), MyPerformance(), MyProfile()];
   int currentIndex = 0;
 
@@ -25,12 +24,12 @@ class _HomeScreenState extends State<HomePage> {
       decoration: const BoxDecoration(
         color: Color(0xffE8F8F6),
       ),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: Color(0xffE8F8F6),
-        body:  CustomScrollView(
+        body: CustomScrollView(
           slivers: [
-            SliverAppBar(
-               automaticallyImplyLeading: false,
+            const SliverAppBar(
+              automaticallyImplyLeading: false,
               expandedHeight: 64,
               backgroundColor:
                   Colors.transparent, // Altura expandida del app bar
@@ -41,24 +40,14 @@ class _HomeScreenState extends State<HomePage> {
               flexibleSpace: CustomAppBar(),
             ),
             SliverToBoxAdapter(
-              
               child: Column(
                 children: [
                   GroupMain(),
                   GroupHabilitys(),
-                  Text(
-                    'Tareas Pendientes',
-                    style: TextStyle(
-                      color: Color(0xFF323232),
-                      fontFamily: 'Mitr',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  Titles(text: 'Tareas Pendientes'),
                   _ToDoCard(),
                 ],
               ),
-              
             ),
           ],
         ),
@@ -70,6 +59,27 @@ class _HomeScreenState extends State<HomePage> {
     setState(() {
       currentIndex = index;
     });
+  }
+}
+
+// ignore: must_be_immutable
+class Titles extends StatelessWidget {
+  String text;
+   Titles({required this.text,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: Color(0xFF323232),
+        fontFamily: 'Mitr',
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+      ),
+    );
   }
 }
 
@@ -89,27 +99,26 @@ class _ToDoCard extends StatelessWidget {
             timeTask: '11/11/2023',
             check: false,
             chip: chipData('Creatividad', 0xffC9D32B),
-            
           ),
-           ToDoCard(
+          ToDoCard(
             titleTask: 'Investigar Historia',
             timeTask: '11/11/2023',
             check: true,
             chip: chipData('Teoría, Historia y...', 0xff44DECC),
           ),
-        ToDoCard(
+          ToDoCard(
             titleTask: 'Planear',
             timeTask: '30/10/2023',
             check: false,
             chip: chipData('Proyecto 1', 0xffFD6A6A),
           ),
-            ToDoCard(
+          ToDoCard(
             titleTask: 'Investigar Historia',
             timeTask: '11/11/2023',
             check: true,
             chip: chipData('Teoría, Historia y...', 0xff44DECC),
           ),
-        ToDoCard(
+          ToDoCard(
             titleTask: 'Planear',
             timeTask: '30/10/2023',
             check: false,

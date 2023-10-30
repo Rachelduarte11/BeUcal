@@ -98,7 +98,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 10), // Espacio entre los iconos
+                      const SizedBox(width: 15), // Espacio entre los iconos
                       Container(
                         width: 40,
                         height: 40,

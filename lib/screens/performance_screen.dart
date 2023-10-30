@@ -35,7 +35,7 @@ class _MyPerformanceState extends State<MyPerformance> {
             // Encabezado con información del usuario
 
             // Secciones desplegables para el ciclo y el curso
-            const Column(
+            Column(
               children: [
                 SizedBox(height: 10),
                 Padding(

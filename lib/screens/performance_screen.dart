@@ -26,11 +26,11 @@ class _MyPerformanceState extends State<MyPerformance> {
             // Encabezado con información del usuario
             
             // Secciones desplegables para el ciclo y el curso
-            Column(
+            const Column(
               children: [
                 SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.only(left:15.0),
+                  padding: EdgeInsets.only(left:15.0),
                   child: Row(
                     children: [
                       Text(
@@ -80,6 +80,7 @@ class _MyPerformanceState extends State<MyPerformance> {
                 MainPerformance(),
               ],
             ),
+            
             //Sección tabla png
             Container(
               width: 370,

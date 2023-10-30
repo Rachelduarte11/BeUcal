@@ -1,3 +1,4 @@
+import 'package:becertus_proyecto/models/colors.dart';
 import 'package:flutter/material.dart';
 
 Widget chipData(String label, int color) {
@@ -39,24 +40,26 @@ class ChipContainer extends StatelessWidget {
   final String titulo;
   final String promedio;
   final Color color;
+  final bool isSelected;
 
   ChipContainer({
     required this.titulo,
     required this.promedio,
     required this.color,
+    this.isSelected= false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: 10,
+        top: 0,
         left: 8,
       ),
-      width: 100,
-      height: 80,
+      width: 85,
+      height: 60,
       decoration: BoxDecoration(
-          color: color,
+          color: isSelected ? redStatic: color,
           boxShadow: [
             BoxShadow(
               color: Color(0x3f000000),
@@ -64,32 +67,32 @@ class ChipContainer extends StatelessWidget {
               blurRadius: 3.5,
             ),
           ],
-          borderRadius: BorderRadius.circular(20)),
+          borderRadius: BorderRadius.circular(10)),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-         children: [
-        Text(
-          titulo,
-          style: TextStyle(
-            fontFamily: 'Mitr',
-            fontSize: 14,
-            height: 1,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          promedio,
-          style: TextStyle(
-            fontFamily: 'Mitr',
-            fontWeight: FontWeight.w500,
-            fontSize: 18,
-            color: Colors.white,
-          ),
-        )
-      ]),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              titulo,
+              style: TextStyle(
+                fontFamily: 'Mitr',
+                fontSize: 12,
+                height: 1,
+                fontWeight: FontWeight.w400,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              promedio,
+              style: TextStyle(
+                fontFamily: 'Mitr',
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            )
+          ]),
     );
   }
 }

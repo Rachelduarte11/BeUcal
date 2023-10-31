@@ -141,8 +141,7 @@ class MyProfile extends StatelessWidget {
               ),
             ),
             Transform.translate(
-              offset: const Offset(0.0,
-                  -180), 
+              offset: const Offset(0.0, -180),
               child: Container(
                 alignment: Alignment.bottomCenter,
                 child: Column(
@@ -164,17 +163,21 @@ class MyProfile extends StatelessWidget {
                     Container(
                       width: 320,
                       height: 50,
-                      color: const Color.fromARGB(255, 234, 234, 234),
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
                       padding: EdgeInsetsDirectional.zero,
                       child: Transform.translate(
-                        offset: const Offset(20.0,
-                            0.0), 
+                        offset: const Offset(20.0, 0.0),
                         child: Row(
                           children: [
                             Container(
-                              width: 20,
-                              height: 20,
-                              color: Color.fromRGBO(18, 177, 158, 1),
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 197, 239, 230),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
                             ),
                             SizedBox(width: 8),
                             const Text(
@@ -182,7 +185,7 @@ class MyProfile extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w300,
+                                fontWeight: FontWeight.w400,
                                 fontFamily: "Mitr",
                               ),
                             ),
@@ -190,31 +193,25 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox (height: 12), 
+                    SizedBox(height: 12),
                     Container(
                       width: 320,
                       height: 60,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20)
-                        )
-                      ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
                       padding: EdgeInsetsDirectional.zero,
-                      child:Transform.translate(
-                        offset: const Offset(20.0,
-                            0.0), 
+                      child: Transform.translate(
+                        offset: const Offset(20.0, 0.0),
                         child: Row(
                           children: [
                             Container(
                               width: 40,
                               height: 40,
-                             decoration: const BoxDecoration(
-                                color:Color.fromARGB(255, 197, 239, 230),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(7)
-                                )
-                              ),
+                              decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 197, 239, 230),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
                             ),
                             const SizedBox(width: 8),
                             const Text(
@@ -230,30 +227,26 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12), // Espacio entre los contenedores
+                    const SizedBox(
+                        height: 12), // Espacio entre los contenedores
                     Container(
                       width: 320,
                       height: 60,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20)
-                        )
-                      ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
                       padding: EdgeInsetsDirectional.zero,
                       child: Transform.translate(
-                        offset: const Offset(20.0, 0.0), 
+                        offset: const Offset(20.0, 0.0),
                         child: Row(
                           children: [
                             Container(
                               width: 40,
                               height: 40,
                               decoration: const BoxDecoration(
-                                color:Color.fromARGB(255, 197, 239, 230),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(7)
-                                )
-                              ),
+                                  color: Color.fromARGB(255, 197, 239, 230),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
                             ),
                             const SizedBox(width: 8),
                             const Text(
@@ -281,39 +274,34 @@ class MyProfile extends StatelessWidget {
 
   Container _containerSettings(BuildContext context) {
     return Container(
-                    width: MediaQuery.of(context).size.width*0.9,
-                    height: 50,
-                    
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white
-                    ),
-                    padding: EdgeInsetsDirectional.zero,
-                    child: Transform.translate(
-                      offset: const Offset(20.0,
-                          0.0), 
-                      child: Row(
-                        children: [
-                          Container(
-                            
-                            width: 20,
-                            height: 20,
-                            color: Color.fromRGBO(18, 177, 158, 1),
-                          ),
-                          SizedBox(width: 8),
-                          const Text(
-                            "Configuración de perfil",
-                            style: TextStyle(
-                              fontSize: 19,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300,
-                              fontFamily: "Mitr",
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: Colors.white),
+      padding: EdgeInsetsDirectional.zero,
+      child: Transform.translate(
+        offset: const Offset(20.0, 0.0),
+        child: Row(
+          children: [
+            Container(
+              width: 20,
+              height: 20,
+              color: Color.fromRGBO(18, 177, 158, 1),
+            ),
+            SizedBox(width: 8),
+            const Text(
+              "Configuración de perfil",
+              style: TextStyle(
+                fontSize: 19,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+                fontFamily: "Mitr",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

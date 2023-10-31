@@ -1,13 +1,11 @@
-
-
 import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
+import 'package:becertus_proyecto/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'widgets/Graphics/column_chart.dart';
 
 Future<void> main() async {
    await initializeDateFormatting('es', null);
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: SplashScreen(),
+      home: MyPerformance(),
       
     );
   }

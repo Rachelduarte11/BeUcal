@@ -1,5 +1,6 @@
 
 import 'package:becertus_proyecto/screens/Started/loading.dart';
+import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,10 +13,11 @@ void main() async {
   await Firebase.initializeApp(
     name: "BEUCAL",
     options: firebaseOptions,
-  );
+  ); 
   //agregarNotas('kDkChIpT6jK1gIemu3kX');
   await initializeDateFormatting('es', null);
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: SplashScreen(),
+      home: MyPerformance(),
     );
   }
 }

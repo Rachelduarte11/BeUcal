@@ -119,7 +119,7 @@ class _RadiusChartGenState extends State<RadiusChartGen> {
     try {
       DocumentSnapshot notasSnapshot = await firestore
           .collection('estudiantes')
-          .doc(estudianteId)
+          .doc('eGYtAQiyan12554BOG6D')
           .collection('notas')
           .doc('notas_estudiante')
           .get();
@@ -262,7 +262,8 @@ class GDPData {
   // static double gdp;
    Color color;
 }
-
+final double VED = (GlobalVariables.proII + GlobalVariables.creaII) / 2;
+        double ED = double.parse(VED.toStringAsFixed(1));
 //CONVERSION A STRINGS
 String proIIString = GlobalVariables.proII.toStringAsFixed(1);
 String creaIIString = GlobalVariables.creaII.toStringAsFixed(1);

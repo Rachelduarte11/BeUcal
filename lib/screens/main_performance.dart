@@ -65,7 +65,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                       Row(
                         children: [
                           chipData2(
-                            '$GlobalVariables.ED',
+                            '$ED',
                             0xffBBC700,
                           ),
                           SizedBox(
@@ -80,7 +80,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           chipData2(
-                            '$GlobalVariables.FP',
+                            '$ED',
                             0xff00C1A7,
                           ),
                           SizedBox(
@@ -94,7 +94,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                       Row(
                         children: [
                           chipData2(
-                            '$GlobalVariables.EG',
+                            '$ED',
                             0xff09806F,
                           ),
                           SizedBox(
@@ -198,12 +198,24 @@ class _MainPerformanceState extends State<MainPerformance> {
                     children: [
                       Titles(
                           text: 'Mejor Curso', size: 14, fontFamily: 'Arimo'),
-                      Text(
-                        bestCourseTitle,
-                        style: TextStyle(
-                            fontFamily: 'Mitr',
-                            fontSize: 20,
-                            color: Color(0xff4B4B4B)),
+                      Container(
+                        constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width*0.26, // Establece el ancho máximo del contenedor
+                    
+                      ),
+                        child: AutoSizeText(
+                          bestCourseTitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            height: 1,
+                              fontFamily: 'Mitr',
+                              fontSize: 20,
+                              color: Color(0xff4B4B4B)),
+                          minFontSize: 12, // Tamaño de fuente mínimo
+                          maxFontSize: 20, // Tamaño de fuente máximo
+                          presetFontSizes: [20, 16, 14, 12], 
+                        ),
                       ),
 
                       // Text('Promedio: $bestCourseAverage'),

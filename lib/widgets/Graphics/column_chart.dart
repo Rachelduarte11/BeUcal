@@ -2,7 +2,7 @@ import 'package:becertus_proyecto/models/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../models/courses.dart';
+import '../../../models/courses.dart';
 
 class GenColumnChart extends StatefulWidget {
   final String? selectedCourseKey;
@@ -46,6 +46,7 @@ class _GenColumnChartState extends State<GenColumnChart> {
                   ),
                   primaryXAxis: CategoryAxis(
                     isVisible: false,
+
                 
                   ),
                   series: <CartesianSeries>[
@@ -63,7 +64,7 @@ class _GenColumnChartState extends State<GenColumnChart> {
                    opacity: 1,
                   textStyle: TextStyle(fontSize: 13, fontFamily: 'Mitr')
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                 )
               ]),
             

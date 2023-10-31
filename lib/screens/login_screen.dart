@@ -1,10 +1,17 @@
-
 import 'package:becertus_proyecto/screens/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+   const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  String email_input = '';
+  String password_input = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +44,7 @@ class Login extends StatelessWidget {
                   child: Container(
                     width: 320,
                     height: 273,
-                
+
                     child: Image.asset(
                       'assets/elements/Group 33.png',
                       height: 280,
@@ -71,7 +78,7 @@ class Login extends StatelessWidget {
                         color: Color(0xff000000),
                       ),
                     ),
-                
+
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: Column(
@@ -80,54 +87,125 @@ class Login extends StatelessWidget {
                             height: 18,
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 30, bottom: 3),
+                            margin: const EdgeInsets.only(left: 30, bottom: 3),
                             alignment: Alignment.centerLeft,
-                            child: CustomText(text: 'Email Institucional', fontSize: 16,),
+                            child: const CustomText(
+                              text: 'Email Institucional',
+                              fontSize: 16,
+                            ),
                           ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              child:
-                                  _TextField(context, Icons.person_outline_rounded)),
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            child: TextFormField(onChanged: (value) {
+                              setState(() {
+                                email_input = value;
+                                print(email_input);
+                              });
+                            },
+                            decoration: const InputDecoration(
+                                  labelStyle: TextStyle(color: Color(0xff323232),
+                                  )
+                                ),),
+                          ),
                           const SizedBox(
                             height: 10,
                           ),
                           Container(
-                              margin: EdgeInsets.only(left: 30, bottom: 3),
+                              margin: const EdgeInsets.only(left: 30, bottom: 3),
                               alignment: Alignment.centerLeft,
-                              child: CustomText(text: 'Contraseña', fontSize: 16)),
+                              child:
+                                  const CustomText(text: 'Contraseña', fontSize: 16)),
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
-                              child: _TextField(context, Icons.lock)),
-                             
+                              child:
+                               TextFormField(
+                                
+                                onChanged: (value) {
+                                  setState(() {
+                                    password_input = value;
+                                    //print(email_input);
+                                  });
+                                },
+                                decoration: const InputDecoration(
+                                  labelStyle: TextStyle(color: Color(0xff323232),
+                                  )
+                                ),
+                              )),
                         ],
                       ),
                     ),
-                     const SizedBox(
+                    const SizedBox(
                       height: 6,
                     ),
-                     const CustomText(text: '¿Olvidaste tu contraseña?', fontSize: 14),
+                    const CustomText(
+                        text: '¿Olvidaste tu contraseña?', fontSize: 14),
                     const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                      onPressed: () async {
+                        await FirebaseFirestore.instance
+                            .collection("estudiantes")
+                            .get()
+                            .then((value) {
+                          value.docs.forEach((element) {
+                            //String nombre = element['nombre'];
+                            String email = element['email'];
+                            String password = element['password'];
+                            if (email_input == email &&
+                                password_input == password) {
+                              print('acceso permitido');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (builder) => HomeScreen()),
+                              );
+                            }
+                          });
+                        });
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: Color(0xff39373E), // Color de fondo del botón
+                          primary:
+                              Color(0xff39373E), // Color de fondo del botón
                           onPrimary: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   20)) // Color del texto en el botón
                           ),
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          // AÑADIR USUARIOS A FIREBASE
+                          //  await FirebaseFirestore.instance.collection('estudiantes').add({
+                          //   'nombre': "Alessandro Marquina",
+                          //   'email': "alessandro@gmail.com",
+                          //   'password': "1234",
+
+                          // }).then((value){
+                          //   print(value.id);
+                          // });
+                          //FIN DE AÑADIR USUARIOS
+
+                          // FireBase StoreCloud Conexion
+                          await FirebaseFirestore.instance
+                              .collection("estudiantes")
+                              .get()
+                              .then((value) {
+                            value.docs.forEach((element) {
+                              //String nombre = element['nombre'];
+                              String email = element['email'];
+                              String password = element['password'];
+                              if (email_input == email &&
+                                  password_input == password) {
+                                print('acceso permitido');
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (builder) => HomeScreen()),
                                 );
-                              },
+                              }
+                            });
+                          });
+                        },
                         child: const Padding(
                           padding: EdgeInsets.all(5.0),
                           child: Text(
@@ -151,55 +229,26 @@ class Login extends StatelessWidget {
     );
   }
 
-  Container _TextField(BuildContext context, IconData myIcon) {
-    
-    return Container(
-      height: 50,
-      padding: EdgeInsets.only(left: 10),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color:
-                Colors.grey.withOpacity(0.5), // Color y opacidad de la sombra
-            spreadRadius: 3, // Cuánto se extiende la sombra
-            blurRadius: 5, // Difuminado de la sombra
-            offset: Offset(0, 2),
-          )
-        ],
-      ),
-      //width: MediaQuery.of(context).size.width *0.85,
-      child: Row(
-        children: [
-          Icon(
-            myIcon,
-            size: 32,
-            color: Color(0xff39373E),
-          ),
-          SizedBox(width: 8),
-          Expanded(
-            child: TextField(
+  TextFormField _TextField(
+    BuildContext context,
+    IconData myIcon,
+  ) {
+    return TextFormField(
               decoration: InputDecoration(
                 filled: true,
-                
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                borderSide: BorderSide(color: Colors.white), // Bordes cuando está enfocado
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                      color: Colors.white), // Bordes cuando está enfocado
                 ),
-            
               ),
               style: TextStyle(color: Color(0xff39373E))
-            ),
-          ),
-        ],
-      ),
+    
     );
   }
 }

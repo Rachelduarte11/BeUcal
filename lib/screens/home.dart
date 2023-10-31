@@ -44,7 +44,11 @@ class _HomeScreenState extends State<HomePage> {
                 children: [
                   GroupMain(),
                   GroupHabilitys(),
-                  Titles(text: 'Tareas Pendientes', size: 24,),
+                  Titles(
+                    text: 'Tareas Pendientes',
+                    size: 24,
+                    fontFamily: 'Mitr',
+                  ),
                   _ToDoCard(),
                 ],
               ),
@@ -65,20 +69,24 @@ class _HomeScreenState extends State<HomePage> {
 // ignore: must_be_immutable
 class Titles extends StatelessWidget {
   String text;
+  String fontFamily;
   double size;
   Titles({
     required this.text,
     required this.size,
+    required this.fontFamily,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context,) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Text(
       text,
       style: TextStyle(
         color: Color(0xFF323232),
-        fontFamily: 'Mitr',
+        fontFamily: fontFamily,
         fontSize: size,
         fontWeight: FontWeight.w400,
       ),

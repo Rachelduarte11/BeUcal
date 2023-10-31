@@ -1,9 +1,11 @@
+import 'package:becertus_proyecto/models/colors.dart';
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/widgets/Graphics/charts.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
-import '../models/better_performance.dart';
+import '../models/results_performance.dart';
 import '../models/courses.dart';
 import '../widgets/Graphics/column_chart.dart';
 
@@ -15,7 +17,6 @@ class MainPerformance extends StatefulWidget {
 }
 
 class _MainPerformanceState extends State<MainPerformance> {
-  
   String? selectedCourseKey;
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,7 @@ class _MainPerformanceState extends State<MainPerformance> {
         Titles(
           text: 'Arquitectura',
           size: 24,
+          fontFamily: 'Mitr',
         ),
         SizedBox(
           height: 2,
@@ -40,7 +42,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                   blurRadius: 3.5,
                 ),
               ],
-              color: Color(0XFFE7E2E2),
+              color: Color(0XFFF5F5F5),
               borderRadius: BorderRadius.all(Radius.circular(20))),
           child: ClipRRect(
             child: Row(
@@ -63,8 +65,8 @@ class _MainPerformanceState extends State<MainPerformance> {
                       Row(
                         children: [
                           chipData2(
-                            '$ED',
-                            0xff069884,
+                            '$GlobalVariables.ED',
+                            0xffBBC700,
                           ),
                           SizedBox(
                             width: 4,
@@ -78,8 +80,8 @@ class _MainPerformanceState extends State<MainPerformance> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           chipData2(
-                            '$FP',
-                            0xffF79521,
+                            '$GlobalVariables.FP',
+                            0xff00C1A7,
                           ),
                           SizedBox(
                             width: 4,
@@ -92,8 +94,8 @@ class _MainPerformanceState extends State<MainPerformance> {
                       Row(
                         children: [
                           chipData2(
-                            '$EG',
-                            0xffC9D32B,
+                            '$GlobalVariables.EG',
+                            0xff09806F,
                           ),
                           SizedBox(
                             width: 4,
@@ -112,10 +114,9 @@ class _MainPerformanceState extends State<MainPerformance> {
           height: 8,
         ),
         Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.25,
-          child: GenColumnChart(selectedCourseKey)),
-     
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.25,
+            child: GenColumnChart(selectedCourseKey)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SizedBox(
@@ -127,20 +128,20 @@ class _MainPerformanceState extends State<MainPerformance> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                       if (selectedCourseKey == cursoKey) {
-                      selectedCourseKey = null; // Si ya está seleccionado, restablece el estado
-                    } else {
-                      selectedCourseKey = cursoKey; // De lo contrario, actualiza el elemento seleccionado
-                    }// Actualizar el elemento seleccionado
-                     });
+                        if (selectedCourseKey == cursoKey) {
+                          selectedCourseKey =
+                              null; // Si ya está seleccionado, restablece el estado
+                        } else {
+                          selectedCourseKey =
+                              cursoKey; // De lo contrario, actualiza el elemento seleccionado
+                        } // Actualizar el elemento seleccionado
+                      });
                     },
-                   
                     child: ChipContainer(
                       titulo: cursos[cursoKey]?['title'],
                       promedio: cursos[cursoKey]?['average'],
-                      color: cursos[cursoKey]?['color'],
+                      gradient: cursos[cursoKey]?['gradient'],
                       isSelected: selectedCourseKey == cursoKey,
-                      
                     ),
                   ),
               ],
@@ -149,84 +150,186 @@ class _MainPerformanceState extends State<MainPerformance> {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
-          child: _betterScore(context ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _betterScore(context),
+              _worseScore(context)
+            ],
+          ),
         ),
       ],
     );
   }
 
-Row _betterScore(BuildContext context) {
-  Map<String, dynamic> bestCourseData = findBestCourse(betterPerformance);
-  String bestCourseTitle = bestCourseData['title'];
-  String bestCourseAverage = bestCourseData['average'].toStringAsFixed(1);
+  Row _betterScore(BuildContext context) {
+    Map<String, dynamic> bestCourseData = findBestCourse(performance);
+    String bestCourseTitle = bestCourseData['title'];
+    String bestCourseAverage = bestCourseData['average'].toStringAsFixed(1);
 
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Column(
-        children: [
-          Titles(text: 'Mejor Curso', size: 16),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.46,
-            height: MediaQuery.of(context).size.height * 0.11,
-            margin: EdgeInsets.only(bottom: 10),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x3f000000),
-                  offset: Offset(1, 3),
-                  blurRadius: 3.5,
-                ),
-              ],
-              color: Color(0XFFE7E2E2),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.46,
+              height: MediaQuery.of(context).size.height * 0.10,
+              margin: EdgeInsets.only(bottom: 5),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x3f000000),
+                    offset: Offset(1, 3),
+                    blurRadius: 3.5,
+                  ),
+                ],
+                color: Color(0XFFFFFFFF),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Titles(
+                          text: 'Mejor Curso', size: 14, fontFamily: 'Arimo'),
+                      Text(
+                        bestCourseTitle,
+                        style: TextStyle(
+                            fontFamily: 'Mitr',
+                            fontSize: 20,
+                            color: Color(0xff4B4B4B)),
+                      ),
+
+                      // Text('Promedio: $bestCourseAverage'),
+                    ],
+                  ),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        gradient: LinearGradient(colors: [
+                          Color(0xFFC9D32B),
+                          Color.fromARGB(201, 100, 219, 112),
+                        ],
+                        stops: [0.0, 20],)),
+                    child: Center(
+                      child: AutoSizeText(
+                        bestCourseAverage,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontFamily: 'Arimo',
+                            fontWeight: FontWeight.w600,
+                            color: const Color.fromARGB(255, 255, 255, 255)),
+                      minFontSize: 12, // Tamaño de fuente mínimo
+                      maxFontSize: 20, // Tamaño de fuente máximo
+                      presetFontSizes: [20, 16, 14, 12], 
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(bestCourseTitle,
-                style: TextStyle(color: Colors.amber),),
-                Text(bestCourseAverage, style: TextStyle(color: Colors.amber),)
-               // Text('Promedio: $bestCourseAverage'),
-              ],
+          ],
+        ),
+      ],
+    );
+  }
+
+  Row _worseScore(BuildContext context) {
+  
+    Map<String, dynamic> worstCourse = findWorstCourse(performance);
+    String worstAverage = worstCourse['average'].toStringAsFixed(1); // Inicializa con un valor muy alto para asegurarte de que cualquier promedio será menor.
+    String worstCourseTitle = worstCourse['title'];
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.46,
+              height: MediaQuery.of(context).size.height * 0.10,
+              margin: EdgeInsets.only(bottom: 5),
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x3f000000),
+                    offset: Offset(1, 3),
+                    blurRadius: 3.5,
+                  ),
+                ],
+                color: Color(0XFFFFFFFF),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Titles(
+                          text: 'Por Mejorar ', size: 14, fontFamily: 'Arimo'),
+                      Container(
+                        constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width*0.26, // Establece el ancho máximo del contenedor
+                    
+                      ),
+                        child: AutoSizeText(
+                          worstCourseTitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            height: 1,
+                              fontFamily: 'Mitr',
+                              fontSize: 20,
+                              color: Color(0xff4B4B4B)),
+                          minFontSize: 12, // Tamaño de fuente mínimo
+                          maxFontSize: 20, // Tamaño de fuente máximo
+                          presetFontSizes: [20, 16, 14, 12], 
+                        ),
+                      ),
+
+                      // Text('Promedio: $bestCourseAverage'),
+                    ],
+                  ),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        gradient: LinearGradient(colors: [
+                          redStatic,
+                          Color(0xFFEB078D),
+                        ])),
+                    child: Center(
+                      child: Text(
+                        worstAverage ,
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontFamily: 'Arimo',
+                            fontWeight: FontWeight.w600,
+                            color: const Color.fromARGB(255, 255, 255, 255)),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          
-        ],
-      ),
-      Column(
-        children: [
-          Titles(text: 'Mejor Periodo', size: 16),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.46,
-            height: MediaQuery.of(context).size.height * 0.11,
-            margin: EdgeInsets.only(bottom: 10),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x3f000000),
-                  offset: Offset(1, 3),
-                  blurRadius: 3.5,
-                ),
-              ],
-              color: Color(0XFFE7E2E2),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(bestCourseTitle,
-                style: TextStyle(color: Colors.amber),),
-               // Text('Promedio: $bestCourseAverage'),
-              ],
-            ),
-          ),
-          
-        ],
-      ),
-    ],
-  );
-}
+          ],
+        ),
+      ],
+    );
+  }
 
   Text InfoCourses(String text2) {
     return Text(

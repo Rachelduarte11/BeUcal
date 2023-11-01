@@ -17,6 +17,8 @@ class _MyPerformanceState extends State<MyPerformance> {
   bool isExpandedEstudiosGenerales = false;
   bool isExpandedFormacionProfesional = false;
 
+ 
+
   int selectedND = 0; // 0: Todos, 1: ND1, 2: ND2, 3: ND3
 
   Color colorND1 = const Color(0xFFFD6A6A);

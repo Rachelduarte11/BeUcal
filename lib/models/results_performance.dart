@@ -6,32 +6,32 @@ import '../widgets/Graphics/charts.dart';
   Map<String, Map<String, dynamic>> performance = {
     'proII': {
       'title': 'Proyecto II',
-      'average': GlobalVariables.proII,
+      'average': proII,
       'color': Color(0xffFD6A6A),
     },
     'creaII': {
       'title': 'Creatividad',
-      'average': GlobalVariables.creaII,
+      'average': creaII,
       'color': Color(0xffC9D32B),
     },
     'ctI': {
       'title': 'Construcción y Tecnología',
-      'average': GlobalVariables.ctI,
+      'average': ctI,
       'color': Color(0xff00667C),
     },
     'thcaI': {
       'title': 'Teoría, historia y...',
-      'average': GlobalVariables.thcaI,
+      'average': thcaI,
       'color': Color(0xff44DECC),
     },
     'fisica': {
       'title': 'Física',
-      'average': GlobalVariables.fisica,
+      'average': fisica,
       'color': Color(0xffF4A50B),
     },
     'englishI': {
       'title': 'Inglés I',
-      'average': GlobalVariables.englishI,
+      'average': englishI,
       'color': Color(0xffEB078D),
     },
   };

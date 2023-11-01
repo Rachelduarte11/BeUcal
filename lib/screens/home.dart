@@ -34,9 +34,9 @@ class _HomeScreenState extends State<HomePage> {
               backgroundColor:
                   Colors.transparent, // Altura expandida del app bar
               floating:
-                  true, // Configura en true para que el app bar sea flotante
+                  true, 
               pinned:
-                  false, // Configura en false para que el app bar no esté siempre visible
+                  false, 
               flexibleSpace: CustomAppBar(),
             ),
             SliverToBoxAdapter(

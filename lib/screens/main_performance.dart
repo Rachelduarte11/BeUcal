@@ -8,6 +8,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import '../models/results_performance.dart';
 import '../models/courses.dart';
 import '../widgets/Graphics/column_chart.dart';
+import '../widgets/Graphics/periodos/better_periods.dart';
 
 class MainPerformance extends StatefulWidget {
   const MainPerformance({super.key});
@@ -80,7 +81,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           chipData2(
-                            '$ED',
+                            '$FP',
                             0xff00C1A7,
                           ),
                           SizedBox(
@@ -94,7 +95,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                       Row(
                         children: [
                           chipData2(
-                            '$ED',
+                            '$EG',
                             0xff09806F,
                           ),
                           SizedBox(
@@ -159,6 +160,13 @@ class _MainPerformanceState extends State<MainPerformance> {
             ],
           ),
         ),
+        SizedBox(height: 6,),
+        Titles(text: 'Rendimiento por periodos', size: 18, fontFamily: 'Mitr'),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height *0.4,
+          child: MyPeriodBar(),
+        )
       ],
     );
   }
@@ -200,7 +208,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                           text: 'Mejor Curso', size: 14, fontFamily: 'Arimo'),
                       Container(
                         constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width*0.26, // Establece el ancho máximo del contenedor
+                        maxWidth: MediaQuery.of(context).size.width*0.255, // Establece el ancho máximo del contenedor
                     
                       ),
                         child: AutoSizeText(
@@ -210,7 +218,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                           style: TextStyle(
                             height: 1,
                               fontFamily: 'Mitr',
-                              fontSize: 20,
+                              fontSize: 18,
                               color: Color(0xff4B4B4B)),
                           minFontSize: 12, // Tamaño de fuente mínimo
                           maxFontSize: 20, // Tamaño de fuente máximo

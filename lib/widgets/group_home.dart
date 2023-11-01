@@ -240,10 +240,10 @@ class GroupMain extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: SizedBox(
-                                  width: 76,
-                                  height: 76,
+                                  width: 60,
+                                  height: 60,
                                   child: Image.asset(
-                                    'assets/images/logros.png',
+                                    'assets/images/calendario.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -259,7 +259,7 @@ class GroupMain extends StatelessWidget {
                         // logrostaK (1:87)
 
                         child: Text(
-                          'Logros',
+                          'Horario',
                           style: TextStyle(
                             fontFamily: 'Mitr',
                             fontSize: 20,

@@ -114,9 +114,10 @@ class _MainPerformanceState extends State<MainPerformance> {
         SizedBox(
           height: 8,
         ),
+       
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.28,
             child: GenColumnChart(selectedCourseKey)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

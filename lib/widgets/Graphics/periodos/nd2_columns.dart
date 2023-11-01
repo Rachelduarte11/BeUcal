@@ -29,46 +29,70 @@ class _ND2GenColumnChartState extends State<ND2GenColumnChart> {
 
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
-      onTap: () {
-        // Mostrar los labels cuando se toque en el área del gráfico
-      
-          setState(() {
-          showLabels = !showLabels;
-        });
-      
-      },
-      child: Container(
-           
-              child: SfCartesianChart(
-                  primaryYAxis: NumericAxis(
-                    maximum: 20,
-                  ),
-                  primaryXAxis: CategoryAxis(
-                    isVisible: false,
-
-                
-                  ),
-                  series: <CartesianSeries>[
-                ColumnSeries<GenCol, String>(
-                  dataSource: getChartData(),
-                  width: 0.5,
-                  xValueMapper: (GenCol data, _) => data.title,
-                  yValueMapper: (GenCol data, _) => data.average,
-                  // Map color for each data points from the data source
-                  pointColorMapper: (GenCol data, _) =>
-                      data.isSelected ? redStatic : data.color,
-                  dataLabelSettings: DataLabelSettings(
-                  isVisible: showLabels,
-                   labelAlignment: ChartDataLabelAlignment.outer,
-                   opacity: 1,
-                  textStyle: TextStyle(fontSize: 13, fontFamily: 'Mitr')
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                )
-              ]),
+    return Column(
+      children: [
+         Container(
+          alignment: Alignment.centerRight,
+          child: _showAverage()),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.25,
+          child: SfCartesianChart(
+              primaryYAxis: NumericAxis(
+                maximum: 20,
+              ),
+              primaryXAxis: CategoryAxis(
+                isVisible: false,
             
-      ),
+              ),
+              series: <CartesianSeries>[
+            ColumnSeries<GenCol, String>(
+              dataSource: getChartData(),
+              width: 0.5,
+              xValueMapper: (GenCol data, _) => data.title,
+              yValueMapper: (GenCol data, _) => data.average,
+              // Map color for each data points from the data source
+              pointColorMapper: (GenCol data, _) =>
+                  data.isSelected ? redStatic : data.color,
+              dataLabelSettings: DataLabelSettings(
+              isVisible: showLabels,
+               labelAlignment: ChartDataLabelAlignment.outer,
+               opacity: 1,
+              textStyle: TextStyle(fontSize: 13, fontFamily: 'Mitr')
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            )
+          ]),
+        ),
+       
+      ],
+    );
+  }
+
+  Container _showAverage() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal:10),
+      decoration: BoxDecoration(color: Colors.white,
+      borderRadius: BorderRadius.circular(2),
+      border: Border.all(color: greyLight)),
+      alignment: Alignment.centerRight,
+      height: 20,
+      width: 100,
+      child: GestureDetector(
+                      onTap: () {
+                setState(() {
+                showLabels = !showLabels;
+              });
+            
+            },
+            
+             child: Text(showLabels ? 'Ocultar Etiquetas' : 'Mostrar Etiquetas', style: TextStyle(
+              fontFamily: 'Arimo',
+              height: 0.8,
+              color: greyDark,
+              fontSize: 12
+             ),),
+             ),
+           
     );
   }
 }

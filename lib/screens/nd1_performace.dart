@@ -114,7 +114,7 @@ class _MainPerformanceState extends State<ND1Performance> {
         ),
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.28,
             child: ND1GenColumnChart(selectedCourseKey)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -151,6 +151,7 @@ class _MainPerformanceState extends State<ND1Performance> {
       
       ],
     );
+    
   }
 
 

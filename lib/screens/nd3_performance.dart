@@ -1,4 +1,3 @@
-
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:flutter/material.dart';
 import '../models/courses.dart';
@@ -8,7 +7,6 @@ import '../widgets/Graphics/periodos/nd1_columns.dart';
 import '../widgets/Graphics/periodos/nd3.dart';
 import '../widgets/Graphics/periodos/nd3_columns.dart';
 import '../widgets/chip_data.dart';
-
 
 class ND3Performance extends StatefulWidget {
   const ND3Performance({super.key});
@@ -116,7 +114,7 @@ class _MainPerformanceState extends State<ND3Performance> {
         ),
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.28,
             child: ND3GenColumnChart(selectedCourseKey)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -149,12 +147,9 @@ class _MainPerformanceState extends State<ND3Performance> {
             ),
           ),
         ),
-  
-      
       ],
     );
   }
-
 
   Text InfoCourses(String text2) {
     return Text(

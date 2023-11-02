@@ -176,69 +176,70 @@ class ViewTasks extends StatelessWidget {
     required IconData iconData,
     required Color iconColor,
   }) {
-    return SizedBox(width: 180,
-      child: Expanded(
-        child: Container(
-            
-            padding: EdgeInsets.only(left: 10),
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromARGB(62, 44, 0, 9),
-                          offset: Offset(1, -1),
-                          blurRadius: 5.5,
-                ),
-              ],
-            ),
-            width: 170,
-            height: MediaQuery.of(context).size.height * 0.102,
-            child: Row(children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: circleColor,
-                    ),
-                    child: Icon(
-                      iconData,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      firstText,
-                      style: TextStyle(
-                          color: Color(0xff9D9898), fontFamily: 'Mitr', fontSize: 18),
-                    ),
+    return SizedBox(width: 170,
+        child: Expanded(
+          child: Container(
+              
+              padding: EdgeInsets.only(left: 10),
+              alignment: Alignment.topLeft,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(62, 44, 0, 9),
+                            offset: Offset(1, -1),
+                            blurRadius: 5.5,
                   ),
                 ],
               ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.only(right: 10),
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    secondText,
-                    style: TextStyle(
-                        fontSize: 28, fontFamily: 'Mitr', color: Color(0xff4B4B4B)),
+              width: 170,
+              height: MediaQuery.of(context).size.height * 0.102,
+              child: Row(children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 4),
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: circleColor,
+                      ),
+                      child: Icon(
+                        iconData,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        firstText,
+                        style: TextStyle(
+                            color: Color(0xff9D9898), fontFamily: 'Mitr', fontSize: 18),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.only(right: 10),
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      secondText,
+                      style: TextStyle(
+                          fontSize: 28, fontFamily: 'Mitr', color: Color(0xff4B4B4B)),
+                    ),
                   ),
                 ),
-              ),
-            ]),
-          ),
-      ),
-    );
+              ]),
+            ),
+        ),
+      );
+    
     
   }
 

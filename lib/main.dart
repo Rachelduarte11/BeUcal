@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: HomeScreen(),
+      home: Login(),
       routes: {
         '/myperformance': (context) => MyPerformance()
       },

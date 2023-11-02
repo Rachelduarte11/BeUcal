@@ -85,35 +85,33 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
-     - family: Mitr
-       fonts:
-          - asset: assets/fonts/Mitr-Bold.ttf
-            weight: 700  # Peso de la fuente Bold
-          - asset: assets/fonts/Mitr-ExtraLight.ttf
-            weight: 200  # Peso de la fuente ExtraLight
-          - asset: assets/fonts/Mitr-Light.ttf
-            weight: 300  # Peso de la fuente Light
-          - asset: assets/fonts/Mitr-Medium.ttf
-            weight: 500  # Peso de la fuente Medium
-          - asset: assets/fonts/Mitr-Regular.ttf
-            weight: 400  # Peso de la fuente Regular
-          - asset: assets/fonts/Mitr-SemiBold.ttf
-            weight: 600  # Peso de la fuente SemiBold
+    - family: Mitr
+      fonts:
+        - asset: assets/fonts/Mitr-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Mitr-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Mitr-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Mitr-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Mitr-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Mitr-SemiBold.ttf
+          weight: 600
+    - family: Arimo
+      fonts:
+        - asset: assets/fonts/Arimo-VariableFont_wght.ttf
+          weight: 200
+        - asset: assets/fonts/Arimo-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/Arimo-SemiBold.ttf
+          weight: 500
+        - asset: assets/fonts/Arimo-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/Arimo-Regular.ttf
+          weight: 300
 
-     - family: Arimo
-       fonts:
-          - asset: assets/fonts/Arimo-VariableFont_wght.ttf
-          - weight: 200
-          - asset: assets/fonts/Arimo-Bold.ttf
-          - weight: 600
-          - asset: assets/fonts/Arimo-SemiBold.ttf
-          - weight: 500
-          - asset: assets/fonts/Arimo-Medium.ttf
-          - weight: 400
-          - asset: assets/fonts/Arimo-Regular.ttf
-          - weight: 300
-          
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

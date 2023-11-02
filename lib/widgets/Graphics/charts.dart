@@ -78,8 +78,10 @@ double nd3EG = double.parse(nd3VEG.toStringAsFixed(1));
 
 
 class RadiusChartGen extends StatefulWidget {
-  const RadiusChartGen({super.key});
-
+  RadiusChartGen({super.key});
+ // String get promedio => promedioTexto; // Getter para promedioTexto
+ String promedioTexto = '';
+ 
   @override
   State<RadiusChartGen> createState() => _RadiusChartGenState();
 }
@@ -87,6 +89,13 @@ class RadiusChartGen extends StatefulWidget {
 class _RadiusChartGenState extends State<RadiusChartGen> {
   late List<GDPData> _chartData;
   String promedioTexto = ''; // Declarar la variable aquí
+// Getter para promedioTexto
+void updateVariable(String newValue) {
+    setState(() {
+      promedioTexto = newValue;
+    });
+  }
+
 
 //Funcion parea sumar el promedio general
   @override
@@ -166,6 +175,7 @@ class _RadiusChartGenState extends State<RadiusChartGen> {
     ];
     return chartData;
   }
+   
 }
 
 class GDPData {

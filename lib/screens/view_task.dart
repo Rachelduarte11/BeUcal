@@ -12,57 +12,60 @@ class ViewTasks extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(20, 20, 20, 2),
-              height: MediaQuery.of(context).size.height * 0.25,
-              child: Column(
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TaskContents(
-                          context: context,
-                          circleColor: Color(0xff12B19C),
-                          firstText: 'Hoy',
-                          secondText: '1',
-                          iconData: Icons.calendar_today,
-                          iconColor: Colors.white,
-                        ),
-                        TaskContents(
-                          context: context,
-                          circleColor: Color(0xffF79521),
-                          firstText: 'Programados',
-                          secondText: '6',
-                          iconData: Icons.event_available,
-                          iconColor: Colors.white,
-                        )
-                      ]),
-                  SizedBox(height: 15),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TaskContents(
-                          context: context,
-                          circleColor: Color(0xffFD6A6A),
-                          firstText: 'Prioritarios',
-                          secondText: '1',
-                          iconData: Icons.flag,
-                          iconColor: Colors.white,
-                        ),
-                        TaskContents(
-                          context: context,
-                          circleColor: Color(0xff6B6565),
-                          firstText: 'Todos',
-                          secondText: '7',
-                          iconData: Icons.inbox,
-                          iconColor: Colors.white,
-                        )
-                      ]),
-                ],
-              ),
+            Expanded(
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(20, 20, 20, 2),
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  child: Column(
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TaskContents(
+                              context: context,
+                              circleColor: Color(0xff12B19C),
+                              firstText: 'Hoy',
+                              secondText: '1',
+                              iconData: Icons.calendar_today,
+                              iconColor: Colors.white,
+                            ),
+                            TaskContents(
+                              context: context,
+                              circleColor: Color(0xffF79521),
+                              firstText: 'Programados',
+                              secondText: '6',
+                              iconData: Icons.event_available,
+                              iconColor: Colors.white,
+                            )
+                          ]),
+                      SizedBox(height: 15),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TaskContents(
+                              context: context,
+                              circleColor: Color(0xffFD6A6A),
+                              firstText: 'Prioritarios',
+                              secondText: '1',
+                              iconData: Icons.flag,
+                              iconColor: Colors.white,
+                            ),
+                            TaskContents(
+                              context: context,
+                              circleColor: Color(0xff6B6565),
+                              firstText: 'Todos',
+                              secondText: '7',
+                              iconData: Icons.inbox,
+                              iconColor: Colors.white,
+                            )
+                          ]),
+                    ],
+                  ),
+                ),
             ),
+            
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height*0.92 ,

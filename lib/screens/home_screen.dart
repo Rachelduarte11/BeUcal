@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 0, 0),
+        color: Color(0xfffafafa),
       ),
       child: Scaffold(
         

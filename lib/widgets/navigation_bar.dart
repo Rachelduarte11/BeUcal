@@ -20,7 +20,7 @@ class CustomeNavigationBar extends StatefulWidget {
 class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   int currentIndex = 0;
 
-   onTab(int index) {
+  onTab(int index) {
     setState(() {
       currentIndex = index;
       widget.voidCallbackParam(index);
@@ -85,100 +85,99 @@ class SpeedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      child: SpeedDial(
-        buttonSize: const Size.fromRadius(15),
-        backgroundColor: const Color(0xFFFD6A6A),
-        overlayColor: Colors.black,
-        overlayOpacity: 0.4,
-        spaceBetweenChildren: 2,
+    return SpeedDial(
+      buttonSize: const Size.fromRadius(15),
+      backgroundColor: const Color(0xFFFD6A6A),
+      overlayColor: Colors.black,
+      overlayOpacity: 0.4,
+      spaceBetweenChildren: 2,
+      child: Center(
         child: Icon(
           Icons.add_rounded,
           size: 36,
         ),
-        children: [
-          SpeedDialChild(
-            labelWidget: Container(
-              width: 180,
-              padding: const EdgeInsets.symmetric(
-                  vertical: 6.0,
-                  horizontal: 8), // Espacio alrededor del contenedor
-              decoration: BoxDecoration(
-                color: redStatic, // Color de fondo personalizado
-                borderRadius: BorderRadius.circular(25.0), // Bordes redondeados
-              ),
-              child: const Text(
-                'Calendario',
-                style: TextStyle(
-                  fontFamily: 'Mitr',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18, // Tamaño de fuente personalizado
-                  color: Colors.white, // Color del texto
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (builder) => ViewTasks()),
-              );
-            },
-          ),
-          SpeedDialChild(
-            labelWidget: Container(
-              width: 180,
-              padding:
-                  const EdgeInsets.all(4.0), // Espacio alrededor del contenedor
-              decoration: BoxDecoration(
-                color: redStatic, // Color de fondo personalizado
-                borderRadius: BorderRadius.circular(30.0), // Bordes redondeados
-              ),
-              child: const Text(
-                'Nuevo Tarea',
-                style: TextStyle(
-                  fontFamily: 'Mitr',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18, // Tamaño de fuente personalizado
-                  color: Colors.white, // Color del texto
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            onTap: () {
-              _showModalBottomSheet(context);
-            },
-          ),
-          SpeedDialChild(
-            labelWidget: Container(
-              width: 180,
-              padding:
-                  const EdgeInsets.all(4.0), // Espacio alrededor del contenedor
-              decoration: BoxDecoration(
-                color: redStatic, // Color de fondo personalizado
-                borderRadius: BorderRadius.circular(30.0), // Bordes redondeados
-              ),
-              child: const Text(
-                'Tareas',
-                style: TextStyle(
-                  fontFamily: 'Mitr',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18, // Tamaño de fuente personalizado
-                  color: Colors.white, // Color del texto
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (builder) => ViewTasks()),
-              );
-            },
-          ),
-        ],
       ),
+      children: [
+        SpeedDialChild(
+          labelWidget: Container(
+            width: 180,
+            padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 8), // Espacio alrededor del contenedor
+            decoration: BoxDecoration(
+              color: redStatic, // Color de fondo personalizado
+              borderRadius: BorderRadius.circular(25.0), // Bordes redondeados
+            ),
+            child: const Text(
+              'Calendario',
+              style: TextStyle(
+                fontFamily: 'Mitr',
+                fontWeight: FontWeight.w400,
+                fontSize: 18, // Tamaño de fuente personalizado
+                color: Colors.white, // Color del texto
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (builder) => ViewTasks()),
+            );
+          },
+        ),
+        SpeedDialChild(
+          labelWidget: Container(
+            width: 180,
+            padding:
+                const EdgeInsets.all(4.0), // Espacio alrededor del contenedor
+            decoration: BoxDecoration(
+              color: redStatic, // Color de fondo personalizado
+              borderRadius: BorderRadius.circular(30.0), // Bordes redondeados
+            ),
+            child: const Text(
+              'Nuevo Tarea',
+              style: TextStyle(
+                fontFamily: 'Mitr',
+                fontWeight: FontWeight.w400,
+                fontSize: 18, // Tamaño de fuente personalizado
+                color: Colors.white, // Color del texto
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          onTap: () {
+            _showModalBottomSheet(context);
+          },
+        ),
+        SpeedDialChild(
+          labelWidget: Container(
+            width: 180,
+            padding:
+                const EdgeInsets.all(4.0), // Espacio alrededor del contenedor
+            decoration: BoxDecoration(
+              color: redStatic, // Color de fondo personalizado
+              borderRadius: BorderRadius.circular(30.0), // Bordes redondeados
+            ),
+            child: const Text(
+              'Tareas',
+              style: TextStyle(
+                fontFamily: 'Mitr',
+                fontWeight: FontWeight.w400,
+                fontSize: 18, // Tamaño de fuente personalizado
+                color: Colors.white, // Color del texto
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (builder) => ViewTasks()),
+            );
+          },
+        ),
+      ],
     );
   }
   //Size get preferredSize => const Size.fromHeight(53.0);
@@ -197,7 +196,7 @@ void _showModalBottomSheet(BuildContext context) {
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width * 1.8,
+        height: MediaQuery.of(context).size.width * 1.44,
         //Contiene los tres botones de la ventana emergente
         child: Column(
           children: [
@@ -307,8 +306,6 @@ Container _textUserOption(String textUser) {
     ),
   );
 }
-
-
 
 Container _TextField(BuildContext context, double myHeight, String actionUser) {
   return Container(

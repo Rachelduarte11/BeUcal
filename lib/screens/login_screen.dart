@@ -96,16 +96,22 @@ class _LoginState extends State<Login> {
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.9,
-                            child: TextFormField(onChanged: (value) {
+                            child: TextFormField(
+                              
+                              onChanged: (value) {
                               setState(() {
                                 email_input = value;
                                 print(email_input);
                               });
                             },
                             decoration: const InputDecoration(
-                                  labelStyle: TextStyle(color: Color(0xff323232),
+                              labelStyle: TextStyle(
+                                    color: Colors.blue
+                                  
                                   )
-                                ),),
+                                ),
+                                style:TextStyle(color: Colors.black,)
+                                ),
                           ),
                           const SizedBox(
                             height: 10,
@@ -130,7 +136,9 @@ class _LoginState extends State<Login> {
                                   labelStyle: TextStyle(color: Color(0xff323232),
                                   )
                                 ),
-                              )),
+                                style:TextStyle(color: Colors.black,)
+                              ),
+                              ),
                         ],
                       ),
                     ),

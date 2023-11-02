@@ -19,80 +19,74 @@ class _LoginState extends State<Login> {
       body: ListView(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Stack(
-              children: [
-                Positioned(
-                    top: 0,
-                    right: 0,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Container(
+                        width: 245,
+                        height: 255,
+                        //alignment: Alignment.topRight,
+                        child: Image.asset(
+                          'assets/elements/Group 32.png',
+                          height: 200,
+                          width: 350,
+                        ),
+                      )
+                      // Sustituye 'assets/image1.png' con la ruta de tu primera imagen
+                      ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
                     child: Container(
-                      width: 245,
-                      height: 255,
-                      //alignment: Alignment.topRight,
+                      width: 320,
+                      height: 273,
+          
                       child: Image.asset(
-                        'assets/elements/Group 32.png',
-                        height: 200,
+                        'assets/elements/Group 33.png',
+                        height: 280,
                         width: 350,
-                      ),
-                    )
-                    // Sustituye 'assets/image1.png' con la ruta de tu primera imagen
+                      ), // Sustituye 'assets/image2.png' con la ruta de tu segunda imagen
                     ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: Container(
-                    width: 320,
-                    height: 273,
-
-                    child: Image.asset(
-                      'assets/elements/Group 33.png',
-                      height: 280,
-                      width: 350,
-                    ), // Sustituye 'assets/image2.png' con la ruta de tu segunda imagen
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //bienvenido
-                    const Text(
-                      '¡Bienvenido!',
-                      style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Mitr',
-                        fontSize: 48,
-                        fontWeight: FontWeight.w600,
-                        height: 1.3199999723,
-                        color: Color(0xff161616),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //bienvenido
+                      const Text(
+                        '¡Bienvenido!',
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontFamily: 'Mitr',
+                          fontSize: 48,
+                          fontWeight: FontWeight.w600,
+                          height: 1.3199999723,
+                          color: Color(0xff161616),
+                        ),
                       ),
-                    ),
-                    const Text(
-                      "Aprende, organiza y mejora",
-                      style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Mitr',
-                        fontSize: 24,
-                        fontWeight: FontWeight.w300,
-                        height: 1.3199999332,
-                        color: Color(0xff000000),
+                      const Text(
+                        "Aprende, organiza y mejora",
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontFamily: 'Mitr',
+                          fontSize: 24,
+                          fontWeight: FontWeight.w300,
+                          height: 1.3199999332,
+                          color: Color(0xff000000),
+                        ),
                       ),
-                    ),
-
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 18,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 30, bottom: 3),
-                            alignment: Alignment.centerLeft,
-                            child: const CustomText(
-                              text: 'Email Institucional',
-                              fontSize: 16,
+          
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 18,
                             ),
+<<<<<<< HEAD
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.9,
@@ -117,12 +111,19 @@ class _LoginState extends State<Login> {
                             height: 10,
                           ),
                           Container(
+=======
+                            Container(
+>>>>>>> 0ec4ed7d73c6311e1c4088122b21cef413c3b8c8
                               margin: const EdgeInsets.only(left: 30, bottom: 3),
                               alignment: Alignment.centerLeft,
-                              child:
-                                  const CustomText(text: 'Contraseña', fontSize: 16)),
-                          SizedBox(
+                              child: const CustomText(
+                                text: 'Email Institucional',
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
+<<<<<<< HEAD
                               child:
                                TextFormField(
                                 
@@ -140,60 +141,56 @@ class _LoginState extends State<Login> {
                               ),
                               ),
                         ],
+=======
+                              child: TextFormField(onChanged: (value) {
+                                setState(() {
+                                  email_input = value;
+                                  print(email_input);
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                    labelStyle: TextStyle(color: Color(0xff323232),
+                                    )
+                                  ),),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 30, bottom: 3),
+                                alignment: Alignment.centerLeft,
+                                child:
+                                    const CustomText(text: 'Contraseña', fontSize: 16)),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                child:
+                                 TextFormField(
+                                  
+                                  onChanged: (value) {
+                                    setState(() {
+                                      password_input = value;
+                                      //print(email_input);
+                                    });
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelStyle: TextStyle(color: Color(0xff323232),
+                                    )
+                                  ),
+                                )),
+                          ],
+                        ),
+>>>>>>> 0ec4ed7d73c6311e1c4088122b21cef413c3b8c8
                       ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    const CustomText(
-                        text: '¿Olvidaste tu contraseña?', fontSize: 14),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        await FirebaseFirestore.instance
-                            .collection("estudiantes")
-                            .get()
-                            .then((value) {
-                          value.docs.forEach((element) {
-                            //String nombre = element['nombre'];
-                            String email = element['email'];
-                            String password = element['password'];
-                            if (email_input == email &&
-                                password_input == password) {
-                              print('acceso permitido');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (builder) => HomeScreen()),
-                              );
-                            }
-                          });
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                          primary:
-                              Color(0xff39373E), // Color de fondo del botón
-                          onPrimary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  20)) // Color del texto en el botón
-                          ),
-                      child: GestureDetector(
-                        onTap: () async {
-                          // AÑADIR USUARIOS A FIREBASE
-                          //  await FirebaseFirestore.instance.collection('estudiantes').add({
-                          //   'nombre': "Alessandro Marquina",
-                          //   'email': "alessandro@gmail.com",
-                          //   'password': "1234",
-
-                          // }).then((value){
-                          //   print(value.id);
-                          // });
-                          //FIN DE AÑADIR USUARIOS
-
-                          // FireBase StoreCloud Conexion
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      const CustomText(
+                          text: '¿Olvidaste tu contraseña?', fontSize: 14),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
                           await FirebaseFirestore.instance
                               .collection("estudiantes")
                               .get()
@@ -214,30 +211,74 @@ class _LoginState extends State<Login> {
                             });
                           });
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            'Ingresar',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Mitr',
-                              fontSize: 20,
+                        style: ElevatedButton.styleFrom(
+                            primary:
+                                Color(0xff39373E), // Color de fondo del botón
+                            onPrimary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20)) // Color del texto en el botón
+                            ),
+                        child: GestureDetector(
+                          onTap: () async {
+                            // AÑADIR USUARIOS A FIREBASE
+                            //  await FirebaseFirestore.instance.collection('estudiantes').add({
+                            //   'nombre': "Alessandro Marquina",
+                            //   'email': "alessandro@gmail.com",
+                            //   'password': "1234",
+          
+                            // }).then((value){
+                            //   print(value.id);
+                            // });
+                            //FIN DE AÑADIR USUARIOS
+          
+                            // FireBase StoreCloud Conexion
+                            await FirebaseFirestore.instance
+                                .collection("estudiantes")
+                                .get()
+                                .then((value) {
+                              value.docs.forEach((element) {
+                                //String nombre = element['nombre'];
+                                String email = element['email'];
+                                String password = element['password'];
+                                if (email_input == email &&
+                                    password_input == password) {
+                                  print('acceso permitido');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (builder) => HomeScreen()),
+                                  );
+                                }
+                              });
+                            });
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'Ingresar',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Mitr',
+                                fontSize: 20,
+                              ),
                             ),
                           ),
-                        ),
-                      ), // Texto que se muestra en el botón
-                    )
-                  ],
-                ),
-              ],
+                        ), // Texto que se muestra en el botón
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
+          
         ],
       ),
     );
   }
 
   TextFormField _TextField(
+    
     BuildContext context,
     IconData myIcon,
   ) {
@@ -255,7 +296,7 @@ class _LoginState extends State<Login> {
                       color: Colors.white), // Bordes cuando está enfocado
                 ),
               ),
-              style: TextStyle(color: Color(0xff39373E))
+              style: TextStyle(color: Color.fromARGB(13, 57, 55, 62))
     
     );
   }

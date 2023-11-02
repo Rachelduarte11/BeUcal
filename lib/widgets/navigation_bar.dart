@@ -31,48 +31,49 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
-        child: BottomNavigationBar(
-          elevation: 0,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_rounded,
-                size: 28,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
+          child: BottomNavigationBar(
+            elevation: 0,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home_rounded,
+                  size: 28,
+                ),
+                label: 'Home',
               ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.stacked_bar_chart_rounded,
-                size: 28,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.stacked_bar_chart_rounded,
+                  size: 28,
+                ),
+                label: 'Stack',
               ),
-              label: 'Stack',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_outline_outlined,
-                size: 28,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person_outline_outlined,
+                  size: 28,
+                ),
+                label: 'Play',
               ),
-              label: 'Play',
-            ),
-            BottomNavigationBarItem(
-              icon: SpeedButton(),
-              label: 'Add',
-            )
-          ],
-          onTap: onTab,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Color.fromARGB(18, 107, 107, 107),
-          showUnselectedLabels: false,
-          showSelectedLabels: false,
-          currentIndex: currentIndex,
-          unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
-          selectedItemColor: Color.fromARGB(255, 34, 34, 33),
+              BottomNavigationBarItem(
+                icon: SpeedButton(),
+                label: 'Add',
+              )
+            ],
+            onTap: onTab,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Color.fromARGB(18, 107, 107, 107),
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
+            currentIndex: currentIndex,
+            unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
+            selectedItemColor: Color.fromARGB(255, 34, 34, 33),
+          ),
         ),
-      ),
-    );
+      );
+    
   }
 }
 

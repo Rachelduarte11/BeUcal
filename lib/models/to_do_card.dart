@@ -1,47 +1,82 @@
-
-
 import 'package:flutter/material.dart';
 
-class ToDoCard extends StatelessWidget {
+class ToDoCard extends StatefulWidget {
   final String titleTask;
   final String timeTask;
   final bool check;
   final Widget chip;
-  ToDoCard(
-      {required this.titleTask, required this.timeTask, required this.check, required this.chip});
+
+  ToDoCard({
+    required this.titleTask,
+    required this.timeTask,
+    required this.check,
+    required this.chip,
+  });
+
+  @override
+  _ToDoCardState createState() => _ToDoCardState();
+}
+
+class _ToDoCardState extends State<ToDoCard> {
+  bool isExpanded = false;
+  bool isSwiped = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width ,//* 0.92,
+    
+    return Dismissible(
+
+       key: Key(widget.titleTask),
+      background: Container(
+        margin: EdgeInsets.only(bottom:10),
+        width: 10,
+        color: Colors.red,
+        height: 30,
+        alignment: Alignment.centerRight,
+        padding: EdgeInsets.only(left: 200),
+        child: Center(
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      onDismissed: (direction) {
+        if (direction == DismissDirection.endToStart) {
+          // Implementa la lógica para eliminar la tarea aquí
+        }
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(bottom: 10),
         padding: EdgeInsets.symmetric(horizontal: 10),
-        height: 65,
+        height: isExpanded ? 120 : 65, // Cambiar la altura según si está expandido
         decoration: BoxDecoration(
-            color: Color(0xffFFFFFF),
-             borderRadius: BorderRadius.circular(10),
-             boxShadow: [
-              BoxShadow(color:Color.fromARGB(51, 0, 0, 0), 
-              offset: Offset(0, 3), blurRadius:4)
-             ]),
-        child:
-            Row(//
-            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-             children: [
-          SizedBox(
-            //width: 180,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+          color: Color(0xffFFFFFF),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(51, 0, 0, 0),
+              offset: Offset(0, 3),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              
               children: [
                 Theme(
-                  // ignore: sort_child_properties_last
                   child: Transform.scale(
                     scale: 1.5,
                     child: Checkbox(
                       shape: CircleBorder(),
                       activeColor: Color(0xff44DECC),
                       checkColor: Color.fromARGB(255, 249, 249, 249),
-                      value: check,
+                      value: widget.check,
                       onChanged: (Bool) {},
                     ),
                   ),
@@ -50,183 +85,73 @@ class ToDoCard extends StatelessWidget {
                     unselectedWidgetColor: Color(0xff44DECC),
                   ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(width: 10),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        titleTask,
+                        widget.titleTask,
                         style: const TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Arimo',
-                            color: Color(0xFF323232),
-                            fontWeight: FontWeight.w500),
+                          fontSize: 18,
+                          fontFamily: 'Arimo',
+                          color: Color(0xFF323232),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       const SizedBox(
                         height: 6,
                       ),
                       Text(
-                        timeTask,
+                        widget.timeTask,
                         style: const TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Arimo',
-                            color: Color(0xFF323232),
-                            fontWeight: FontWeight.w500),
+                          fontSize: 12,
+                          fontFamily: 'Arimo',
+                          color: Color(0xFF323232),
+                          fontWeight: FontWeight.w500,
+                        ),
                         textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isExpanded = !isExpanded; // Cambia el estado al tocar la flecha
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      widget.chip,
+                      SizedBox(width: 10),
+                      Image.asset(
+                        'assets/elements/flecha-hacia-abajo-para-navegar (1).png',
+                        width: 18,
+                        height: 18,
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-        Spacer(),
-         Row(
-           
-             children: [
-               chip,
-                SizedBox(width: 10,),
-               Image.asset(
-                  'assets/elements/flecha-hacia-abajo-para-navegar (1).png',
-                  width: 18,
-                  height: 18,
+            if (isExpanded)
+              Container(
+                // Aquí puedes agregar detalles adicionales cuando está expandido
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  'Detalles adicionales aquí',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF323232),
+                  ),
                 ),
-             ],
-           
-         )
-        ]));
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-class ToDoCard extends StatelessWidget {
-  const ToDoCard({
-    Key? key,
-    this.nameTasks,
-    this.timeTasks,
-    this.check,
-  }) : super(key: key);
-
-//Asignacion de valores de tarjeta de forma dinamica
-
-  final String? nameTasks;
-  final String? timeTasks;
-  final bool? check;
-
-  @override
-  Widget build(
-    BuildContext context,
-  ) {
-    String nameTasks='';
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              height: 60,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                color: Colors.white,
-                elevation: 2,
-                shadowColor: greyDark,
-                child: Row(children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Theme(
-                      // ignore: sort_child_properties_last
-                      child: Transform.scale(
-                        scale: 1.7,
-                        child: Checkbox(
-                          shape: CircleBorder(),
-                          activeColor: Color.fromARGB(255, 0, 175, 76),
-                          checkColor: Color.fromARGB(255, 249, 249, 249),
-                          value: check,
-                          onChanged: (Bool) {},
-                        ),
-                      ),
-                      data: ThemeData(
-                        primarySwatch: Colors.green,
-                        unselectedWidgetColor:
-                            Color.fromARGB(255, 249, 249, 249),
-                      ),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Text(
-                        nameTasks,
-                        style: TextStyle(
-                          fontFamily: 'Arimo',
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 75, 75, 75),
-                        ),
-                      ),
-                      //Feha
-                      Text(
-                        dateTasks,
-                        style: TextStyle(
-                          fontFamily: 'Arimo',
-                          fontSize: 12,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 75, 75, 75),
-                        ),
-                      ),
-                    ],
-                  ),
-                ]),
               ),
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
-}*/
+}

@@ -21,7 +21,7 @@ void main() async {
   ); 
   //agregarNotas('kDkChIpT6jK1gIemu3kX');
   await initializeDateFormatting('es', null);
-  runApp(const MyApp());
+  runApp( MyApp());
   
 }
 
@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
                 displayColor: Colors.white,
               )),
       home: HomeScreen(),
-      
+      routes: {
+        '/myperformance': (context) => MyPerformance()
+      },
     );
   }
 }

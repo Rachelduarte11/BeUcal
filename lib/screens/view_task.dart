@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ViewTasks extends StatelessWidget {
@@ -6,8 +7,7 @@ class ViewTasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Scaffold(
+    return Scaffold(
         appBar: TaskApp(),
         backgroundColor: Color(0xffEDFFFB),
         body: SingleChildScrollView(
@@ -18,13 +18,11 @@ class ViewTasks extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.25,
                         child: Column(
                           children: [
-                            Expanded(
-                              child: Row(
+                            Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Expanded(
-                                      child: TaskContents(
+                                    TaskContents(
                                         context: context,
                                         circleColor: Color(0xff12B19C),
                                         firstText: 'Hoy',
@@ -32,9 +30,8 @@ class ViewTasks extends StatelessWidget {
                                         iconData: Icons.calendar_today,
                                         iconColor: Colors.white,
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: TaskContents(
+                                    
+                                    TaskContents(
                                         context: context,
                                         circleColor: Color(0xffF79521),
                                         firstText: 'Programados',
@@ -42,12 +39,11 @@ class ViewTasks extends StatelessWidget {
                                         iconData: Icons.event_available,
                                         iconColor: Colors.white,
                                       ),
-                                    )
+                                    
                                   ]),
-                            ),
+                            
                             SizedBox(height: 15),
-                            Expanded(
-                              child: Row(
+                            Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -68,7 +64,7 @@ class ViewTasks extends StatelessWidget {
                                       iconColor: Colors.white,
                                     )
                                   ]),
-                            ),
+                            
                           ],
                         ),
                       ),
@@ -92,8 +88,7 @@ class ViewTasks extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Expanded(
-                  child: Container(
+                child: Container(
                     height: MediaQuery.of(context).size.height ,
                     width: MediaQuery.of(context).size.width * 0.8,
                     margin: EdgeInsets.fromLTRB(20, 20, 0, 10),
@@ -164,13 +159,13 @@ class ViewTasks extends StatelessWidget {
                           
                         ]),
                   ),
-                ),
+                
               )
             ],
           ),
         ),
-      ),
-    );
+      );
+    
   }
 
   Widget TaskContents({
@@ -181,64 +176,70 @@ class ViewTasks extends StatelessWidget {
     required IconData iconData,
     required Color iconColor,
   }) {
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.only(left: 10),
-        alignment: Alignment.topLeft,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0x3f9D9899),
-                      offset: Offset(1, -1),
-                      blurRadius: 5.5,
-            ),
-          ],
-        ),
-        width: 170,
-        height: MediaQuery.of(context).size.height * 0.102,
-        child: Row(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 4),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: circleColor,
+    return SizedBox(width: 180,
+      child: Expanded(
+        child: Container(
+            
+            padding: EdgeInsets.only(left: 10),
+            alignment: Alignment.topLeft,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(62, 44, 0, 9),
+                          offset: Offset(1, -1),
+                          blurRadius: 5.5,
                 ),
-                child: Icon(
-                  iconData,
-                  size: 30,
-                  color: Colors.white,
+              ],
+            ),
+            width: 170,
+            height: MediaQuery.of(context).size.height * 0.102,
+            child: Row(children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 4),
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: circleColor,
+                    ),
+                    child: Icon(
+                      iconData,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      firstText,
+                      style: TextStyle(
+                          color: Color(0xff9D9898), fontFamily: 'Mitr', fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.only(right: 10),
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    secondText,
+                    style: TextStyle(
+                        fontSize: 28, fontFamily: 'Mitr', color: Color(0xff4B4B4B)),
+                  ),
                 ),
               ),
-              Text(
-                firstText,
-                style: TextStyle(
-                    color: Color(0xff9D9898), fontFamily: 'Mitr', fontSize: 18),
-              ),
-            ],
+            ]),
           ),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(right: 10),
-              alignment: Alignment.topRight,
-              child: Text(
-                secondText,
-                style: TextStyle(
-                    fontSize: 28, fontFamily: 'Mitr', color: Color(0xff4B4B4B)),
-              ),
-            ),
-          ),
-        ]),
       ),
     );
+    
   }
 
   TaskApp() {

@@ -1,8 +1,12 @@
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/screens/performance_screen.dart';
+import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:flutter/material.dart';
 
+import 'Graphics/charts.dart';
+
 class GroupMain extends StatelessWidget {
-  const GroupMain({super.key});
+  GroupMain({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,10 @@ class GroupMain extends StatelessWidget {
                   gradient: const RadialGradient(
                     center: Alignment(0, -0),
                     radius: 0.5,
-                    colors: <Color>[Color.fromARGB(155, 239, 145, 14), Color(0xffF79521)],
+                    colors: <Color>[
+                      Color.fromARGB(155, 239, 145, 14),
+                      Color(0xffF79521)
+                    ],
                     stops: <double>[0, 0.984],
                   ),
                   boxShadow: [
@@ -74,7 +81,7 @@ class GroupMain extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.fromLTRB(0, 4, 0, 7.54),
                       child: const Text(
-                        '16,54',
+                        '16,80',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Mitr',
@@ -150,7 +157,8 @@ class GroupMain extends StatelessWidget {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: greyOpa2, // Color de fondo circular
+                                      color:
+                                          greyOpa2, // Color de fondo circular
                                     ),
                                   ),
                                 ),
@@ -193,83 +201,91 @@ class GroupMain extends StatelessWidget {
                     ],
                   ),
                 ),
-                //Dardos
-                Container(
-                  
-                  margin: EdgeInsets.fromLTRB(2, 0, 1, 0),
-                  padding: EdgeInsets.fromLTRB(35, 8, 28, 8),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xffC9D32B),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3f000000),
-                        offset: Offset(1, 3),
-                        blurRadius: 3.5,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(5, 0, 19, 0),
-                        width: double.infinity,
-                        height: 66,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              left: 0,
-                              top: 2,
-                              child: Center(
-                                child: SizedBox(
-                                  width: 64,
-                                  height: 60,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: greyOpa2, // Color de fondo circular
+                //Horario
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (builder) => ViewTasks()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(2, 0, 1, 0),
+                    padding: EdgeInsets.fromLTRB(35, 8, 28, 8),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Color(0xffC9D32B),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x3f000000),
+                          offset: Offset(1, 3),
+                          blurRadius: 3.5,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(5, 0, 19, 0),
+                          width: double.infinity,
+                          height: 66,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 0,
+                                top: 2,
+                                child: Center(
+                                  child: SizedBox(
+                                    width: 64,
+                                    height: 60,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color:
+                                            greyOpa2, // Color de fondo circular
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Center(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: 60,
-                                  height: 60,
-                                  child: Image.asset(
-                                    'assets/images/calendario.png',
-                                    fit: BoxFit.cover,
+                              Center(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    width: 60,
+                                    height: 60,
+                                    child: Image.asset(
+                                      'assets/images/calendario.png',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 100,
-                        ),
-                        // logrostaK (1:87)
-
-                        child: Text(
-                          'Horario',
-                          style: TextStyle(
-                            fontFamily: 'Mitr',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            height: 1.5,
-                            color: Color(0xfffafafa),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          constraints: BoxConstraints(
+                            maxWidth: 100,
+                          ),
+                          // logrostaK (1:87)
+
+                          child: Text(
+                            'Horario',
+                            style: TextStyle(
+                              fontFamily: 'Mitr',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              height: 1.5,
+                              color: Color(0xfffafafa),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -322,7 +338,6 @@ class GroupHabilitys extends StatelessWidget {
                       ),
                     ],
                   ),
-                
                 ),
               ),
             ),

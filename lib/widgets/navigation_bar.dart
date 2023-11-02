@@ -20,7 +20,7 @@ class CustomeNavigationBar extends StatefulWidget {
 class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   int currentIndex = 0;
 
-  onTab(int index) {
+   onTab(int index) {
     setState(() {
       currentIndex = index;
       widget.voidCallbackParam(index);

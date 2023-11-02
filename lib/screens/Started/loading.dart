@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     // Establece un temporizador para esperar 1 segundo y luego navegar a la siguiente pantalla.
-    Timer(Duration(milliseconds: 4000), () {
+    Timer(Duration(milliseconds: 2000), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => OneScreen(),

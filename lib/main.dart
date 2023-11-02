@@ -1,17 +1,28 @@
+
+
+import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
-import 'package:becertus_proyecto/screens/main_performance.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'widgets/Graphics/column_chart.dart';
 
-Future<void> main() async {
-   await initializeDateFormatting('es', null);
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: "BEUCAL",
+    options: firebaseOptions,
+  ); 
+  //agregarNotas('kDkChIpT6jK1gIemu3kX');
+  await initializeDateFormatting('es', null);
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       title: 'Flutter demo',
       theme: ThemeData(
           textTheme: Theme.of(context).textTheme.apply(

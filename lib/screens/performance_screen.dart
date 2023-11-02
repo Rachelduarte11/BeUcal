@@ -33,201 +33,218 @@ class _MyPerformanceState extends State<MyPerformance> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffEDFFFB),
-      appBar: const CustomAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
+      
+      body:CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              automaticallyImplyLeading: false,
+              expandedHeight: 64,
+              backgroundColor:
+                  Colors.transparent, // Altura expandida del app bar
+              floating:
+                  true, 
+              pinned:
+                  false, 
+              flexibleSpace: CustomAppBar(),
+            ),
+            SliverToBoxAdapter(
+          child: Column(
           children: [
             // Encabezado con información del usuario
 
             // Secciones desplegables para el ciclo y el curso
-            Column(children: [
-              const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.only(left: 32),
-                child: Row(
-                  children: [
-                    Text(
-                      "Ciclo:",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Mitr",
-                      ),
-                    ),
-                    SizedBox(width: 5),
-                    Text("II",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF0BB49D),
-                          fontWeight: FontWeight.w800,
-                          fontFamily: "II",
-                        )),
-                    Icon(
-                      Icons.keyboard_arrow_down_sharp,
-                    ),
-                    SizedBox(width: 30),
-                    Text(
-                      "Curso:",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Mitr",
-                      ),
-                    ),
-                    SizedBox(width: 5),
-                    Text("Todos",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF0BB49D),
-                          fontFamily: "II",
-                          fontWeight: FontWeight.w800,
-                        )),
-                    Icon(
-                      Icons.keyboard_arrow_down_sharp,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                height: 30,
-                width: 335,
-                decoration: const BoxDecoration(
-                  color: Color(0XFFE7E2E2),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                child: Center(
+            Column(
+              children: [
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.only(left:15.0),
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 0;
-                          });
-                        },
-                        child: Container(
-                          height: 30,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: selectedND == 0
-                                ? const Color(0xFFFD6A6A)
-                                : const Color(0XFFE7E2E2),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Todos",
-                              style: TextStyle(
-                                color: selectedND == 0
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 15,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                      Text(
+                        "Ciclo:",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Mitr",
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 1;
-                          });
-                        },
-                        child: Container(
-                          height: 30,
-                          width: 85,
-                          decoration: BoxDecoration(
-                            color: selectedND == 1
-                                ? const Color(0xFFFD6A6A)
-                                : const Color(0XFFE7E2E2),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "ND1",
-                              style: TextStyle(
-                                color: selectedND == 1
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 15,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                      SizedBox(width: 5),
+                      Text("II",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF0BB49D),
+                            fontWeight: FontWeight.w800,
+                            fontFamily: "II",
+                          )),
+                      Icon(
+                        Icons.keyboard_arrow_down_sharp,
+                      ),
+                      SizedBox(width: 30),
+                      Text(
+                        "Curso:",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Mitr",
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 2;
-                          });
-                        },
-                        child: Container(
-                          width: 85,
-                          decoration: BoxDecoration(
-                            color: selectedND == 2
-                                ? const Color(0xFFFD6A6A)
-                                : const Color(0XFFE7E2E2),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "ND2",
-                              style: TextStyle(
-                                color: selectedND == 2
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 15,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 3;
-                          });
-                        },
-                        child: Container(
-                          width: 85,
-                          decoration: BoxDecoration(
-                            color: selectedND == 3
-                                ? const Color(0xFFFD6A6A)
-                                : const Color(0XFFE7E2E2),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "ND3",
-                              style: TextStyle(
-                                color: selectedND == 3
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 15,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
+                      SizedBox(width: 5),
+                      Text("Todos",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF0BB49D),
+                            fontFamily: "II",
+                            fontWeight: FontWeight.w800,
+                          )),
+                      Icon(
+                        Icons.keyboard_arrow_down_sharp,
                       ),
                     ],
                   ),
                 ),
-              ),
-              if (selectedND == 1) ND1Performance(),
+                SizedBox(height: 10),
+                Container(
+                  height: 27,
+                  width: 335,
+                  decoration: const BoxDecoration(
+                    color: Color(0XFFE7E2E2),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 0;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              color: selectedND == 0
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Todos",
+                                style: TextStyle(
+                                  color: selectedND == 0
+                                      ? Color(0XFFE7E2E2)
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 1;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            width: 85,
+                            decoration: BoxDecoration(
+                              color: selectedND == 1
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "ND1",
+                                style: TextStyle(
+                                  color: selectedND == 1
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 2;
+                            });
+                          },
+                          child: Container(
+                            width: 85,
+                            height: 25,
+                            decoration: BoxDecoration(
+                              color: selectedND == 2
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "ND2",
+                                style: TextStyle(
+                                  color: selectedND == 2
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 3;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            width: 85,
+                            decoration: BoxDecoration(
+                              color: selectedND == 3
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "ND3",
+                                style: TextStyle(
+                                  color: selectedND == 3
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                  if (selectedND == 1) ND1Performance(),
               if (selectedND == 2) ND2Performance(),
               if (selectedND == 3) ND3Performance(),
               Visibility(
@@ -235,29 +252,8 @@ class _MyPerformanceState extends State<MyPerformance> {
                 child: Column(
                   children: [
                     const MainPerformance(),
-                    /*Container(
-                      width: 370,
-                      height: 290,
-                      margin: const EdgeInsets.only(top: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.grey,
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          "assets/images/tabla.png",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),*/
-
+                  
+/*
                     // Sección para Estudios Generales
                     Container(
                       margin: const EdgeInsets.only(top: 20),
@@ -468,12 +464,14 @@ class _MyPerformanceState extends State<MyPerformance> {
                         ),
                       ),
                     ),
-                  ],
+     */             ],
                 ),
               )
             ]),
           ],
         ),
+            ),
+          ]
       ),
     );
   }

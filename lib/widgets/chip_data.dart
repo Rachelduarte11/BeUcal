@@ -39,13 +39,13 @@ Widget chipData2(String label, int color) {
 class ChipContainer extends StatelessWidget {
   final String titulo;
   final String promedio;
-  final Color color;
+  final LinearGradient gradient;
   final bool isSelected;
 
   ChipContainer({
     required this.titulo,
     required this.promedio,
-    required this.color,
+    required this.gradient,
     this.isSelected= false,
   });
 
@@ -59,7 +59,8 @@ class ChipContainer extends StatelessWidget {
       width: 85,
       height: 60,
       decoration: BoxDecoration(
-          color: isSelected ? redStatic: color,
+         gradient: isSelected ? LinearGradient(colors: [redStatic, redStatic]) : gradient,
+        
           boxShadow: [
             BoxShadow(
               color: Color(0x3f000000),

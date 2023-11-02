@@ -80,11 +80,11 @@ class MyProfile extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // Foto de perfils
                   Positioned(
                     top: 210,
                     left: 15,
                     child: Container(
-                      // Contenedor gris
                       width: 300,
                       height: 90,
                       decoration: BoxDecoration(
@@ -94,30 +94,26 @@ class MyProfile extends StatelessWidget {
                       child: Transform.translate(
                         offset: const Offset(0, -170),
                         child: Center(
-                          // Contenedor hijo Imagen
                           child: Container(
-                            width: 90,
-                            height: 150,
+                            width: 90, // Tamaño del contenedor de la imagen
+                            height: 120, // Tamaño del contenedor de la imagen
                             decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(40),
+                              borderRadius: BorderRadius.circular(
+                                  50), // Color del borde/ Forma circular
                               boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  spreadRadius: 1,
-                                  blurRadius: 1,
-                                ),
+                                BoxShadow(spreadRadius: 4, color: Colors.grey),
                               ],
                             ),
-                            // Imagen usuario
-                            child: Center(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(40),
-                                child: Image.asset(
-                                  "assets/images/StackPath.jpeg",
-                                  fit: BoxFit.cover,
-                                  width: 100,
-                                  height: 100,
+                            child: ClipOval(
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/StackPath.jpeg"),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
@@ -160,6 +156,7 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Container(
                       width: 320,
                       height: 50,
@@ -215,7 +212,7 @@ class MyProfile extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             const Text(
-                              "Configuración de perfil",
+                              "Notificaciones",
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Colors.black,
@@ -250,7 +247,7 @@ class MyProfile extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             const Text(
-                              "Configuración de perfil",
+                              "Ayuda y Asistencia",
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Colors.black,

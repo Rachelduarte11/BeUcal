@@ -1,5 +1,3 @@
-
-
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
@@ -10,7 +8,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'widgets/Graphics/column_chart.dart';
 
 void main() async {

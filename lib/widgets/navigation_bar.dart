@@ -198,7 +198,7 @@ void _showModalBottomSheet(BuildContext context) {
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width * 1.8,
+        height: MediaQuery.of(context).size.width * 1.44,
         //Contiene los tres botones de la ventana emergente
         child: Column(
           children: [

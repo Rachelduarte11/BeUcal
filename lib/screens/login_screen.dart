@@ -10,8 +10,25 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String email_input = '';
-  String password_input = '';
+  // String email_input = '';
+  // String password_input = '';
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // No es necesario inicializar los controladores aquí porque ya comienzan con texto vacío
+  }
+
+  @override
+  void dispose() {
+    // Limpia los controladores cuando el estado se destruya
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,22 +118,40 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                               SizedBox(
-                                
-                        
-                        
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                
                                 child: TextFormField(
-                                  
-                                  onChanged: (value) {
-                                    setState(() {
-                                      email_input = value;
-                                      print(email_input);
-                                    });
-                                  },
-                                  decoration: const InputDecoration(
+                                  controller: emailController,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
                                     labelStyle:
                                         TextStyle(color: Color(0xff323232)),
+                                    prefix: RichText(
+                                      // Utilizando RichText para incluir el Icon y el Text
+                                      text: TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child: Icon(
+                                              Icons.person,
+                                              color: Color(0xff323232),
+                                            ),
+                                          ),
+                                          TextSpan(
+                                              text:
+                                                  ' ' // Agrega espacio entre el Icon y el Text
+                                              ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                   style: TextStyle(color: Colors.black),
                                 ),
@@ -131,24 +166,44 @@ class _LoginState extends State<Login> {
                               margin:
                                   const EdgeInsets.only(left: 30, bottom: 3),
                               alignment: Alignment.centerLeft,
-                              
                               child: const CustomText(
-                                  
                                   text: 'Contraseña', fontSize: 16)),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: TextFormField(
                                 obscureText: true,
-                                onChanged: (value) {
-                                  setState(() {
-                                    password_input = value;
-                                    //print(email_input);
-                                  });
-                                },
-                                decoration: const InputDecoration(
-                                    labelStyle: TextStyle(
-                                  color: Color(0xff323232),
-                                )),
+                                controller: passwordController,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: BorderSide(color: Colors.black),
+                                  ),
+                                  labelStyle:
+                                      TextStyle(color: Color(0xff323232)),
+                                  prefix: RichText(
+                                    // Utilizando RichText para incluir el Icon y el Text
+                                    text: TextSpan(
+                                      children: [
+                                        WidgetSpan(
+                                          child: Icon(
+                                            Icons.lock,
+                                            color: Color(0xff323232),
+                                          ),
+                                        ),
+                                        TextSpan(
+                                            text:
+                                                ' ' // Agrega espacio entre el Icon y el Text
+                                            ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 style: TextStyle(
                                   color: Colors.black,
                                 )),
@@ -166,80 +221,86 @@ class _LoginState extends State<Login> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        await FirebaseFirestore.instance
+                        bool usuarioEncontrado =
+                            false; // Asumimos que el usuario no se ha encontrado
+
+                        // Obtén los documentos una vez
+                        var estudiantesCollection = await FirebaseFirestore
+                            .instance
                             .collection("estudiantes")
-                            .get()
-                            .then((value) {
-                          value.docs.forEach((element) {
-                            //String nombre = element['nombre'];
-                            String email = element['email'];
-                            String password = element['password'];
-                            if (email_input == email &&
-                                password_input == password) {
-                              print('acceso permitido');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (builder) => HomeScreen()),
+                            .get();
+
+                        // Revisa cada documento para ver si las credenciales coinciden
+                        for (var element in estudiantesCollection.docs) {
+                          String email = element.data()['email'];
+                          String password = element.data()['password'];
+                          if (emailController.text == email &&
+                              passwordController.text == password) {
+                            usuarioEncontrado = true;
+                            print('acceso permitido');
+                            emailController.clear();
+                            passwordController.clear();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (builder) => HomeScreen()),
+                            );
+
+                            break; // Si encontramos al usuario, no necesitamos seguir buscando
+                          }
+                        }
+                        // Si después de revisar todos, no encontramos al usuario, mostramos la alerta
+                        if (!usuarioEncontrado) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(
+                                  'Error',
+                                  style: TextStyle(
+                                    color: Colors
+                                        .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                content: Text(
+                                  'Usuario o Contraseña invalida',
+                                  style: TextStyle(
+                                    color: Colors
+                                        .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('Cerrar'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
                               );
-                            }
-                          });
-                        });
+                            },
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
-                          primary:
-                              Color(0xff39373E), // Color de fondo del botón
-                          onPrimary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  20)) // Color del texto en el botón
-                          ),
-                      child: GestureDetector(
-                        onTap: () async {
-                          // AÑADIR USUARIOS A FIREBASE
-                          //  await FirebaseFirestore.instance.collection('estudiantes').add({
-                          //   'nombre': "Alessandro Marquina",
-                          //   'email': "alessandro@gmail.com",
-                          //   'password': "1234",
-
-                          // }).then((value){
-                          //   print(value.id);
-                          // });
-                          //FIN DE AÑADIR USUARIOS
-
-                          // FireBase StoreCloud Conexion
-                          await FirebaseFirestore.instance
-                              .collection("estudiantes")
-                              .get()
-                              .then((value) {
-                            value.docs.forEach((element) {
-                              //String nombre = element['nombre'];
-                              String email = element['email'];
-                              String password = element['password'];
-                              if (email_input == email &&
-                                  password_input == password) {
-                                print('acceso permitido');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => HomeScreen()),
-                                );
-                              }
-                            });
-                          });
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            'Ingresar',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Mitr',
-                              fontSize: 20,
-                            ),
+                        primary: Color(0xff39373E), // Color de fondo del botón
+                        onPrimary: Colors.white, // Color del texto en el botón
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                          'Ingresar',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Mitr',
+                            fontSize: 20,
                           ),
                         ),
-                      ), // Texto que se muestra en el botón
+                      ),
                     )
                   ],
                 ),
@@ -258,14 +319,12 @@ class _LoginState extends State<Login> {
     return TextFormField(
         obscureText: true,
         decoration: InputDecoration(
-          
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(20),
           ),
-          
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
             borderSide:

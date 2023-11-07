@@ -19,7 +19,6 @@ void main() async {
   //agregarNotas('kDkChIpT6jK1gIemu3kX');
   await initializeDateFormatting('es', null);
   runApp( MyApp());
-  
 }
 
 class MyApp extends StatelessWidget {

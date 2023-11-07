@@ -12,6 +12,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   String email_input = '';
   String password_input = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

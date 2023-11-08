@@ -20,12 +20,15 @@ class CustomeNavigationBar extends StatefulWidget {
 class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   int currentIndex = 0;
 
-  onTab(int index) {
+  void onTab(int index) {
     setState(() {
-      currentIndex = index;
-      widget.voidCallbackParam(index);
+      if (index != 3) { // Verifica si el índice no es el índice del SpeedButton
+        currentIndex = index;
+        widget.voidCallbackParam(index);
+      }
     });
   }
+
 
 //barra de menu
   @override
@@ -33,7 +36,7 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
     return ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
-          child: BottomNavigationBar(
+          child: BottomNavigationBar(          
             elevation: 0,
             items: const [
               BottomNavigationBarItem(

@@ -1,5 +1,7 @@
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/screens/Started/loading.dart';
+import 'package:becertus_proyecto/screens/config_perfil.dart';
+import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';

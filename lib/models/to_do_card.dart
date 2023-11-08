@@ -23,12 +23,10 @@ class _ToDoCardState extends State<ToDoCard> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Dismissible(
-
-       key: Key(widget.titleTask),
+      key: Key(widget.titleTask),
       background: Container(
-        margin: EdgeInsets.only(bottom:10),
+        margin: EdgeInsets.only(bottom: 10),
         width: 10,
         color: Colors.red,
         height: 30,
@@ -41,16 +39,67 @@ class _ToDoCardState extends State<ToDoCard> {
           ),
         ),
       ),
-      onDismissed: (direction) {
+      confirmDismiss: (direction) async {
         if (direction == DismissDirection.endToStart) {
-          // Implementa la lógica para eliminar la tarea aquí
+          return await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'Confirmar',
+                  style: TextStyle(
+                    color: Colors
+                        .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                content: Text(
+                  '¿Estás seguro de que quieres eliminar esta tarea?',
+                  style: TextStyle(
+                    color: Colors
+                        .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: Text(
+                      'No',
+                      style: TextStyle(
+                        color: Colors
+                            .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: Text(
+                      'Sí',
+                      style: TextStyle(
+                        color: Colors
+                            .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
         }
+        return false;
+      },
+      onDismissed: (direction) {
+        // Lógica para eliminar la tarea aquí
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(bottom: 10),
         padding: EdgeInsets.symmetric(horizontal: 10),
-        height: isExpanded ? 120 : 65, // Cambiar la altura según si está expandido
+        height:
+            isExpanded ? 120 : 65, // Cambiar la altura según si está expandido
         decoration: BoxDecoration(
           color: Color(0xffFFFFFF),
           borderRadius: BorderRadius.circular(10),
@@ -64,10 +113,9 @@ class _ToDoCardState extends State<ToDoCard> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              
               children: [
                 Theme(
                   child: Transform.scale(
@@ -120,7 +168,8 @@ class _ToDoCardState extends State<ToDoCard> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      isExpanded = !isExpanded; // Cambia el estado al tocar la flecha
+                      isExpanded =
+                          !isExpanded; // Cambia el estado al tocar la flecha
                     });
                   },
                   child: Row(

@@ -1,6 +1,8 @@
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -19,6 +21,19 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
     // No es necesario inicializar los controladores aquí porque ya comienzan con texto vacío
+    _checkSession(); // Llama a la función para verificar la sesión al iniciar la app
+  }
+
+  void _checkSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isSessionValid = prefs.getBool('session');
+    if (isSessionValid != null && isSessionValid) {
+      // Si hay una sesión válida, navega al HomeScreen directamente
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    }
   }
 
   @override
@@ -238,6 +253,23 @@ class _LoginState extends State<Login> {
                               passwordController.text == password) {
                             usuarioEncontrado = true;
                             print('acceso permitido');
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            await prefs.setBool('session', true);
+
+                            // Establece un temporizador para limpiar la sesión después de 1 minuto
+                            Timer(Duration(minutes: 1), () async {
+                              await prefs.setBool('session', false);
+                            });
+
+                            // Limpia los controladores y navega a HomeScreen
+                            emailController.clear();
+                            passwordController.clear();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()),
+                            );
                             emailController.clear();
                             passwordController.clear();
                             Navigator.push(
@@ -245,7 +277,6 @@ class _LoginState extends State<Login> {
                               MaterialPageRoute(
                                   builder: (builder) => HomeScreen()),
                             );
-
                             break; // Si encontramos al usuario, no necesitamos seguir buscando
                           }
                         }
@@ -264,7 +295,7 @@ class _LoginState extends State<Login> {
                                   ),
                                 ),
                                 content: Text(
-                                  'Usuario o Contraseña invalida',
+                                  'Credenciales inválidas',
                                   style: TextStyle(
                                     color: Colors
                                         .black, // Cambiar a negro o a otro color más oscuro según el diseño

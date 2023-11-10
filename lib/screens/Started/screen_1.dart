@@ -1,4 +1,4 @@
-import 'package:becertus_proyecto/screens/Started/screen_2.dart';
+import 'package:becertus_proyecto/screens/Started/screen_2.dart';/*
 import 'package:flutter/material.dart';
 
 class OneScreen extends StatelessWidget {
@@ -149,3 +149,4 @@ class OneScreen extends StatelessWidget {
         ));
   }
 }
+*/

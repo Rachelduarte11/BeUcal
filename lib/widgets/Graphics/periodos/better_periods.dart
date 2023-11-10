@@ -1,25 +1,48 @@
-import 'package:becertus_proyecto/screens/nd1_performace.dart';
-import 'package:becertus_proyecto/widgets/Graphics/charts.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../../functions/variables.dart';
 
 class MyPeriodBar extends StatefulWidget {
   @override
   State<MyPeriodBar> createState() => _MyPeriodBarState();
 }
 
+
 class _MyPeriodBarState extends State<MyPeriodBar> {
   late List<PeriodData> _periodData;
 
-  @override
+   @override
   void initState() {
-    _periodData = getPeriodData();
     super.initState();
+    // No accedas a Provider aquí, ya que es demasiado temprano
   }
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Accede al Provider aquí después de que se hayan establecido las dependencias
+    final notasProvider = Provider.of<NotasProvider>(context);
+
+    final nd1ED = notasProvider.ED ?? 0.0;
+    final nd1FP = notasProvider.FP ?? 0.0;
+    final nd1EG = notasProvider.EG ?? 0.0;
+    final nd3ED = notasProvider.ED ?? 0.0;
+    final nd3FP = notasProvider.FP ?? 0.0;
+    final nd3EG = notasProvider.EG ?? 0.0;
+    final nd2ED = notasProvider.nd2ED ?? 0.0;
+    final nd2FP = notasProvider.nd2FP ?? 0.0;
+    final nd2EG = notasProvider.nd2EG ?? 0.0;
+
+    _periodData = getPeriodData(nd1ED, nd1FP, nd1EG, nd2ED, nd2FP, nd2EG, nd3ED, nd3FP, nd3EG);
+  }
+
 
   @override
   Widget build(BuildContext context) {
+ 
     return Container(
       height: 300,
       width: 300,
@@ -66,7 +89,8 @@ class _MyPeriodBarState extends State<MyPeriodBar> {
     );
   }
 
-  List<PeriodData> getPeriodData() {
+List<PeriodData> getPeriodData(double nd1ED, double nd1FP, double nd1EG, double nd2ED, double nd2FP, double nd2EG,
+      double nd3ED, double nd3FP, double nd3EG) {
     final List<PeriodData> periodData = [
       PeriodData('ND1', nd1ED, nd1FP, nd1EG),
       PeriodData('ND2', nd2ED, nd2FP, nd2EG),

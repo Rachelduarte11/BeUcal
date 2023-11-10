@@ -1,9 +1,12 @@
+
+import 'package:becertus_proyecto/functions/variables.dart';
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/courses.dart';
 import '../widgets/Graphics/charts.dart';
-import '../widgets/Graphics/periodos/nd1.dart';
-import '../widgets/Graphics/periodos/nd1_columns.dart';
+import '../widgets/Graphics/periodos/nd3.dart';
+import '../widgets/Graphics/periodos/nd3_columns.dart';
 import '../widgets/Graphics/periodos/nd3.dart';
 import '../widgets/Graphics/periodos/nd3_columns.dart';
 import '../widgets/chip_data.dart';
@@ -17,8 +20,83 @@ class ND3Performance extends StatefulWidget {
 
 class _MainPerformanceState extends State<ND3Performance> {
   String? selectedCourseKey;
+   final Map<String, Map<String, dynamic>> nd3cursos = {
+    'englishI': {
+      'title': 'Inglés I',
+      'average': 0.0, // Puedes proporcionar valores iniciales si es necesario
+      'color': const Color(0xFF08806F),
+      'gradient': const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF08806F), Color(0xFF009E89)],
+      ),
+    },
+    'proII': {
+      'title': 'Proyecto II',
+      'average': 0.0,
+      'color': const Color(0xFF00C1A7),
+      'gradient': const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF00C1A7), Color(0xFF39D7BA)],
+      ),
+    },
+    'creaII': {
+      'title': 'Creatividad',
+      'average': 0.0,
+      'color': const Color(0xFf00C1A7),
+      'gradient': const LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF00C1A7), Color(0xFF39D7BA)],
+      ),
+    },
+    'ctI': {
+      'title': 'Construcción y Tecnología',
+      'average': 0.0,
+      'color': const Color(0xFFC9D32B),
+      'gradient': const LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFFC9D32B),
+          Color(0xFF97E138),
+        ],
+      ),
+    },
+    'thcaI': {
+      'title': 'Teoría, historia y...',
+      'average': 0.0,
+      'color': const Color(0xFFC9D32B),
+      'gradient': const LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFFC9D32B),
+          Color(0xFF97E138),
+        ],
+      ),
+    },
+    'fisica': {
+      'title': 'Física',
+      'average': 0.0,
+      'color': const Color(0xFFC9D32B),
+      'gradient': const LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFFC9D32B),
+          Color(0xFF97E138),
+        ],
+      ),
+    },
+  };
   @override
   Widget build(BuildContext context) {
+    final notasProvider = Provider.of<NotasProvider>(context);
+    final nd3ED = notasProvider.nd3ED?? 0.0;
+    final nd3FP = notasProvider.nd3FP?? 0.0; 
+    final nd3EG = notasProvider.nd3EG?? 0.0;
     return Column(
       children: [
         Titles(
@@ -64,7 +142,7 @@ class _MainPerformanceState extends State<ND3Performance> {
                       Row(
                         children: [
                           chipData2(
-                            '$nd3ED',
+                            nd3ED.toStringAsFixed(1),
                             0xffBBC700,
                           ),
                           SizedBox(
@@ -79,7 +157,7 @@ class _MainPerformanceState extends State<ND3Performance> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           chipData2(
-                            '$nd3FP',
+                            nd3FP.toStringAsFixed(1),
                             0xff00C1A7,
                           ),
                           SizedBox(
@@ -93,7 +171,7 @@ class _MainPerformanceState extends State<ND3Performance> {
                       Row(
                         children: [
                           chipData2(
-                            '$nd3EG',
+                            nd3EG.toStringAsFixed(1),
                             0xff09806F,
                           ),
                           SizedBox(
@@ -115,7 +193,7 @@ class _MainPerformanceState extends State<ND3Performance> {
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.28,
-            child: ND3GenColumnChart(selectedCourseKey)),
+            child: ND3GenColumnChart(selectedCourseKey, nd3cursos: nd3cursos)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SizedBox(
@@ -123,24 +201,24 @@ class _MainPerformanceState extends State<ND3Performance> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                for (var cursoKey in nd1cursos.keys)
+                for (var cursoData in allCursos['ND3'] ?? [])
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        if (selectedCourseKey == cursoKey) {
-                          selectedCourseKey =
-                              null; // Si ya está seleccionado, restablece el estado
+                        if (selectedCourseKey == cursoData['title']) {
+                          selectedCourseKey = null;
                         } else {
-                          selectedCourseKey =
-                              cursoKey; // De lo contrario, actualiza el elemento seleccionado
-                        } // Actualizar el elemento seleccionado
+                          selectedCourseKey = cursoData['title'];
+                        }
                       });
                     },
                     child: ChipContainer(
-                      titulo: nd3cursos[cursoKey]?['title'],
-                      promedio: nd3cursos[cursoKey]?['average'],
-                      gradient: nd3cursos[cursoKey]?['gradient'],
-                      isSelected: selectedCourseKey == cursoKey,
+                      titulo: cursoData['title'] ??
+                          "Título no disponible", // Comprueba si el título es nulo
+                      promedio: cursoData['average'](context).toStringAsFixed(
+                          1), // Comprueba si el promedio es nulo
+                      gradient: cursoData['gradient'],
+                      isSelected: selectedCourseKey == cursoData['title'],
                     ),
                   ),
               ],

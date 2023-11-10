@@ -37,7 +37,7 @@ class _MyPerformanceState extends State<MyPerformance> {
       //bottomNavigationBar: CustomeNavigationBar(),
       body:CustomScrollView(
           slivers: [
-            const SliverAppBar(
+           const SliverAppBar(
               automaticallyImplyLeading: false,
               expandedHeight: 64,
               backgroundColor:
@@ -46,7 +46,7 @@ class _MyPerformanceState extends State<MyPerformance> {
                   true, 
               pinned:
                   false, 
-              flexibleSpace: CustomAppBar(),
+              flexibleSpace:CustomAppBar(),
             ),
             SliverToBoxAdapter(
           child: Column(
@@ -250,9 +250,9 @@ class _MyPerformanceState extends State<MyPerformance> {
               if (selectedND == 3) ND3Performance(),
               Visibility(
                 visible: selectedND != 1 && selectedND != 2 && selectedND != 3,
-                child: Column(
+                child: const Column(
                   children: [
-                    const MainPerformance(),
+                    MainPerformance(),
                   
 /*
                     // Sección para Estudios Generales

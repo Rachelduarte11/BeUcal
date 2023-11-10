@@ -1,7 +1,9 @@
+import 'package:becertus_proyecto/functions/variables.dart';
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'Graphics/charts.dart';
 
@@ -10,8 +12,24 @@ class GroupMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notasProvider = Provider.of<NotasProvider>(context);
+   double? ED = notasProvider.ED;
+double? FP = notasProvider.FP;
+double? EG = notasProvider.EG;
+        if (ED == null) {
+          ED = 0.0; // Asigna un valor predeterminado si ED es nulo
+        }
+
+        if (FP == null) {
+          FP = 0.0; // Asigna un valor predeterminado si FP es nulo
+        }
+
+        if (EG == null) {
+          EG = 0.0; // Asigna un valor predeterminado si EG es nulo
+        }
+    final average = (ED + FP + EG)/3;
+    String averageString = average.toStringAsFixed(2);
     return Container(
-      // group25cLf (186:11)
       margin: const EdgeInsets.fromLTRB(10, 20, 8, 2),
       width: double.infinity,
       height: 244,
@@ -80,8 +98,8 @@ class GroupMain extends StatelessWidget {
                     ),
                     Container(
                       margin: const EdgeInsets.fromLTRB(0, 4, 0, 7.54),
-                      child: const Text(
-                        '16,80',
+                      child:  Text(
+                        averageString,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Mitr',
@@ -204,10 +222,8 @@ class GroupMain extends StatelessWidget {
                 //Horario
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (builder) => ViewTasks()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (builder) => ViewTasks()));
                   },
                   child: Container(
                     margin: EdgeInsets.fromLTRB(2, 0, 1, 0),

@@ -42,11 +42,14 @@ class ChipContainer extends StatelessWidget {
   final LinearGradient gradient;
   final bool isSelected;
 
+
+
   ChipContainer({
     required this.titulo,
     required this.promedio,
     required this.gradient,
     this.isSelected= false,
+
   });
 
   @override

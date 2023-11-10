@@ -1,34 +1,67 @@
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../models/courses.dart';
+import '../../functions/variables.dart';
+import '../../models/courses.dart';
+
 
 class GenColumnChart extends StatefulWidget {
   final String? selectedCourseKey;
   
-  const GenColumnChart(this.selectedCourseKey, {Key? key}) : super(key: key);
+  final Map<String, Map<String, dynamic>> cursos;
+  const GenColumnChart(this.selectedCourseKey, {Key? key, required this.cursos}) : super(key: key);
 
   @override
   State<GenColumnChart> createState() => _GenColumnChartState();
 }
 
 class _GenColumnChartState extends State<GenColumnChart> {
+  
    bool showLabels = false;
-  List<GenCol> getChartData() {
-    final List<GenCol> chartData = [];
-    cursos.forEach((key, value) {
-      final double average = double.parse(value['average']);
-      final bool isSelected = widget.selectedCourseKey == key;
-      chartData.add(GenCol(value['title'], key, average, 
-      value['color'], widget.selectedCourseKey == key,
-      ));
-    });
-    return chartData;
-  }
+ List<GenCol> getChartData() {
+  final List<GenCol> chartData = [];
+
+  // Accede a los cursos de 'ND1' en el mapa allCursos
+  final List<Map<String, dynamic>>? cursos = allCursos['General'];
+
+  // Recorre los cursos de 'ND1' y crea objetos GenCol
+  cursos?.forEach((curso) {
+    //Esto es para verificar si la funcion esta nula que al principio cuando se cargan los datos viene asi hasta que hace la 
+    //carga de los datos, por lo tanto le damos el valor de 0.0 
+    //para que no hayan errores
+    final Function? averageFunction = curso['average'];
+    double average = 0.0; 
+    if (averageFunction != null) {
+      final double? calculatedAverage = averageFunction(context);
+      if (calculatedAverage != null) {
+        average = double.parse(calculatedAverage.toStringAsFixed(1));
+      }
+    }
+    final String title = curso['title'];
+    //final  average = double.parse(curso['average'](context).toStringAsFixed(1));
+    final Color color = curso['color'];
+    final bool isSelected = widget.selectedCourseKey == title;
+
+
+    chartData.add(GenCol(
+      title,
+      title, // Para el key, puedes usar el título como identificador único
+      average,
+      color,
+      isSelected,
+    ));
+  });
+
+  return chartData;
+}
 
   @override
   Widget build(BuildContext context) {
+    final chartData = getChartData();
+    final notasProvider = Provider.of<NotasProvider>(context);
+ 
     return Column(
       children: [
          Container(
@@ -46,7 +79,7 @@ class _GenColumnChartState extends State<GenColumnChart> {
               ),
               series: <CartesianSeries>[
             ColumnSeries<GenCol, String>(
-              dataSource: getChartData(),
+              dataSource: chartData,
               width: 0.5,
               xValueMapper: (GenCol data, _) => data.title,
               yValueMapper: (GenCol data, _) => data.average,

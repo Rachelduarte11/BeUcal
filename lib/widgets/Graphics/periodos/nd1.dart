@@ -1,6 +1,8 @@
 
+import 'package:becertus_proyecto/functions/variables.dart';
 import 'package:becertus_proyecto/widgets/Graphics/charts.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -16,7 +18,7 @@ class _ND1RadiusChartGenState extends State<ND1RadiusChartGen> {
   String promedioTexto = ''; // Declarar la variable aquí
 
 //Funcion parea sumar el promedio general
-  @override
+ /* @override
   void initState() {
     _chartData = getChartData();
     final List<GDPData> averageData = [
@@ -40,14 +42,17 @@ class _ND1RadiusChartGenState extends State<ND1RadiusChartGen> {
     promedioTexto = promedio.toStringAsFixed(2); // Asignar el valor aquí
 
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 500,//double.infinity, // Ocupa todo el ancho disponible
-      height:500, //double.infinity, // Ocupa todo el alto disponible
-      child: SfCircularChart(
+    final notasProvider = Provider.of<NotasProvider>(context);
+    final nd1ED = notasProvider.nd1ED?? 0.0;
+    final nd1FP = notasProvider.nd1FP?? 0.0; 
+    final nd1EG = notasProvider.nd1EG?? 0.0;
+    
+    _chartData = getChartData(nd1ED, nd1FP, nd1EG);
+    return  SfCircularChart(
   
         series: <CircularSeries>[
           RadialBarSeries<GDPData, dynamic>(
@@ -79,13 +84,13 @@ class _ND1RadiusChartGenState extends State<ND1RadiusChartGen> {
             ),
           ),
         ],
-      ),
+     
       
     );
     
   }
 
-  List<GDPData> getChartData() {
+  List<GDPData> getChartData(double nd1ED, double nd1FP, double nd1EG) {
     final List<GDPData> chartData = [
      GDPData(nd1ED, Color(0xffBBC700)),
       GDPData(nd1FP, Color(0xff00C1A7)),

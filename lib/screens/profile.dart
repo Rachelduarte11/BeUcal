@@ -1,49 +1,34 @@
+import 'package:becertus_proyecto/screens/config_perfil.dart';
+import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
+  const MyProfile({Key? key}) : super(key: key);
+
+  Future<void> _signOut(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      // Una vez cerrada la sesión, regresa a la pantalla de inicio de sesión
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => Login()), //Ruta de Login
+        (Route<dynamic> route) => false,
+      );
+    } catch (e) {
+      //Mensaje de alerta en terminal por si algun error
+      print("Error al cerrar sesión: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffEDFFFB),
+      backgroundColor: Color(0xffEDFFFB),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ClipPath(
-              clipper: CustomClipPath(),
-              // Contenedor Celeste
-              child: Container(
-                height: 300,
-                color: const Color.fromRGBO(18, 177, 158, 1),
-                child: Stack(
-                  children: [
-                    const Positioned(
-                      left: 30,
-                      top: 45,
-                      child: Text(
-                        "Perfil",
-                        style: TextStyle(
-                          color: Color(0xFF323232),
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Mitr",
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 100,
-                      left: 220,
-                      child: Image.asset(
-                        'assets/images/lapiz.png',
-                        width: 250,
-                        height: 250,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            ClipPathBackground(),
             Transform.translate(
               offset: const Offset(0, -190),
               child: Stack(
@@ -156,41 +141,52 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Container(
-                      width: 320,
-                      height: 50,
-                      decoration: const BoxDecoration(
+                    const SizedBox(height: 5),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ConfigProfile()),
+                        );
+                      },
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: Transform.translate(
-                        offset: const Offset(20.0, 0.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        padding: EdgeInsetsDirectional.zero,
+                        child: Transform.translate(
+                          offset: const Offset(20.0, 0.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: const BoxDecoration(
                                   color: Color.fromARGB(255, 197, 239, 230),
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                            ),
-                            SizedBox(width: 8),
-                            const Text(
-                              "Configuración de perfil",
-                              style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Mitr",
+                                      BorderRadius.all(Radius.circular(7)),
+                                ),
                               ),
-                            ),
-                          ],
+                              SizedBox(width: 8),
+                              const Text(
+                                "Configuración de perfil",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Mitr",
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 12),
+                    SizedBox(height: 7),
                     Container(
                       width: 320,
                       height: 60,
@@ -224,8 +220,7 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                        height: 12), // Espacio entre los contenedores
+                    const SizedBox(height: 7), // Espacio entre los contenedores
                     Container(
                       width: 320,
                       height: 60,
@@ -247,7 +242,7 @@ class MyProfile extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             const Text(
-                              "Ayuda y Asistencia",
+                              "Ayuda y asistencia",
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Colors.black,
@@ -256,6 +251,48 @@ class MyProfile extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 7),
+                    Container(
+                      width: 320,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      padding: EdgeInsetsDirectional.zero,
+                      child: GestureDetector(
+                        onTap: () {
+                          _signOut(
+                              context); // Llamada a la función para cerrar sesión al presionar el contenedor.
+                        },
+                        child: Transform.translate(
+                          offset: const Offset(20.0, 0.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 217, 86, 25),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7)),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              const Text(
+                                "Cerrar sesión",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Mitr",
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -293,6 +330,98 @@ class MyProfile extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.w300,
                 fontFamily: "Mitr",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//Perfil Fondo Verde
+
+class ClipPathBackground extends StatelessWidget {
+  const ClipPathBackground({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipPath(
+      clipper: CustomClipPath(),
+      // Contenedor Celeste
+      child: Container(
+        height: 300,
+        color: const Color.fromRGBO(18, 177, 158, 1),
+        child: Stack(
+          children: [
+            const Positioned(
+              left: 30,
+              top: 45,
+              child: Text(
+                "Perfil",
+                style: TextStyle(
+                  color: Color(0xFF323232),
+                  fontSize: 36,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Mitr",
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 100,
+              left: 220,
+              child: Image.asset(
+                'assets/images/lapiz.png',
+                width: 250,
+                height: 250,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//Configuración del Perfil (Fondo verde)
+
+class ClipPathBackground2 extends StatelessWidget {
+  const ClipPathBackground2({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipPath(
+      clipper: CustomClipPath(),
+      // Contenedor Celeste
+      child: Container(
+        height: 300,
+        color: const Color.fromRGBO(18, 177, 158, 1),
+        child: Stack(
+          children: [
+            const Positioned(
+              left: 30,
+              top: 45,
+              child: Text(
+                "Configuración",
+                style: TextStyle(
+                  color: Color(0xFF323232),
+                  fontSize: 36,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Mitr",
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 100,
+              left: 220,
+              child: Image.asset(
+                'assets/images/lapiz.png',
+                width: 250,
+                height: 250,
               ),
             ),
           ],

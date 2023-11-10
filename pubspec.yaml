@@ -32,6 +32,9 @@ dependencies:
   shared_preferences: ^2.2.2
   dio: ^5.3.3
   firebase_messaging: ^14.7.3
+  firebase_auth: ^4.12.1
+
+  
 
 dev_dependencies:
   flutter_test:

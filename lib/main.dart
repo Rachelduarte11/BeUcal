@@ -1,7 +1,5 @@
 import 'package:becertus_proyecto/firebase.dart';
-import 'package:becertus_proyecto/functions/variables.dart';
-import 'package:becertus_proyecto/models/courses.dart';
-import 'package:becertus_proyecto/screens/home.dart';
+import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
@@ -9,7 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:provider/provider.dart';
+
+import 'widgets/Graphics/column_chart.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,17 +18,8 @@ void main() async {
   );
   //agregarNotas('kDkChIpT6jK1gIemu3kX');
   await initializeDateFormatting('es', null);
+  runApp( MyApp());
   
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => NotasProvider()
-        ),
-        // Otros proveedores aquí si es necesario
-      ],
-      child: MyApp(),
-    ),
-  );
 }
 
 class MyApp extends StatelessWidget {
@@ -46,7 +36,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: Login(),
+      home: EmailUsers(),
       routes: {
         // '/myperformance': (context) => MyPerformance()
       },

@@ -1,4 +1,5 @@
 import 'package:becertus_proyecto/firebase.dart';
+import 'package:becertus_proyecto/screens/Personal_Info/mail.dart';
 import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/config_perfil.dart';
 import 'package:becertus_proyecto/screens/home.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: Login(),
+      home: EmailUsers(),
       routes: {
         '/myperformance': (context) => MyPerformance()
       },

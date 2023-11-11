@@ -1,4 +1,5 @@
 
+import 'package:becertus_proyecto/screens/calendar.dart';
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   
-  List<Widget> fragments = const [HomePage(), MyPerformance(), MyProfile(),  ];
+  List<Widget> fragments = const [HomePage(), MyPerformance(), Calendar(), MyProfile(),];
   
   int currentIndex = 0;
 

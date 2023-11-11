@@ -3,7 +3,6 @@ import 'package:becertus_proyecto/screens/nd1_performace.dart';
 import 'package:becertus_proyecto/screens/nd2_performance.dart';
 import 'package:becertus_proyecto/screens/nd3_performance.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
-import 'package:becertus_proyecto/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class MyPerformance extends StatefulWidget {

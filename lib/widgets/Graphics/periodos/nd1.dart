@@ -1,5 +1,5 @@
 
-import 'package:becertus_proyecto/functions/variables.dart';
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/widgets/Graphics/charts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

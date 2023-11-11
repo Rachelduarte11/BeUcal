@@ -1,7 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/screens/login_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
-
+import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -10,6 +14,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    String email_input = '';
+    String password_input = '';
+    NotasProvider notasProvider = Provider.of<NotasProvider>(context);
+    String name = notasProvider.name ?? '';
     return Container(
       padding: EdgeInsets.fromLTRB(22, 0, 10, 0),
       margin: EdgeInsets.only(top: 30),
@@ -18,14 +26,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            child:const  Center(
+            child: Center(
               child: SizedBox(
                 width: 60,
                 height: 60,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    'assets/images/StackPath.jpeg',
-                  ),
+                  backgroundImage: NetworkImage(notasProvider.photoUrl ?? ''),
                 ),
               ),
             ),
@@ -54,8 +60,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               ),
                             ),
                           ),
-                          const Text(
-                            'Carlos ',
+                          AutoSizeText(
+                            name,
                             style: TextStyle(
                               fontFamily: 'Mitr',
                               fontSize: 30,
@@ -63,6 +69,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               height: 1,
                               color: Color(0xff313131),
                             ),
+                            maxLines:
+                                1, // Establece el número máximo de líneas que el texto puede ocupar
+                            overflow: TextOverflow
+                                .ellipsis, // Manejo de desbordamiento
                           ),
                         ],
                       ),
@@ -89,7 +99,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             color: greyLight, // Color de fondo rojo
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10)),
-                         child: badges.Badge(
+                        child: badges.Badge(
                           badgeContent: Text('4'),
                           child: Center(
                             child: Icon(
@@ -107,7 +117,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             color: greyLight, // Color de fondo rojo
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10)),
-                       child: badges.Badge(
+                        child: badges.Badge(
                           badgeContent: Text('3'),
                           child: Center(
                             child: Icon(
@@ -131,4 +141,3 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(68.0);
 }
-

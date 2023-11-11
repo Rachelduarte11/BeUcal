@@ -30,10 +30,10 @@ dependencies:
   syncfusion_flutter_calendar: ^23.1.44
   syncfusion_localizations: ^23.1.44
   shared_preferences: ^2.2.2
-  dio: ^5.3.3
   firebase_messaging: ^14.7.3
   firebase_auth: ^4.12.1
-
+  cached_network_image: ^3.3.0
+  path_provider: ^2.1.1
   
 
 dev_dependencies:

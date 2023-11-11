@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../functions/variables.dart';
+import '../../../functions/Provider.dart';
 
 class ND3RadiusChartGen extends StatefulWidget {
   const ND3RadiusChartGen({super.key});

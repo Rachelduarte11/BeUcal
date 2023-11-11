@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../functions/variables.dart';
+import '../functions/Provider.dart';
 
 Map<String, List<Map<String, dynamic>>> allCursos = {
   'ND1': [

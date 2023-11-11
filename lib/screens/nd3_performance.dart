@@ -1,12 +1,9 @@
 
-import 'package:becertus_proyecto/functions/variables.dart';
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/courses.dart';
-import '../widgets/Graphics/charts.dart';
-import '../widgets/Graphics/periodos/nd3.dart';
-import '../widgets/Graphics/periodos/nd3_columns.dart';
 import '../widgets/Graphics/periodos/nd3.dart';
 import '../widgets/Graphics/periodos/nd3_columns.dart';
 import '../widgets/chip_data.dart';

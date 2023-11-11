@@ -1,11 +1,10 @@
 
-import 'package:becertus_proyecto/functions/variables.dart';
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/widgets/Graphics/periodos/nd2_columns.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/courses.dart';
-import '../widgets/Graphics/charts.dart';
 import '../widgets/Graphics/periodos/nd2.dart';
 import '../widgets/chip_data.dart';
 

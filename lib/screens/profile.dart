@@ -1,7 +1,9 @@
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/config_perfil.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -23,6 +25,11 @@ class MyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     NotasProvider notasProvider = Provider.of<NotasProvider>(context);
+    String name = notasProvider.name ?? '';
+    String secondName = notasProvider.secondName ?? '';
+    String lastName = notasProvider.lastName ?? '';
+    String fullName = name +' '+ secondName +' '+ lastName;
     return Scaffold(
       backgroundColor: Color(0xffEDFFFB),
       body: SingleChildScrollView(
@@ -53,8 +60,8 @@ class MyProfile extends StatelessWidget {
                     child: Center(
                       child: Transform.translate(
                         offset: const Offset(0, 10),
-                        child: const Text(
-                          "Carlos Andres Paz Obada",
+                        child: Text(
+                          fullName,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 23,
@@ -93,10 +100,10 @@ class MyProfile extends StatelessWidget {
                               child: Container(
                                 width: 100,
                                 height: 100,
-                                decoration: const BoxDecoration(
+                                decoration:  BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/StackPath.jpeg"),
+                                    image: NetworkImage(
+                                        notasProvider.photoUrl ?? '',),
                                     fit: BoxFit.cover,
                                   ),
                                 ),

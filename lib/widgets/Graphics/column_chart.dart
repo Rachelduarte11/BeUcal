@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../functions/variables.dart';
+import '../../functions/Provider.dart';
 import '../../models/courses.dart';
 
 

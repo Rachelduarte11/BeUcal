@@ -5,9 +5,8 @@ import 'package:becertus_proyecto/widgets/Graphics/column_chart.dart';
 import 'package:becertus_proyecto/widgets/Graphics/periodos/better_periods.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:provider/provider.dart';
-import '../functions/variables.dart';
+import '../functions/Provider.dart';
 import '../models/courses.dart';
 
 class MainPerformance extends StatefulWidget {

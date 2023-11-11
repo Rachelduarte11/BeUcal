@@ -1,4 +1,4 @@
-import 'package:becertus_proyecto/functions/variables.dart';
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/models/colors.dart';
 import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';

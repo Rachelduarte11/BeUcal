@@ -55,7 +55,7 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.calendar_month,
+                  Icons.calendar_month_outlined,
                   size: 28,
                 ),
                 label: 'Calendar'  

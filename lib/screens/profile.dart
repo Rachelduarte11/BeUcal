@@ -23,13 +23,15 @@ class MyProfile extends StatelessWidget {
     }
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
-     NotasProvider notasProvider = Provider.of<NotasProvider>(context);
+    NotasProvider notasProvider = Provider.of<NotasProvider>(context);
     String name = notasProvider.name ?? '';
     String secondName = notasProvider.secondName ?? '';
     String lastName = notasProvider.lastName ?? '';
-    String fullName = name +' '+ secondName +' '+ lastName;
+    String fullName = name + ' ' + secondName + ' ' + lastName;
     return Scaffold(
       backgroundColor: Color(0xffEDFFFB),
       body: SingleChildScrollView(
@@ -100,10 +102,11 @@ class MyProfile extends StatelessWidget {
                               child: Container(
                                 width: 100,
                                 height: 100,
-                                decoration:  BoxDecoration(
+                                decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        notasProvider.photoUrl ?? '',),
+                                      notasProvider.photoUrl ?? '',
+                                    ),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -272,8 +275,7 @@ class MyProfile extends StatelessWidget {
                       padding: EdgeInsetsDirectional.zero,
                       child: GestureDetector(
                         onTap: () {
-                          _signOut(
-                              context); // Llamada a la función para cerrar sesión al presionar el contenedor.
+                          _mostrarConfirmacionCerrarSesion(context);
                         },
                         child: Transform.translate(
                           offset: const Offset(20.0, 0.0),
@@ -302,7 +304,7 @@ class MyProfile extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -310,6 +312,49 @@ class MyProfile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _mostrarConfirmacionCerrarSesion(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Cerrar sesión", 
+            style: TextStyle(
+              color: Colors.black,
+
+            )
+          ),
+          content: Text("¿Está seguro de cerrar sesión?",
+            style: TextStyle(
+              color: Colors.black
+            )),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
+              },
+              child: Text("Cancelar",
+                style: TextStyle(
+                  color: Colors.red
+                )
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
+                _signOut(context); // Cerrar sesión
+              },
+              child: Text("Sí",
+                style: TextStyle(
+                  color: Colors.red
+                )
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

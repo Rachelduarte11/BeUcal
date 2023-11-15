@@ -248,12 +248,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "fluttertoast",
-      "rootUri": "file:///C:/Users/W10/AppData/Local/Pub/Cache/hosted/pub.dev/fluttertoast-8.2.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "get",
       "rootUri": "file:///C:/Users/W10/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.6.6",
       "packageUri": "lib/",
@@ -608,7 +602,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-11-13T23:41:59.708391Z",
+  "generated": "2023-11-15T00:26:52.054136Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

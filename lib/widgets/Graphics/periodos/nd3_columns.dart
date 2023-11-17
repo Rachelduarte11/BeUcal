@@ -6,8 +6,8 @@ import '../../../models/courses.dart';
 
 class ND3GenColumnChart extends StatefulWidget {
   final String? selectedCourseKey;
-  
-  const ND3GenColumnChart(this.selectedCourseKey, {Key? key}) : super(key: key);
+  final Map<String, Map<String, dynamic>> nd3cursos; 
+  const ND3GenColumnChart(this.selectedCourseKey, {Key? key, required this.nd3cursos}) : super(key: key);
 
   @override
   State<ND3GenColumnChart> createState() => _ND3GenColumnChartState();
@@ -17,14 +17,26 @@ class _ND3GenColumnChartState extends State<ND3GenColumnChart> {
    bool showLabels = false;
   List<GenCol> getChartData() {
     final List<GenCol> chartData = [];
-    nd3cursos.forEach((key, value) {
-      final double average = double.parse(value['average']);
-      final bool isSelected = widget.selectedCourseKey == key;
-      chartData.add(GenCol(value['title'], key, average, 
-      value['color'], widget.selectedCourseKey == key,
-      ));
-    });
-    return chartData;
+
+    final List<Map<String, dynamic>>? nd3cursos = allCursos['ND3'];
+
+     nd3cursos?.forEach((curso) {
+    final String title = curso['title'];
+    final double average = double.parse(curso['average'](context).toStringAsFixed(1));
+    final Color color = curso['color'];
+    final bool isSelected = widget.selectedCourseKey == title;
+
+
+    chartData.add(GenCol(
+      title,
+      title, // Para el key, puedes usar el título como identificador único
+      average,
+      color,
+      isSelected,
+    ));
+  });
+
+  return chartData;
   }
 
   @override

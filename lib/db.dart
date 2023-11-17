@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+//Archivo para agregar notas
+/*
 void main() async {
   // Inicializa Firebase
   await Firebase.initializeApp();
 
   // Agrega notas al primer estudiante
-  agregarNotas('ID_ESTUDIANTE_1');
+  agregarNotas('zHgiM3N9nJXrnT9HbDUw');
   print('Notas del primer estudiante agregadas');
 
 }
@@ -18,28 +19,28 @@ void agregarNotas(String estudianteId) {
   // Define las notas para el estudiante
   Map<String, dynamic> notasEstudiante = {
     'nd1': {
-      'nd1ProII': 19,
+      'nd1ProII': 14,
       'nd1CreaII': 19,
       'nd1CtI': 15,
       'nd1ThcaI': 17,
-      'nd1Fisica': 19,
+      'nd1Fisica': 17,
       'nd1EnglishI': 17,
     },
     'nd2': {
       'nd2ProII': 19,
-      'nd2CreaII': 19,
+      'nd2CreaII': 14,
       'nd2CtI': 18,
       'nd2ThcaI': 17,
-      'nd2Fisica': 19,
-      'nd2EnglishI': 20,
+      'nd2Fisica': 16,
+      'nd2EnglishI': 17,
     },
     'nd3': {
-      'nd3ProII': 18,
-      'nd3CreaII': 18,
+      'nd3ProII': 17,
+      'nd3CreaII': 20,
       'nd3CtI': 18,
-      'nd3ThcaI': 19,
+      'nd3ThcaI': 17,
       'nd3Fisica': 19,
-      'nd3EnglishI': 20,
+      'nd3EnglishI': 13,
     },
   };
 
@@ -53,4 +54,4 @@ void agregarNotas(String estudianteId) {
   }).catchError((error) {
     print('Error al agregar notas: $error');
   });
-}
+}*/

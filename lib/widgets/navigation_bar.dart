@@ -21,13 +21,13 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   int currentIndex = 0;
 
   void onTab(int index) {
-    setState(() {
-      if (index != 3) { // Verifica si el índice no es el índice del SpeedButton
-        currentIndex = index;
-        widget.voidCallbackParam(index);
-      }
-    });
-  }
+  setState(() {
+    if (index != 4) { // Cambiado de 3 a 4
+      currentIndex = index;
+      widget.voidCallbackParam(index);
+    }
+  });
+}
 
 
 //barra de menu
@@ -52,6 +52,13 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
                   size: 28,
                 ),
                 label: 'Stack',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.calendar_month,
+                  size: 28,
+                ),
+                label: 'Calendar'  
               ),
               BottomNavigationBarItem(
                 icon: Icon(
@@ -102,34 +109,6 @@ class SpeedButton extends StatelessWidget {
         ),
       ),
       children: [
-        SpeedDialChild(
-          labelWidget: Container(
-            width: 180,
-            padding: const EdgeInsets.symmetric(
-                vertical: 6.0,
-                horizontal: 8), // Espacio alrededor del contenedor
-            decoration: BoxDecoration(
-              color: redStatic, // Color de fondo personalizado
-              borderRadius: BorderRadius.circular(25.0), // Bordes redondeados
-            ),
-            child: const Text(
-              'Calendario',
-              style: TextStyle(
-                fontFamily: 'Mitr',
-                fontWeight: FontWeight.w400,
-                fontSize: 18, // Tamaño de fuente personalizado
-                color: Colors.white, // Color del texto
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (builder) => ViewTasks()),
-            );
-          },
-        ),
         SpeedDialChild(
           labelWidget: Container(
             width: 180,

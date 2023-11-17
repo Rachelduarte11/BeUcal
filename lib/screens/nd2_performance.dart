@@ -1,12 +1,11 @@
 
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/home.dart';
+import 'package:becertus_proyecto/widgets/Graphics/periodos/nd2_columns.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/courses.dart';
-import '../widgets/Graphics/charts.dart';
-import '../widgets/Graphics/periodos/nd1.dart';
-import '../widgets/Graphics/periodos/nd1_columns.dart';
 import '../widgets/Graphics/periodos/nd2.dart';
-import '../widgets/Graphics/periodos/nd2_columns.dart';
 import '../widgets/chip_data.dart';
 
 
@@ -14,13 +13,89 @@ class ND2Performance extends StatefulWidget {
   const ND2Performance({super.key});
 
   @override
-  State<ND2Performance> createState() => _MainPerformanceState();
+  State<ND2Performance> createState() => _ND2PerformanceState();
 }
 
-class _MainPerformanceState extends State<ND2Performance> {
+class _ND2PerformanceState extends State<ND2Performance> {
   String? selectedCourseKey;
+
+    final Map<String, Map<String, dynamic>> nd2cursos = {
+    'englishI': {
+      'title': 'Inglés I',
+      'average': 0.0, // Puedes proporcionar valores iniciales si es necesario
+      'color': const Color(0xFF08806F),
+      'gradient': LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF08806F), Color(0xFF009E89)],
+      ),
+    },
+    'proII': {
+      'title': 'Proyecto II',
+      'average': 0.0,
+      'color': Color(0xFF00C1A7),
+      'gradient': LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF00C1A7), Color(0xFF39D7BA)],
+      ),
+    },
+    'creaII': {
+      'title': 'Creatividad',
+      'average': 0.0,
+      'color': Color(0xFf00C1A7),
+      'gradient': LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF00C1A7), Color(0xFF39D7BA)],
+      ),
+    },
+    'ctI': {
+      'title': 'Construcción y Tecnología',
+      'average': 0.0,
+      'color': Color(0xFFC9D32B),
+      'gradient': LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFFC9D32B),
+          Color(0xFF97E138),
+        ],
+      ),
+    },
+    'thcaI': {
+      'title': 'Teoría, historia y...',
+      'average': 0.0,
+      'color': Color(0xFFC9D32B),
+      'gradient': LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFFC9D32B),
+          Color(0xFF97E138),
+        ],
+      ),
+    },
+    'fisica': {
+      'title': 'Física',
+      'average': 0.0,
+      'color': Color(0xFFC9D32B),
+      'gradient': LinearGradient(
+        begin: Alignment.topCenter, // Comenzar desde la parte superior
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFFC9D32B),
+          Color(0xFF97E138),
+        ],
+      ),
+    },
+  };
   @override
   Widget build(BuildContext context) {
+    final notasProvider = Provider.of<NotasProvider>(context);
+    final nd2ED = notasProvider.nd2ED?? 0.0;
+    final nd2FP = notasProvider.nd2FP?? 0.0; 
+    final nd2EG = notasProvider.nd2EG?? 0.0;
     return Column(
       children: [
         Titles(
@@ -66,7 +141,7 @@ class _MainPerformanceState extends State<ND2Performance> {
                       Row(
                         children: [
                           chipData2(
-                            '$nd2ED',
+                            nd2ED.toStringAsFixed(1),
                             0xffBBC700,
                           ),
                           SizedBox(
@@ -81,7 +156,7 @@ class _MainPerformanceState extends State<ND2Performance> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           chipData2(
-                            '$nd2FP',
+                            nd2FP.toStringAsFixed(1),
                             0xff00C1A7,
                           ),
                           SizedBox(
@@ -95,7 +170,7 @@ class _MainPerformanceState extends State<ND2Performance> {
                       Row(
                         children: [
                           chipData2(
-                            '$nd2EG',
+                            nd2EG.toStringAsFixed(1),
                             0xff09806F,
                           ),
                           SizedBox(
@@ -117,39 +192,39 @@ class _MainPerformanceState extends State<ND2Performance> {
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.28,
-            child: ND2GenColumnChart(selectedCourseKey)),
-        SingleChildScrollView(
+            child: ND2GenColumnChart(selectedCourseKey, nd2cursos: nd2cursos)),
+     SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.12,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                for (var cursoKey in nd1cursos.keys)
+                for (var cursoData in allCursos['ND2'] ?? [])
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        if (selectedCourseKey == cursoKey) {
-                          selectedCourseKey =
-                              null; // Si ya está seleccionado, restablece el estado
+                        if (selectedCourseKey == cursoData['title']) {
+                          selectedCourseKey = null;
                         } else {
-                          selectedCourseKey =
-                              cursoKey; // De lo contrario, actualiza el elemento seleccionado
-                        } // Actualizar el elemento seleccionado
+                          selectedCourseKey = cursoData['title'];
+                        }
                       });
                     },
                     child: ChipContainer(
-                      titulo: nd2cursos[cursoKey]?['title'],
-                      promedio: nd2cursos[cursoKey]?['average'],
-                      gradient: nd2cursos[cursoKey]?['gradient'],
-                      isSelected: selectedCourseKey == cursoKey,
+                      titulo: cursoData['title'] ??
+                          "Título no disponible", // Comprueba si el título es nulo
+                      promedio: cursoData['average'](context).toStringAsFixed(
+                          1), // Comprueba si el promedio es nulo
+                      gradient: cursoData['gradient'],
+                      isSelected: selectedCourseKey == cursoData['title'],
                     ),
                   ),
               ],
             ),
           ),
         ),
-  
+ 
       
       ],
     );

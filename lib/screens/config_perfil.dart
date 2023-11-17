@@ -184,7 +184,7 @@ class ConfigProfile extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             const Text(
-                              "Carrera",
+                              "Teléfono",
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Colors.black,
@@ -224,7 +224,7 @@ class ConfigProfile extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                               const Text(
-                                "Redes Sociales",
+                                "Carrera",
                                 style: TextStyle(
                                   fontSize: 19,
                                   color: Colors.black,
@@ -265,7 +265,7 @@ class ConfigProfile extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                               const Text(
-                                "Número de Emergencia",
+                                "Redes Sociales",
                                 style: TextStyle(
                                   fontSize: 19,
                                   color: Colors.black,

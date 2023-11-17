@@ -1,13 +1,14 @@
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/models/courses.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../models/courses.dart';
 
 class ND1GenColumnChart extends StatefulWidget {
   final String? selectedCourseKey;
-  
-  const ND1GenColumnChart(this.selectedCourseKey, {Key? key}) : super(key: key);
+  final Map<String, Map<String, dynamic>> nd1cursos; // Agrega este parámetro
+
+  const ND1GenColumnChart(this.selectedCourseKey, {Key? key, required this.nd1cursos}) : super(key: key);
 
   @override
   State<ND1GenColumnChart> createState() => _ND1GenColumnChartState();
@@ -17,14 +18,26 @@ class _ND1GenColumnChartState extends State<ND1GenColumnChart> {
    bool showLabels = false;
   List<GenCol> getChartData() {
     final List<GenCol> chartData = [];
-    nd1cursos.forEach((key, value) {
-      final double average = double.parse(value['average']);
-      final bool isSelected = widget.selectedCourseKey == key;
-      chartData.add(GenCol(value['title'], key, average, 
-      value['color'], widget.selectedCourseKey == key,
-      ));
-    });
-    return chartData;
+
+    final List<Map<String, dynamic>>? nd1cursos = allCursos['ND1'];
+
+     nd1cursos?.forEach((curso) {
+    final String title = curso['title'];
+    final double average = double.parse(curso['average'](context).toStringAsFixed(1));
+    final Color color = curso['color'];
+    final bool isSelected = widget.selectedCourseKey == title;
+
+
+    chartData.add(GenCol(
+      title,
+      title, // Para el key, puedes usar el título como identificador único
+      average,
+      color,
+      isSelected,
+    ));
+  });
+
+  return chartData;
   }
 
   @override

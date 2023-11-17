@@ -1,8 +1,36 @@
+import 'dart:async';
+
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:async';
+
+Future<String?> obtenerIdEstudiante(String email, String password) async {
+  try {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
+        .instance
+        .collection("estudiantes")
+        .where("email", isEqualTo: email)
+        .where("password", isEqualTo: password)
+        .get();
+
+    if (querySnapshot.size == 1) {
+      // Si se encuentra un estudiante con las credenciales proporcionadas
+      String studentId = querySnapshot.docs[0].id;
+
+      return studentId;
+    } else {
+      // Si no se encuentra ningún estudiante con las credenciales proporcionadas
+      return null;
+    }
+  } catch (e) {
+    // Manejar cualquier error que pueda ocurrir durante la consulta
+    print("Error al obtener ID del estudiante: $e");
+    return null;
+  }
+}
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,43 +40,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // String email_input = '';
-  // String password_input = '';
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    // No es necesario inicializar los controladores aquí porque ya comienzan con texto vacío
-    _checkSession(); // Llama a la función para verificar la sesión al iniciar la app
-  }
-
-  void _checkSession() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? isSessionValid = prefs.getBool('session');
-    if (isSessionValid != null && isSessionValid) {
-      // Si hay una sesión válida, navega al HomeScreen directamente
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    // Limpia los controladores cuando el estado se destruya
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEDFFFB),
-      body: ListView(
+      body: SingleChildScrollView(
+        child: Column(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
@@ -84,261 +84,267 @@ class _LoginState extends State<Login> {
                     ), // Sustituye 'assets/image2.png' con la ruta de tu segunda imagen
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //bienvenido
-                    const Text(
-                      '¡Bienvenido!',
-                      style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Mitr',
-                        fontSize: 48,
-                        fontWeight: FontWeight.w600,
-                        height: 1.3199999723,
-                        color: Color(0xff161616),
-                      ),
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  //bienvenido
+                  const Text(
+                    '¡Bienvenido!',
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontFamily: 'Mitr',
+                      fontSize: 48,
+                      fontWeight: FontWeight.w600,
+                      height: 1.3199999723,
+                      color: Color(0xff161616),
                     ),
-                    const Text(
-                      "Aprende, organiza y mejora",
-                      style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Mitr',
-                        fontSize: 24,
-                        fontWeight: FontWeight.w300,
-                        height: 1.3199999332,
-                        color: Color(0xff000000),
-                      ),
+                  ),
+                  const Text(
+                    "Aprende, organiza y mejora",
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontFamily: 'Mitr',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w300,
+                      height: 1.3199999332,
+                      color: Color(0xff000000),
                     ),
+                  ),
 
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 18,
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 18,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 30, bottom: 3),
+                          alignment: Alignment.centerLeft,
+                          child: const CustomText(
+                            text: 'Email Institucional',
+                            fontSize: 16,
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(left: 30, bottom: 3),
-                                alignment: Alignment.centerLeft,
-                                child: const CustomText(
-                                  text: 'Email Institucional',
-                                  fontSize: 16,
-                                ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 0,
+                                blurRadius: 5,
+                                offset: Offset(0,
+                                    1.5), // changes the position of the shadow
                               ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.9,
-                                child: TextFormField(
-                                  controller: emailController,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    labelStyle:
-                                        TextStyle(color: Color(0xff323232)),
-                                    prefix: RichText(
-                                      // Utilizando RichText para incluir el Icon y el Text
-                                      text: TextSpan(
-                                        children: [
-                                          WidgetSpan(
-                                            child: Icon(
-                                              Icons.person,
-                                              color: Color(0xff323232),
-                                            ),
-                                          ),
-                                          TextSpan(
-                                              text:
-                                                  ' ' // Agrega espacio entre el Icon y el Text
-                                              ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
                             ],
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                              margin:
-                                  const EdgeInsets.only(left: 30, bottom: 3),
-                              alignment: Alignment.centerLeft,
-                              child: const CustomText(
-                                  text: 'Contraseña', fontSize: 16)),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            child: TextFormField(
-                                obscureText: true,
-                                controller: passwordController,
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    borderSide: BorderSide(color: Colors.black),
-                                  ),
-                                  labelStyle:
-                                      TextStyle(color: Color(0xff323232)),
-                                  prefix: RichText(
-                                    // Utilizando RichText para incluir el Icon y el Text
-                                    text: TextSpan(
-                                      children: [
-                                        WidgetSpan(
-                                          child: Icon(
-                                            Icons.lock,
-                                            color: Color(0xff323232),
-                                          ),
-                                        ),
-                                        TextSpan(
-                                            text:
-                                                ' ' // Agrega espacio entre el Icon y el Text
-                                            ),
-                                      ],
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: BorderSide.none,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              labelStyle: TextStyle(color: Color(0xff323232)),
+                              prefix: RichText(
+                                // Utilizando RichText para incluir el Icon y el Text
+                                text: TextSpan(
+                                  children: [
+                                    WidgetSpan(
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Color(0xff323232),
+                                      ),
                                     ),
-                                  ),
+                                    TextSpan(
+                                        text:
+                                            ' ' // Agrega espacio entre el Icon y el Text
+                                        ),
+                                  ],
                                 ),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                )),
+                              ),
+                            ),
+                            style: TextStyle(color: Colors.black),
                           ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    const CustomText(
-                        text: '¿Olvidaste tu contraseña?', fontSize: 14),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        bool usuarioEncontrado =
-                            false; // Asumimos que el usuario no se ha encontrado
-
-                        // Obtén los documentos una vez
-                        var estudiantesCollection = await FirebaseFirestore
-                            .instance
-                            .collection("estudiantes")
-                            .get();
-
-                        // Revisa cada documento para ver si las credenciales coinciden
-                        for (var element in estudiantesCollection.docs) {
-                          String email = element.data()['email'];
-                          String password = element.data()['password'];
-                          if (emailController.text == email &&
-                              passwordController.text == password) {
-                            usuarioEncontrado = true;
-                            print('acceso permitido');
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            await prefs.setBool('session', true);
-
-                            // Establece un temporizador para limpiar la sesión después de 1 minuto
-                            Timer(Duration(minutes: 1), () async {
-                              await prefs.setBool('session', false);
-                            });
-
-                            // Limpia los controladores y navega a HomeScreen
-                            emailController.clear();
-                            passwordController.clear();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()),
-                            );
-                            emailController.clear();
-                            passwordController.clear();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (builder) => HomeScreen()),
-                            );
-                            break; // Si encontramos al usuario, no necesitamos seguir buscando
-                          }
-                        }
-                        // Si después de revisar todos, no encontramos al usuario, mostramos la alerta
-                        if (!usuarioEncontrado) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text(
-                                  'Error',
-                                  style: TextStyle(
-                                    color: Colors
-                                        .black, // Cambiar a negro o a otro color más oscuro según el diseño
-                                    fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            margin: const EdgeInsets.only(left: 30, bottom: 3),
+                            alignment: Alignment.centerLeft,
+                            child: const CustomText(
+                                text: 'Contraseña', fontSize: 16)),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 0,
+                                blurRadius: 5,
+                                offset: Offset(0,
+                                    1.5), // changes the position of the shadow
+                              ),
+                            ],
+                          ),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: TextFormField(
+                              controller: passwordController,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide.none,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                labelStyle: TextStyle(color: Color(0xff323232)),
+                                prefix: RichText(
+                                  // Utilizando RichText para incluir el Icon y el Text
+                                  text: TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Icon(
+                                          Icons.lock,
+                                          color: Color(0xff323232),
+                                        ),
+                                      ),
+                                      TextSpan(
+                                          text:
+                                              ' ' // Agrega espacio entre el Icon y el Text
+                                          ),
+                                    ],
                                   ),
                                 ),
-                                content: Text(
-                                  'Credenciales inválidas',
-                                  style: TextStyle(
-                                    color: Colors
-                                        .black, // Cambiar a negro o a otro color más oscuro según el diseño
-                                  ),
+                              ),
+                              style: TextStyle(
+                                color: Colors.black,
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const CustomText(
+                            text: '¿Olvidaste tu contraseña?', fontSize: 14),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            String? studentId = await obtenerIdEstudiante(
+                              emailController.text,
+                              passwordController.text,
+                            );
+                            bool usuarioEncontrado = false;
+                            NotasProvider notasProvider =
+                                Provider.of<NotasProvider>(context,
+                                    listen: false);
+
+                            if (studentId != null) {
+                              await notasProvider
+                                  .obtenerNotasEstudiante(studentId);
+                              await notasProvider
+                                  .obtenerDatosEstudiante(studentId);
+                              String? photoUrl = notasProvider.photoUrl;
+
+                              print(photoUrl);
+                              print(
+                                  "Acceso permitido, ID del estudiante: $studentId");
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.setBool('session', true);
+
+                              // Establece un temporizador para limpiar la sesión después de 1 minuto
+                              Timer(Duration(minutes: 1), () async {
+                                await prefs.setBool('session', false);
+                              });
+
+                              // Limpia los controladores y navega a HomeScreen
+                              emailController.clear();
+                              passwordController.clear();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomeScreen(),
                                 ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: Text('Cerrar'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
                               );
-                            },
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xff39373E), // Color de fondo del botón
-                        onPrimary: Colors.white, // Color del texto en el botón
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Text(
-                          'Ingresar',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Mitr',
-                            fontSize: 20,
+                              emailController.clear();
+                              passwordController.clear();
+                            } else if (!usuarioEncontrado) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Error',
+                                      style: TextStyle(
+                                        color: Colors
+                                            .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    content: Text(
+                                      'Credenciales inválidas',
+                                      style: TextStyle(
+                                        color: Colors
+                                            .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: Text('Cerrar'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                                  Color(0xff39373E), // Color de fondo del botón
+                              onPrimary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      20)) // Color del texto en el botón
+                              ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'Ingresar',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Mitr',
+                                fontSize: 20,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
+                      ],
+                    ),
+                  ),
+                ]),
               ],
             ),
           ),
         ],
+      ),
       ),
     );
   }
@@ -348,7 +354,6 @@ class _LoginState extends State<Login> {
     IconData myIcon,
   ) {
     return TextFormField(
-        obscureText: true,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

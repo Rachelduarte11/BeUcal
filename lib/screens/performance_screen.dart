@@ -3,7 +3,6 @@ import 'package:becertus_proyecto/screens/nd1_performace.dart';
 import 'package:becertus_proyecto/screens/nd2_performance.dart';
 import 'package:becertus_proyecto/screens/nd3_performance.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
-import 'package:becertus_proyecto/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class MyPerformance extends StatefulWidget {
@@ -37,7 +36,7 @@ class _MyPerformanceState extends State<MyPerformance> {
       //bottomNavigationBar: CustomeNavigationBar(),
       body:CustomScrollView(
           slivers: [
-            const SliverAppBar(
+           const SliverAppBar(
               automaticallyImplyLeading: false,
               expandedHeight: 64,
               backgroundColor:
@@ -46,7 +45,7 @@ class _MyPerformanceState extends State<MyPerformance> {
                   true, 
               pinned:
                   false, 
-              flexibleSpace: CustomAppBar(),
+              flexibleSpace:CustomAppBar(),
             ),
             SliverToBoxAdapter(
           child: Column(
@@ -250,9 +249,9 @@ class _MyPerformanceState extends State<MyPerformance> {
               if (selectedND == 3) ND3Performance(),
               Visibility(
                 visible: selectedND != 1 && selectedND != 2 && selectedND != 3,
-                child: Column(
+                child: const Column(
                   children: [
-                    const MainPerformance(),
+                    MainPerformance(),
                   
 /*
                     // Sección para Estudios Generales

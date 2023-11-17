@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
 import 'package:becertus_proyecto/models/to_do_card.dart';
 import 'package:becertus_proyecto/screens/home.dart';
+import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
@@ -13,10 +17,9 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-
   // 0: Todos, 1: ND1, 2: ND2, 3: ND3
 
-  int selectedND = 0; 
+  int selectedND = 0;
 
   //Función clic para los botones y cambio de color
 
@@ -29,8 +32,38 @@ class _CalendarState extends State<Calendar> {
   Color textColorND1 = Colors.white;
   Color textColorND2 = Colors.black;
   Color textColorND3 = Colors.black;
-  
-  DateTime today() => DateTime.now();
+
+  //Calendario
+
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+  //historia de eventos
+  Map<DateTime, List<Event>> events = {};
+  TextEditingController _eventController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _selectedDay = _focusedDay;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!isSameDay(_selectedDay, selectedDay)) {
+      setState(() {
+        _selectedDay = selectedDay;
+        _focusedDay = focusedDay;
+      });
+    }
+  }
+
+  String capitalize(String s) {
+    return s.isNotEmpty ? s[0].toUpperCase() + s.substring(1) : s;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +74,7 @@ class _CalendarState extends State<Calendar> {
         children: [
           SizedBox(height: 15),
           Container(
-            height: 500,
+            height: 570,
             width: 0,
             decoration: const BoxDecoration(
               color: Colors.white,
@@ -53,22 +86,27 @@ class _CalendarState extends State<Calendar> {
                 BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
               ],
             ),
-            padding: EdgeInsets.only(top: 25),
             child: Column(
               children: [
-                  const Column(
-                      children: [
-                        Text(
-                          "Calendario",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Arimo",
-                            fontSize: 23,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )
-                      ],
-                    ),
+                SizedBox(height: 0),
+                Container(
+                  margin: EdgeInsets.only(top: 10, left: 30),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Calendario",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Arimo",
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(width: 70),
+                    ],
+                  ),
+                ),
                 /*
                 Row(
                   children: [
@@ -134,15 +172,16 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ],
                 ),*/
+
                 SizedBox(height: 20),
                 //Segunda fila (Botones)
                 Container(
                   height: 30,
                   width: 230,
                   decoration: const BoxDecoration(
-                      color: Color(0XFFE7E2E2),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
+                    color: Color(0XFFE7E2E2),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
                   child: Center(
                     child: Row(
                       children: [
@@ -243,34 +282,114 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
                 ),
-                //Celendario -----
-                Container(
-                  child: TableCalendar(
-                    firstDay: DateTime.utc(2010, 10, 16),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    focusedDay: DateTime.now(),
-                    rowHeight: 50,
-                    calendarStyle: const CalendarStyle(
-                      defaultTextStyle: TextStyle(color: Colors.black), // Cambia el color aquí
-                      weekendTextStyle: TextStyle(color: Colors.black), // Cambia el color aquí
-                      outsideTextStyle: TextStyle(color: Colors.grey), // Para días fuera del me
+
+                // Celendario -----
+
+                SizedBox(height: 20),
+                Text(
+                    "Día seleccionado: " +
+                        _selectedDay.toString().split(" ")[0],
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontFamily: "",
+                      fontWeight: FontWeight.w300,
+                    )),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(width: 235),
+                    const Column(
+                      children: [Text("Programar",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontFamily: "Mitr",
+                          fontWeight: FontWeight.w400
+                          )
+                        )
+                      ],
                     ),
-                    locale: 'es_ES',
-                    availableGestures: AvailableGestures.all,
-                    //Titulos edición de calendario meses
-                    headerStyle: const HeaderStyle(
-                      formatButtonVisible: false,
-                      titleTextStyle: TextStyle(
-                        color: Colors.black,
-                        ), titleCentered: true,
-                      ),
+                    Column(
+                      children: [
+                        FloatingActionButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  scrollable: true,
+                                  title: Text("Evento de prueba"),
+                                  content: Padding(
+                                    padding: EdgeInsets.all(20),
+                                    child: TextField(
+                                      controller: _eventController,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Icon(Icons.add, size: 30),
+                          backgroundColor: Color(0xFFFD6A6A),
+                          foregroundColor: Colors.white,
+                          heroTag: null,
+                          mini: true,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                TableCalendar(
+                  locale: 'es_ES',
+                  firstDay: DateTime.utc(2010, 10, 16),
+                  lastDay: DateTime.utc(2030, 3, 14),
+                  focusedDay: _focusedDay,
+                  onDaySelected: _onDaySelected,
+                  selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
+                  rowHeight: 50,
+                  calendarStyle: const CalendarStyle(
+                    defaultTextStyle: TextStyle(color: Colors.black),
+                    weekendTextStyle: TextStyle(color: Colors.black),
+                  ),
+                  headerStyle: const HeaderStyle(
+                    titleCentered: true,
+                    formatButtonVisible: false,
+                    titleTextStyle: TextStyle(
+                      color: Colors.black,
                     ),
                   ),
+                  calendarBuilders: CalendarBuilders(
+                    headerTitleBuilder: (context, DateTime focusDay) {
+                      return Text(
+                        DateFormat.yMMM('es_ES')
+                            .format(focusDay)
+                            .replaceFirstMapped(RegExp(r'^[a-z]'),
+                                (match) => match.group(0)!.toUpperCase()),
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                  ),
+                  onFormatChanged: (format) {
+                    if (_calendarFormat != format) {
+                      setState(() {
+                        _calendarFormat = format;
+                      });
+                    }
+                  },
+                  onPageChanged: (focusedDay) {
+                    _focusedDay = focusedDay;
+                  },
+                ),
               ],
             ),
           ),
           //Lllamando al Widgets de Tareas pendientes ---
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Center(
             child: Titles(
               text: 'Tareas Pendientes',
@@ -283,6 +402,11 @@ class _CalendarState extends State<Calendar> {
       ),
     );
   }
+}
+
+class Event {
+  final String title;
+  Event(this.title);
 }
 
 class _ToDoCard extends StatelessWidget {

@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:becertus_proyecto/models/to_do_card.dart';
 import 'package:becertus_proyecto/screens/home.dart';
-import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:becertus_proyecto/widgets/header_section.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +38,12 @@ class _CalendarState extends State<Calendar> {
   //historia de eventos
   Map<DateTime, List<Event>> events = {};
   TextEditingController _eventController = TextEditingController();
+  late final ValueNotifier<List<Event>> _selectedEvents;
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
+    _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
 
   @override
@@ -57,9 +56,16 @@ class _CalendarState extends State<Calendar> {
       setState(() {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
+        _selectedEvents.value = _getEventsForDay(selectedDay);
       });
     }
   }
+
+  List<Event> _getEventsForDay(DateTime day) {
+    return events[day] ?? [];
+  }
+
+  //Titulos con Mayúsculas
 
   String capitalize(String s) {
     return s.isNotEmpty ? s[0].toUpperCase() + s.substring(1) : s;
@@ -74,7 +80,7 @@ class _CalendarState extends State<Calendar> {
         children: [
           SizedBox(height: 15),
           Container(
-            height: 570,
+            height: 690,
             width: 0,
             decoration: const BoxDecoration(
               color: Colors.white,
@@ -89,22 +95,25 @@ class _CalendarState extends State<Calendar> {
             child: Column(
               children: [
                 SizedBox(height: 0),
-                Container(
-                  margin: EdgeInsets.only(top: 10, left: 30),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Calendario",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Arimo",
-                          fontSize: 23,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(width: 70),
-                    ],
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text(
+                            "Calendario",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: "Mitr",
+                              fontSize: 23,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 /*
@@ -282,32 +291,29 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
                 ),
-
                 // Celendario -----
-
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                     "Día seleccionado: " +
                         _selectedDay.toString().split(" ")[0],
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 17,
-                      fontFamily: "",
-                      fontWeight: FontWeight.w300,
+                      fontFamily: "Arimo",
+                      fontWeight: FontWeight.w700,
                     )),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     SizedBox(width: 235),
                     const Column(
-                      children: [Text("Programar",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: "Mitr",
-                          fontWeight: FontWeight.w400
-                          )
-                        )
+                      children: [
+                        Text("Programar",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontFamily: "Arimo",
+                                fontWeight: FontWeight.w600))
                       ],
                     ),
                     Column(
@@ -319,13 +325,46 @@ class _CalendarState extends State<Calendar> {
                               builder: (context) {
                                 return AlertDialog(
                                   scrollable: true,
-                                  title: Text("Evento de prueba"),
+                                  title: const Text(
+                                    "Nombrar nueva fecha: ",
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        color: Colors.black,
+                                        fontFamily: "Mitr",
+                                        fontWeight: FontWeight.w400),
+                                  ),
                                   content: Padding(
-                                    padding: EdgeInsets.all(20),
+                                    padding: EdgeInsets.all(0),
                                     child: TextField(
                                       controller: _eventController,
+                                      style: const TextStyle(
+                                          fontFamily: "Mitr",
+                                          fontSize: 19,
+                                          color: Colors.black),
                                     ),
                                   ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        // Cerrar el cuadro
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Cancelar",
+                                          style: TextStyle(color: Colors.red)),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        events.addAll({
+                                          _selectedDay!: [
+                                            Event(_eventController.text)
+                                          ]
+                                        });
+                                        Navigator.of(context).pop();
+                                         _selectedEvents.value = _getEventsForDay(_selectedDay!);
+                                      },
+                                      child: Text("Enviar"),
+                                    ),
+                                  ],
                                 );
                               },
                             );
@@ -348,6 +387,8 @@ class _CalendarState extends State<Calendar> {
                   onDaySelected: _onDaySelected,
                   selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
                   rowHeight: 50,
+                  //Evento:
+                  eventLoader: _getEventsForDay,
                   calendarStyle: const CalendarStyle(
                     defaultTextStyle: TextStyle(color: Colors.black),
                     weekendTextStyle: TextStyle(color: Colors.black),
@@ -385,6 +426,29 @@ class _CalendarState extends State<Calendar> {
                     _focusedDay = focusedDay;
                   },
                 ),
+                Expanded(
+                  child: ValueListenableBuilder<List<Event>>(
+                      valueListenable: _selectedEvents,
+                      builder: (context, value, _) {
+                        return ListView.builder(
+                          itemCount: value.length,
+                          itemBuilder:(context, index) {
+                          return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ListTile(
+                              onTap: () => print(""),
+                              title: Text('${value[index]}'),
+                            ),
+                          );
+                        }
+                      );
+                    }
+                  ),
+                )
               ],
             ),
           ),

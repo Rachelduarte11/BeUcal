@@ -252,7 +252,18 @@ class _MyPerformanceState extends State<MyPerformance> {
                 child: const Column(
                   children: [
                     MainPerformance(),
-                  
+                  ],
+                ),
+              )
+            ]),
+          ],
+        ),
+            ),
+          ]
+      ),
+    );
+  }
+}
 /*
                     // Sección para Estudios Generales
                     Container(
@@ -464,18 +475,7 @@ class _MyPerformanceState extends State<MyPerformance> {
                         ),
                       ),
                     ),
-     */             ],
-                ),
-              )
-            ]),
-          ],
-        ),
-            ),
-          ]
-      ),
-    );
-  }
-}
+     */             
 
 /*
 

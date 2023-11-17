@@ -45,12 +45,12 @@ class _HomeScreenState extends State<HomePage> {
                 children: [
                   GroupMain(),
                   GroupHabilitys(),
-                  Titles(
+                 /* Titles(
                     text: 'Tareas Pendientes',
                     size: 24,
                     fontFamily: 'Mitr',
-                  ),
-                  _ToDoCard(),
+                  ),*/
+                 // _ToDoCard(),
                 ],
               ),
             ),

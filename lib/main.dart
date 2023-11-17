@@ -2,8 +2,10 @@
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
+import 'package:becertus_proyecto/screens/calendar.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
+import 'package:becertus_proyecto/screens/performance_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

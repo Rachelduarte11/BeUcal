@@ -34,6 +34,10 @@ dependencies:
   firebase_auth: ^4.12.1
   cached_network_image: ^3.3.0
   path_provider: ^2.1.1
+  glassmorphism: ^3.0.0
+  flutter_lints: ^2.0.0
+  syncfusion_flutter_charts: ^23.1.42
+  syncfusion_flutter_gauges: ^23.1.44
   table_calendar: ^3.0.8
 
 
@@ -46,8 +50,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
-  syncfusion_flutter_charts: ^23.1.42
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -65,6 +68,7 @@ flutter:
      - assets/images/
      - assets/elements/
      - assets/images/iconos/
+
   
     
 

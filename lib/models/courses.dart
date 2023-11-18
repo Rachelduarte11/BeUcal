@@ -353,7 +353,6 @@ Map<String, List<Map<String, dynamic>>> allCursos = {
         colors: [Color(0xFFC9D32B), Color(0xFF97E138)],
       ),
     }
-    // Otros cursos para
   ],
 };
 

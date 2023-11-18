@@ -279,7 +279,7 @@ packages:
     source: hosted
     version: "3.3.1"
   flutter_lints:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_lints
       sha256: a25a15ebbdfc33ab1cd26c63a6ee519df92338a9c10f122adda92938253bef04
@@ -325,6 +325,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.6"
+  glassmorphism:
+    dependency: "direct main"
+    description:
+      name: glassmorphism
+      sha256: c0f65ea2681d4ee6d4125b947946d983335cd44765e835cdc039894b076a6e31
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   http:
     dependency: transitive
     description:
@@ -643,7 +651,7 @@ packages:
     source: hosted
     version: "23.1.44"
   syncfusion_flutter_charts:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
       sha256: "06a31c62398d2c252b4c216164af0157704f58d6d7580491b933d23856dbf5de"
@@ -663,6 +671,14 @@ packages:
     description:
       name: syncfusion_flutter_datepicker
       sha256: "38743cbf4e8438a4b3a0622f402a739f08749dc5cbb02945221d5bd9971efca6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "23.1.44"
+  syncfusion_flutter_gauges:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_gauges
+      sha256: dc3165a56990919d2de70c09d7c52ee6f8e8964c264e5a8b7fa5ac17b1d9e3dc
       url: "https://pub.dev"
     source: hosted
     version: "23.1.44"

@@ -100,8 +100,16 @@ class _NotificationScreen extends State<NotificationScreen> {
     return Scaffold(
       backgroundColor: Color(0xFFE8F8F7),
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_outlined, color: Color(0xff323232), size: 22,),
+            onPressed: () {
+              // Acción al presionar el botón de retroceso
+              Navigator.pop(context);
+            },
+          ),
         backgroundColor: Colors.transparent, // Hace el AppBar transparente
         elevation: 0,
+        
         automaticallyImplyLeading: false,
         title: Text(
           'Notificaciones',

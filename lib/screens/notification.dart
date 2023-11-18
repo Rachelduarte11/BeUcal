@@ -102,7 +102,7 @@ class _NotificationScreen extends State<NotificationScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent, // Hace el AppBar transparente
         elevation: 0,
-        automaticallyImplyLeading: false,
+        
         title: Text(
           'Notificaciones',
           style: TextStyle(

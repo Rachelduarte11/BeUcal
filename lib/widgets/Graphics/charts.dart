@@ -41,6 +41,7 @@ class _RadiusChartGenState extends State<RadiusChartGen> {
                 dataSource: _chartData,
                 useSeriesColor: true,
                 trackOpacity: 0.3,
+                radius: '100%',
                 innerRadius: '50%',
                 xValueMapper: (GDPData data, _) => data.course,
                 yValueMapper: (GDPData data, _) => data.course,

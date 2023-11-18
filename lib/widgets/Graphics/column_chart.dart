@@ -26,7 +26,6 @@ class _GenColumnChartState extends State<GenColumnChart> {
   // Accede a los cursos de 'ND1' en el mapa allCursos
   final List<Map<String, dynamic>>? cursos = allCursos['General'];
 
-  // Recorre los cursos de 'ND1' y crea objetos GenCol
   cursos?.forEach((curso) {
     //Esto es para verificar si la funcion esta nula que al principio cuando se cargan los datos viene asi hasta que hace la 
     //carga de los datos, por lo tanto le damos el valor de 0.0 

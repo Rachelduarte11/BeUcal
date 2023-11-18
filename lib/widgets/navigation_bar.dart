@@ -5,6 +5,7 @@ import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 
 typedef VoidCallbackParam = Function(int index);
 
@@ -21,69 +22,89 @@ class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   int currentIndex = 0;
 
   void onTab(int index) {
-  setState(() {
-    if (index != 4) { // Cambiado de 3 a 4
-      currentIndex = index;
-      widget.voidCallbackParam(index);
-    }
-  });
-}
-
+    setState(() {
+      if (index != 4) {
+        // Cambiado de 3 a 4
+        currentIndex = index;
+        widget.voidCallbackParam(index);
+      }
+    });
+  }
 
 //barra de menu
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
-          child: BottomNavigationBar(          
-            elevation: 0,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_rounded,
-                  size: 28,
-                ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.stacked_bar_chart_rounded,
-                  size: 28,
-                ),
-                label: 'Stack',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.calendar_month_outlined,
-                  size: 28,
-                ),
-                label: 'Calendar'  
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person_outline_outlined,
-                  size: 28,
-                ),
-                label: 'Play',
-              ),
-              BottomNavigationBarItem(
-                icon: SpeedButton(),
-                label: 'Add',
-              )
-            ],
-            onTap: onTab,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Color.fromARGB(18, 107, 107, 107),
-            showUnselectedLabels: false,
-            showSelectedLabels: false,
-            currentIndex: currentIndex,
-            unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
-            selectedItemColor: Color.fromARGB(255, 34, 34, 33),
+    return GlassmorphicContainer(
+      //margin: EdgeInsets.only(top: 5),
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      borderRadius: 0,
+      blur: 10,
+      alignment: Alignment.center,
+      border: 2,
+      linearGradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(255, 32, 32, 32).withOpacity(0.02),
+          Color.fromARGB(188, 124, 123, 123).withOpacity(0.02),
+          
+        ],
+      ),
+      borderGradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Color.fromARGB(255, 71, 71, 71).withOpacity(0.2),
+          Color.fromARGB(255, 41, 40, 40).withOpacity(0.2),
+        ],
+      ),
+      child: BottomNavigationBar(
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_rounded,
+              size: 28,
+            ),
+            label: 'Home',
           ),
-        ),
-      );
-    
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.stacked_bar_chart_rounded,
+              size: 28,
+            ),
+            label: 'Stack',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.calendar_month_outlined,
+              size: 28,
+            ),
+            label: 'Calendar',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outline_outlined,
+              size: 28,
+            ),
+            label: 'Play',
+          ),
+          BottomNavigationBarItem(
+            icon: SpeedButton(),
+            label: 'Add',
+          )
+        ],
+        onTap: onTab,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color.fromARGB(18, 107, 107, 107),
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        currentIndex: currentIndex,
+        unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
+        selectedItemColor: Color.fromARGB(255, 34, 34, 33),
+      ),
+    );
   }
 }
 

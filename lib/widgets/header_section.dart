@@ -18,6 +18,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     String password_input = '';
     NotasProvider notasProvider = Provider.of<NotasProvider>(context);
     String name = notasProvider.name ?? '';
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+
+    // Determinar el saludo según la hora
+    String greeting = getGreeting(hour);
     return Container(
       padding: EdgeInsets.fromLTRB(22, 0, 10, 0),
       margin: EdgeInsets.only(top: 30),
@@ -49,8 +54,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            child: const Text(
-                              'Buenos Dias,',
+                            child: AutoSizeText(
+                              greeting,
                               style: TextStyle(
                                 fontFamily: 'Mitr',
                                 fontSize: 22,
@@ -58,6 +63,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 height: 1,
                                 color: Color(0xff313131),
                               ),
+                               maxLines:
+                                1, // Establece el número máximo de líneas que el texto puede ocupar
+                            overflow: TextOverflow
+                                .ellipsis,
                             ),
                           ),
                           AutoSizeText(
@@ -137,7 +146,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
+String getGreeting(int hour) {
+    if (hour >= 0 && hour < 12) {
+      return 'Buenos días';
+    } else if (hour >= 12 && hour < 18) {
+      return 'Buenas tardes';
+    } else {
+      return 'Buenas noches';
+    }
+  }
   @override
   Size get preferredSize => const Size.fromHeight(68.0);
 }

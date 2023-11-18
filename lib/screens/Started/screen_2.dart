@@ -1,4 +1,4 @@
-import 'package:becertus_proyecto/screens/home.dart';/*
+import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -159,4 +159,3 @@ class SecondScreen extends StatelessWidget {
         ));
   }
 }
-*/

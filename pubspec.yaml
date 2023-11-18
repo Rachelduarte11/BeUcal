@@ -38,6 +38,7 @@ dependencies:
   flutter_lints: ^2.0.0
   syncfusion_flutter_charts: ^23.1.42
   syncfusion_flutter_gauges: ^23.1.44
+  table_calendar: ^3.0.8
 
 
 dev_dependencies:

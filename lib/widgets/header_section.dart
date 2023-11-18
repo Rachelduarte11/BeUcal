@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:provider/provider.dart';
+import 'package:becertus_proyecto/screens/notification.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -119,19 +120,31 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                       const SizedBox(width: 15), // Espacio entre los iconos
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: greyLight, // Color de fondo rojo
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: badges.Badge(
-                          badgeContent: Text('3'),
-                          child: Center(
-                            child: Icon(
-                              Icons.notifications,
-                              color: greyDark, // Color del icono blanco
+                      GestureDetector(
+                        onTap: () {
+                          // Esto abre la pantalla de notificaciones
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationScreen()),
+                          );
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[
+                                  300], // Gris claro para el fondo del contenedor
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: badges.Badge(
+                            badgeContent: Text('5'),
+                            child: Center(
+                              child: Icon(
+                                Icons.notifications,
+                                color: Colors
+                                    .grey[800], // Gris oscuro para el icono
+                              ),
                             ),
                           ),
                         ),
@@ -158,3 +171,4 @@ String getGreeting(int hour) {
   @override
   Size get preferredSize => const Size.fromHeight(68.0);
 }
+

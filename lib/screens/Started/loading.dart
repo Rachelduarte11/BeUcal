@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:becertus_proyecto/screens/Started/screen_1.dart';/*
+import 'package:becertus_proyecto/screens/Started/screen_1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -50,4 +50,3 @@ class NextScreen extends StatelessWidget {
     );
   }
 }
-*/

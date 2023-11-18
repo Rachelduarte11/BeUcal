@@ -2,6 +2,7 @@
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
+import 'package:becertus_proyecto/screens/Started/loading.dart';
 import 'package:becertus_proyecto/screens/calendar.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: Login(),
+      home: SplashScreen(),
       routes: {
         // '/myperformance': (context) => MyPerformance()
       },

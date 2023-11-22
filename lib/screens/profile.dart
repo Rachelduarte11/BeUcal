@@ -59,10 +59,10 @@ class MyProfile extends StatelessWidget {
                     ),
                     child: Center(
                       child: Transform.translate(
-                        offset: const Offset(0, 10),
+                        offset: const Offset(0, 30),
                         child: Text(
                           fullName,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 23,
                             fontWeight: FontWeight.w700,
@@ -73,50 +73,28 @@ class MyProfile extends StatelessWidget {
                     ),
                   ),
                   // Foto de perfils
-                  Positioned(
-                    top: 210,
-                    left: 15,
+                  Transform.translate(
+                    offset: const Offset(100, 15),
                     child: Container(
-                      width: 300,
-                      height: 90,
+                      width: 130,
+                      height: 130,
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 234, 234, 234),
-                        borderRadius: BorderRadius.circular(20),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.grey, // Color del borde gris
+                          width: 4.0,
+                        ),
                       ),
-                      child: Transform.translate(
-                        offset: const Offset(0, -170),
-                        child: Center(
-                          child: Container(
-                            width: 90, // Tamaño del contenedor de la imagen
-                            height: 120, // Tamaño del contenedor de la imagen
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                  50), // Color del borde/ Forma circular
-                              boxShadow: const [
-                                BoxShadow(spreadRadius: 4, color: Colors.grey),
-                              ],
-                            ),
-                            child: ClipOval(
-                              child: Container(
-                                width: 100,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      notasProvider.photoUrl ?? '',
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                      child: ClipOval(
+                        child: Image.network(
+                          notasProvider.photoUrl ?? '',
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   ),
                   Positioned(
-                    bottom: 27,
+                    bottom: 20,
                     left: 30,
                     child: Center(
                       child: ClipRRect(
@@ -162,30 +140,21 @@ class MyProfile extends StatelessWidget {
                         width: 320,
                         height: 50,
                         decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 197, 239, 230),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
                         padding: EdgeInsetsDirectional.zero,
                         child: Transform.translate(
                           offset: const Offset(20.0, 0.0),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7)),
-                                ),
-                                child: Icon(
-                                  Icons.settings,
-                                  size: 27,
-                                  color: Colors.black,
-                                ),
+                              Icon(
+                                Icons.settings,
+                                size: 27,
+                                color: Colors.black,
                               ),
                               SizedBox(width: 8),
-                              const Text(
+                              Text(
                                 "Configuración de perfil",
                                 style: TextStyle(
                                   fontSize: 19,
@@ -199,44 +168,32 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 7),
-                    const SizedBox(height: 5),
+                    SizedBox(height: 10),
                     GestureDetector(
                       /*onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ConfigProfile()),
-                        );
+                          
                       },*/
                       child: Container(
                         width: 320,
                         height: 50,
                         decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 197, 239, 230),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
                         padding: EdgeInsetsDirectional.zero,
                         child: Transform.translate(
                           offset: const Offset(20.0, 0.0),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7)),
-                                ),
-                                child: Icon(
-                                  Icons.notifications,
-                                  size: 27,
-                                  color: Colors.black,
-                                ),
+                              Icon(
+                                Icons.notifications,
+                                size: 27,
+                                color: Colors.black,
                               ),
                               SizedBox(width: 8),
-                              const Text(
+                              Text(
                                 "Notificaciones",
                                 style: TextStyle(
                                   fontSize: 19,
@@ -250,43 +207,33 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 7), // Espacio entre los contenedores
-                   GestureDetector(
+                    const SizedBox(
+                        height: 10), // Espacio entre los contenedores
+                    GestureDetector(
                       /*onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ConfigProfile()),
-                        );
+                          
                       },*/
                       child: Container(
                         width: 320,
                         height: 50,
                         decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 197, 239, 230),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
                         padding: EdgeInsetsDirectional.zero,
                         child: Transform.translate(
                           offset: const Offset(20.0, 0.0),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7)),
-                                ),
-                                child: Icon(
-                                  Icons.help_rounded,
-                                  size: 27,
-                                  color: Colors.black,
-                                ),
+                              Icon(
+                                Icons.help_rounded,
+                                size: 27,
+                                color: Colors.black,
                               ),
                               SizedBox(width: 8),
-                              const Text(
+                              Text(
                                 "Ayuda y Asistencia",
                                 style: TextStyle(
                                   fontSize: 19,
@@ -300,43 +247,31 @@ class MyProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 7),
-                    Container(
-                      width: 320,
-                      height: 60,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: GestureDetector(
-                        onTap: () {
-                          _mostrarConfirmacionCerrarSesion(context);
-                        },
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        _mostrarConfirmacionCerrarSesion(context);
+                      },
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 225, 110, 56),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        padding: EdgeInsetsDirectional.zero,
                         child: Transform.translate(
-                          offset: const Offset(20.0, 0.0),
-                          child: Row(
+                          offset: const Offset(22.5, 0.0),
+                          child: const Row(
                             children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 217, 86, 25),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7)),
-                                ),
-                              child: Icon(
-                                Icons.exit_to_app,
-                                size: 24.5,
-                                color: Colors.white,
-                              ),
-                              ),
-                              const SizedBox(width: 8),
-                              const Text(
-                                "Cerrar sesión",
+                              Icon(Icons.logout_outlined,
+                                  size: 27, color: Colors.white),
+                              SizedBox(width: 6),
+                              Text(
+                                "Cerrar Sesión",
                                 style: TextStyle(
                                   fontSize: 19,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                   fontFamily: "Mitr",
                                 ),
@@ -345,7 +280,8 @@ class MyProfile extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 8),
                   ],
                 ),
               ),
@@ -361,11 +297,11 @@ class MyProfile extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Cerrar sesión",
+          title: const Text("Cerrar sesión",
               style: TextStyle(
                 color: Colors.black,
               )),
-          content: Text("¿Está seguro de cerrar sesión?",
+          content: const Text("¿Está seguro de cerrar sesión?",
               style: TextStyle(color: Colors.black)),
           actions: [
             TextButton(
@@ -421,7 +357,6 @@ class MyProfile extends StatelessWidget {
 }
 
 //Perfil Fondo Verde
-
 class ClipPathBackground extends StatelessWidget {
   const ClipPathBackground({
     super.key,

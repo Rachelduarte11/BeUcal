@@ -14,6 +14,13 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  void _deleteEvent(Event event) {
+    setState(() {
+      events[_selectedDay!]?.remove(event);
+      _selectedEvents.value = _getEventsForDay(_selectedDay!);
+    });
+  }
+
   // 0: Todos, 1: ND1, 2: ND2, 3: ND3
 
   int selectedND = 0;
@@ -35,6 +42,7 @@ class _CalendarState extends State<Calendar> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+
   //historia de eventos
   Map<DateTime, List<Event>> events = {};
   TextEditingController _eventController = TextEditingController();
@@ -80,21 +88,21 @@ class _CalendarState extends State<Calendar> {
         children: [
           SizedBox(height: 15),
           Container(
-            height: 690,
+            height: 610,
             width: 0,
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color:  Color(0xffEDFFFB),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25),
                 topRight: Radius.circular(25),
               ),
               boxShadow: [
-                BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
+                //BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
               ],
             ),
             child: Column(
               children: [
-                SizedBox(height: 0),
+                /*
                 Center(
                   child: Container(
                     margin: EdgeInsets.only(top: 10),
@@ -116,7 +124,7 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
                 ),
-                /*
+                
                 Row(
                   children: [
                     const SizedBox(width: 25),
@@ -182,14 +190,16 @@ class _CalendarState extends State<Calendar> {
                   ],
                 ),*/
 
-                SizedBox(height: 20),
                 //Segunda fila (Botones)
                 Container(
-                  height: 30,
-                  width: 230,
+                  height: 50,
+                  width: 450,
                   decoration: const BoxDecoration(
                     color: Color(0XFFE7E2E2),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25),
+                    ),
                   ),
                   child: Center(
                     child: Row(
@@ -201,14 +211,14 @@ class _CalendarState extends State<Calendar> {
                             });
                           },
                           child: Container(
-                            height: 30,
-                            width: 76.6,
+                            height: 50,
+                            width: 130,
                             decoration: BoxDecoration(
                               color: selectedND == 0
                                   ? Color(0xFFFD6A6A)
-                                  : Color(0XFFE7E2E2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
+                                  : Color.fromARGB(255, 247, 245, 245),
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(25)),
                             ),
                             child: Center(
                               child: Text(
@@ -232,15 +242,12 @@ class _CalendarState extends State<Calendar> {
                             });
                           },
                           child: Container(
-                            width: 76.6,
-                            height: 30,
+                            width: 130,
+                            height: 50,
                             decoration: BoxDecoration(
-                              color: selectedND == 1
-                                  ? Color(0xFFFD6A6A)
-                                  : Color(0XFFE7E2E2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
+                                color: selectedND == 1
+                                    ? Color(0xFFFD6A6A)
+                                    : Color.fromARGB(255, 247, 245, 245)),
                             child: Center(
                               child: Text(
                                 "Tareas",
@@ -263,15 +270,14 @@ class _CalendarState extends State<Calendar> {
                             });
                           },
                           child: Container(
-                            height: 30,
-                            width: 76.6,
+                            height: 50,
+                            width: 132.7,
                             decoration: BoxDecoration(
-                              color: selectedND == 2
-                                  ? Color(0xFFFD6A6A)
-                                  : Color(0XFFE7E2E2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
+                                color: selectedND == 2
+                                    ? Color(0xFFFD6A6A)
+                                    : Color.fromARGB(255, 247, 245, 245),
+                                borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(25))),
                             child: Center(
                               child: Text(
                                 "Pruebas",
@@ -360,7 +366,8 @@ class _CalendarState extends State<Calendar> {
                                           ]
                                         });
                                         Navigator.of(context).pop();
-                                         _selectedEvents.value = _getEventsForDay(_selectedDay!);
+                                        _selectedEvents.value =
+                                            _getEventsForDay(_selectedDay!);
                                       },
                                       child: Text("Enviar"),
                                     ),
@@ -379,91 +386,159 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ],
                 ),
-                TableCalendar(
-                  locale: 'es_ES',
-                  firstDay: DateTime.utc(2010, 10, 16),
-                  lastDay: DateTime.utc(2030, 3, 14),
-                  focusedDay: _focusedDay,
-                  onDaySelected: _onDaySelected,
-                  selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
-                  rowHeight: 50,
-                  //Evento:
-                  eventLoader: _getEventsForDay,
-                  calendarStyle: const CalendarStyle(
-                    defaultTextStyle: TextStyle(color: Colors.black),
-                    weekendTextStyle: TextStyle(color: Colors.black),
-                  ),
-                  headerStyle: const HeaderStyle(
-                    titleCentered: true,
-                    formatButtonVisible: false,
-                    titleTextStyle: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                  calendarBuilders: CalendarBuilders(
-                    headerTitleBuilder: (context, DateTime focusDay) {
-                      return Text(
-                        DateFormat.yMMM('es_ES')
-                            .format(focusDay)
-                            .replaceFirstMapped(RegExp(r'^[a-z]'),
-                                (match) => match.group(0)!.toUpperCase()),
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
+                SizedBox(height: 10),
+                Container(
+                  color: Color.fromARGB(255, 247, 235, 235),
+                  child: Column(
+                    children: [
+                      TableCalendar(
+                        locale: 'es_ES',
+                        firstDay: DateTime.utc(2010, 10, 16),
+                        lastDay: DateTime.utc(2030, 3, 14),
+                        focusedDay: _focusedDay,
+                        onDaySelected: _onDaySelected,
+                        selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
+                        rowHeight: 50,
+                        //Evento:
+                        eventLoader: _getEventsForDay,
+                        calendarStyle: CalendarStyle(
+                          defaultTextStyle: TextStyle(color: Colors.black),
+                          weekendTextStyle: TextStyle(color: Colors.black),
                         ),
-                      );
-                    },
+                        headerStyle: const HeaderStyle(
+                          titleCentered: true,
+                          formatButtonVisible: false,
+                          titleTextStyle: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                        calendarBuilders: CalendarBuilders(
+                          headerTitleBuilder: (context, DateTime focusDay) {
+                            return Text(
+                              DateFormat.yMMM('es_ES')
+                                  .format(focusDay)
+                                  .replaceFirstMapped(RegExp(r'^[a-z]'),
+                                      (match) => match.group(0)!.toUpperCase()),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          },
+                        ),
+                        onFormatChanged: (format) {
+                          if (_calendarFormat != format) {
+                            setState(() {
+                              _calendarFormat = format;
+                            });
+                          }
+                        },
+                        onPageChanged: (focusedDay) {
+                          _focusedDay = focusedDay;
+                        },
+                      ),
+                    ],
                   ),
-                  onFormatChanged: (format) {
-                    if (_calendarFormat != format) {
-                      setState(() {
-                        _calendarFormat = format;
-                      });
-                    }
-                  },
-                  onPageChanged: (focusedDay) {
-                    _focusedDay = focusedDay;
-                  },
+                 
                 ),
+                SizedBox(height: 5),
                 Expanded(
                   child: ValueListenableBuilder<List<Event>>(
                       valueListenable: _selectedEvents,
                       builder: (context, value, _) {
                         return ListView.builder(
-                          itemCount: value.length,
-                          itemBuilder:(context, index) {
-                          return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: ListTile(
-                              onTap: () => print(""),
-                              title: Text('${value[index]}'),
-                            ),
-                          );
-                        }
-                      );
-                    }
-                  ),
-                )
+                            itemCount: value.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 4),
+                                decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: ListTile(
+                                  onTap: () => print(""),
+                                  title: Text('${value[index].title}'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.delete),
+                                    onPressed: () {
+                                      _showDeleteDialog(context, value[index]);
+                                    },
+                                  ),
+                                ),
+                              );
+                            });
+                      }),
+                ),
               ],
             ),
           ),
-          //Lllamando al Widgets de Tareas pendientes ---
-          const SizedBox(height: 10),
-          Center(
-            child: Titles(
-              text: 'Tareas Pendientes',
-              size: 24,
-              fontFamily: 'Mitr',
+          Container(
+            height: 420,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+                boxShadow: [
+                  BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey)
+              ]
+            ),
+            
+            child: Column(
+              children: [
+                const SizedBox(height: 15),
+                Column(
+                  children: [
+                    Center(
+                      child: Center(
+                        child: Titles(
+                          text: 'Tareas Pendientes',
+                          size: 24,
+                          fontFamily: 'Mitr',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const _ToDoCard()
+              ],
             ),
           ),
-          _ToDoCard()
+
+          //Lllamando al Widgets de Tareas pendientes ---
+          const SizedBox(height: 10),
         ],
       ),
+    );
+  }
+
+  void _showDeleteDialog(BuildContext context, Event event) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("¿Eliminar evento?"),
+          content: Text("¿Estás seguro de que quieres eliminar este evento?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
+              },
+              child: Text("Cancelar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _deleteEvent(event);
+                Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
+              },
+              child: Text("Eliminar"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -61,6 +61,7 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
               color: Colors.white,
               fontWeight: FontWeight.bold), // Texto de color negro
         ),
+         automaticallyImplyLeading: false,
           backgroundColor: Color(0xff12B19C),
           elevation: 0,
         ),

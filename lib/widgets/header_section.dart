@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/models/colors.dart';
-import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
@@ -54,21 +53,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            child: AutoSizeText(
-                              greeting,
-                              style: TextStyle(
-                                fontFamily: 'Mitr',
-                                fontSize: 22,
-                                fontWeight: FontWeight.w300,
-                                height: 1,
-                                color: Color(0xff313131),
-                              ),
-                               maxLines:
-                                1, // Establece el número máximo de líneas que el texto puede ocupar
-                            overflow: TextOverflow
-                                .ellipsis,
+                          AutoSizeText(
+                            greeting,
+                            style: const TextStyle(
+                              fontFamily: 'Mitr',
+                              fontSize: 22,
+                              fontWeight: FontWeight.w300,
+                              height: 1,
+                              color: Color(0xff313131),
                             ),
+                             maxLines:
+                              1, // Establece el número máximo de líneas que el texto puede ocupar
+                          overflow: TextOverflow
+                              .ellipsis,
                           ),
                           AutoSizeText(
                             name,

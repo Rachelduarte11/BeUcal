@@ -1,5 +1,9 @@
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/analisis_datos.dart';
+import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/analisis_inventario.dart';
+import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/asistente.dart';
+import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/rrhh.dart';
 import 'package:becertus_proyecto/widgets/dashboard/jobs/model/model_future_jobs.dart';
 import 'package:becertus_proyecto/screens/home.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';
@@ -334,18 +338,16 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
           margin: const EdgeInsets.only(top: 5),
           // padding: const EdgeInsets.all(5),
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.92,
+          height: selectedND >0 ? MediaQuery.of(context).size.height * 1.2:MediaQuery.of(context).size.height * 0.88,
           child: Column(
             children: [
               Center(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   //padding: EdgeInsets.only(bottom: 10),
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/main.png',
-                        ),
+                        image:  selectedND > 0 ? AssetImage('assets/images/main2.png') : AssetImage('assets/images/main.png'),
                         fit: BoxFit.cover),
                   ),
                   child: Column(
@@ -375,32 +377,49 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
         ),
         Visibility(
           visible: selectedND==0,
-          child: Container(
-            //width: MediaQuery.of(context).size.width * 0.95,
-            height: MediaQuery.of(context).size.height * 0.55,
-            child: Column(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width ,
+            height: MediaQuery.of(context).size.height * 0.37,
+            //padding: EdgeInsets.only(top: 6),
+           // margin: EdgeInsets.only(bottom: 8),
+            
+            child: const Column(
               children: [
-                Titles(
-                    text: 'Posibles Puestos Laborales',
-                    size: 22,
-                    fontFamily: 'Mitr'),
+                Padding(
+                  padding: EdgeInsets.only(top: 4),
+                  child: Text('POSIBLES PUESTOS LABORALES', style: TextStyle(
+                    fontFamily: 'Arimo',
+                    fontSize: 14,
+                    color:Color.fromARGB(255, 31, 30, 30),
+                  ),),
+                ),
                 SizedBox(height: 12),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    AverageFutureJob(
-                      textFutureJob: 'Analista de Inventario y abastecimiento',
-                      progressValue: 80,
-                    ),
-                    AverageFutureJob(
-                        textFutureJob: 'Asistente de consultorías',
-                        progressValue: 50),
-                    AverageFutureJob(
-                        textFutureJob: 'Analista de datos', progressValue: 30),
-                    AverageFutureJob(
-                        textFutureJob: 'Especialista en RR.HH',
-                        progressValue: 20),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      AverageFutureJob(
+                        textFutureJob: 'Analista de Inventario y abastecimiento',
+                        progressValue: 80, pathImages: 'assets/images/jobs/analista-inventario.png',
+                        pageJob: AnalisisInventario(),
+                      ),
+                      AverageFutureJob(
+                          textFutureJob: 'Asistente de consultorías',
+                          progressValue: 50,
+                          pathImages: 'assets/images/jobs/asistente.png',
+                          pageJob: Asistente(),),
+                      AverageFutureJob(
+                          textFutureJob: 'Analista de datos', progressValue: 30,
+                          pathImages: 'assets/images/jobs/analista-datos.png',
+                          pageJob: AnalisisDatos(),),
+                      AverageFutureJob(
+                          textFutureJob: 'Especialista en RR.HH',
+                          progressValue: 20,
+                          pathImages: 'assets/images/jobs/rrhh.png',
+                          pageJob: RRHH(),),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -587,7 +606,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                         ),
                         Text(
                           temperature,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             fontFamily: 'Mitr',
@@ -626,13 +645,11 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
             width: 4,
           ),
           Flexible(
-            child: Container(
-              child: Text(
-                variableCompetencia,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold
-                ),
+            child: Text(
+              variableCompetencia,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold
               ),
             ),
           ),
@@ -659,7 +676,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               width: 52,
               height: 52,
               decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0x3f000000),
                       offset: Offset(1, 1),
@@ -722,7 +739,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               width: 52,
               height: 52,
               decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0x3f000000),
                     offset: Offset(1, 1),
@@ -750,12 +767,12 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0x3f000000),
                     offset: Offset(1, 1),
@@ -788,7 +805,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               width: 52,
               height: 52,
               decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0x3f000000),
                     offset: Offset(1, 1),
@@ -925,6 +942,10 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
       case 4:
         return const DashboardPensamientoCritico();
       case 5:
+        return const DashboardInvestigacion();
+      case 6:
+        return const DashboardInvestigacion();
+      case 7:
         return const DashboardInvestigacion();
       default:
         return Visibility(

@@ -1,4 +1,4 @@
- import 'package:becertus_proyecto/screens/login_screen.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
   // Función para obtener la URL de la foto de perfil desde Firestore

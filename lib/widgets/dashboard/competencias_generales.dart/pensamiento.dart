@@ -1,14 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:becertus_proyecto/widgets/dashboard/competencias_generales.dart/bar_grafic.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class DashboardPensamientoCritico extends StatelessWidget {
   const DashboardPensamientoCritico({super.key});
-
-  @override
+@override
   Widget build(BuildContext context) {
-    
+   
       return Container(
-        height: MediaQuery.of(context).size.height * 0.75,
+        height: MediaQuery.of(context).size.height *0.9,
         padding: const EdgeInsets.all(6),
         child: Center(
           child: Column(
@@ -17,37 +18,7 @@ class DashboardPensamientoCritico extends StatelessWidget {
                 children: [
                   GlassmorphicContainer(
                     width: MediaQuery.of(context).size.width * 0.88,
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    borderRadius: 10,
-                    blur: 20,
-                    alignment: Alignment.center,
-                    border: 0.2,
-                    linearGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color.fromARGB(255, 32, 32, 32).withOpacity(0.25),
-                        const Color.fromARGB(255, 36, 36, 36).withOpacity(0.25),
-                      ],
-                    ),
-                    borderGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFFffffff).withOpacity(0.5),
-                        const Color((0xFFFFFFFF)).withOpacity(0.5),
-                      ],
-                    ),
-                    // child: Center(child: CompetenciasColumnChart())
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  GlassmorphicContainer(
-                    margin: const EdgeInsets.only(top: 5),
-                    width: MediaQuery.of(context).size.width * 0.43,
-                    height: MediaQuery.of(context).size.height * 0.20,
+                    height: MediaQuery.of(context).size.height * 0.41,
                     borderRadius: 10,
                     blur: 20,
                     alignment: Alignment.center,
@@ -74,120 +45,119 @@ class DashboardPensamientoCritico extends StatelessWidget {
                           margin: const EdgeInsets.only(left: 6, top: 4),
                           alignment: Alignment.topLeft,
                           child: const Text(
-                            'GENERALES',
+                            'CAPACIDADES',
                             style: TextStyle(
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 212, 212, 212)),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5.5,
-                  ),
-                  GlassmorphicContainer(
-                    margin: const EdgeInsets.only(top: 5),
-                    width: MediaQuery.of(context).size.width * 0.43,
-                    height: MediaQuery.of(context).size.height * 0.20,
-                    borderRadius: 10,
-                    blur: 10,
-                    alignment: Alignment.center,
-                    border: 0.2,
-                    linearGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color.fromARGB(255, 32, 32, 32).withOpacity(0.25),
-                        const Color.fromARGB(255, 36, 36, 36).withOpacity(0.25),
-                      ],
-                    ),
-                    borderGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFFffffff).withOpacity(0.5),
-                        const Color((0xFFFFFFFF)).withOpacity(0.5),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          margin: EdgeInsets.only(left: 6, top: 4),
-                          alignment: Alignment.topLeft,
-                          child: const Text(
-                            'ESPECIFICAS',
-                            style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 212, 212, 212)),
-                          ),
-                        ),
+                        BarTrackerSimplified()
                       ],
                     ),
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  GlassmorphicContainer(
-                      margin: EdgeInsets.only(top: 5),
-                      width: MediaQuery.of(context).size.width * 0.88,
-                      height: MediaQuery.of(context).size.height * 0.27,
-                      borderRadius: 10,
-                      blur: 20,
-                      alignment: Alignment.center,
-                      border: 0.2,
-                      linearGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          const Color.fromARGB(255, 32, 32, 32)
-                              .withOpacity(0.25),
-                          const Color.fromARGB(255, 36, 36, 36)
-                              .withOpacity(0.25),
-                        ],
-                      ),
-                      borderGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          const Color(0xFFffffff).withOpacity(0.5),
-                          const Color((0xFFFFFFFF)).withOpacity(0.5),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            margin: EdgeInsets.only(left: 6, top: 4),
-                            alignment: Alignment.topLeft,
-                            child: const Text(
-                              'TERMÓMETRO DE RENDIMINETO',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromARGB(255, 212, 212, 212)),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                           ' temperature',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Mitr',
-                            ),
-                          ),
-                       
-                        ],
-                      )),
-                ],
-              ),
+          
+              _definitionsCan(context, 'ITEM 1', 'Expresa ideas de manera clara y coherente.'),
+              _definitionsCan(context, 'ITEM 2', 'Genera diferentes alternativas, ideas y soluciones, considerando múltiples enfoques y perspectivas.'),
+              _definitionsCan(context, 'ITEM 3', 'Modifica comportamientos, estrategias o enfoques para lograr respuestas ágiles y eficientes a los cambios y desafíos del entorno considerando las tendencias actuales mostrando habilidad para asumir nuevos retos.'),
+              _definitionsCan(context, 'ITEM 4', 'Aplica principios lógicos y matemáticos a problemas reales; comprender conceptos abstractos y reglas de inferencia para analizar argumentos.'),
+              _definitionsCan(context, 'ITEM 5', 'Plantear un problema y defender una postura paradigmática clara en relación a otras, que fundamente el tipo y alcances del problema de investigación propuesto.'),
+            
             ],
           ),
         ),
       );
+    }
+
+  Widget _definitionsCan(BuildContext context, String titleAbility, String contentAbility) {
+    return GlassmorphicContainer(
+        margin: const EdgeInsets.only(top: 3),
+        width: MediaQuery.of(context).size.width * 0.88,
+        height: MediaQuery.of(context).size.height * 0.09,
+        borderRadius: 10,
+        blur: 20,
+        alignment: Alignment.center,
+        border: 0.2,
+        linearGradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color.fromARGB(255, 32, 32, 32)
+                .withOpacity(0.25),
+            const Color.fromARGB(255, 36, 36, 36)
+                .withOpacity(0.25),
+          ],
+        ),
+        borderGradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color(0xFFffffff).withOpacity(0.5),
+            const Color((0xFFFFFFFF)).withOpacity(0.5),
+          ],
+        ),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.72,
+              margin: const EdgeInsets.only(left: 6, top: 4),
+              alignment: Alignment.topLeft,
+              child:  Text(
+                titleAbility,
+                style: TextStyle(
+                    fontSize: 12,
+                    color: Color.fromARGB(255, 212, 212, 212)),
+              ),
+            ),
+            const SizedBox(
+              height:2,
+            ),
+            
+                Container(
+                  margin: const EdgeInsets.all(3),
+                  width: MediaQuery.of(context).size.width * 0.65,
+                  child:AutoSizeText(contentAbility,
+                  maxLines: 3,
+                  style: TextStyle(fontSize: 11),),
+                ),
+              ]),
+          Container(
+    width: 50,
+    height: 50,
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFFC9D32B),
+            Color.fromARGB(201, 100, 219, 112),
+          ],
+          stops: [0.0, 20],
+        )),
+    child: const Center(
+      child: AutoSizeText(
+        '20%',
+        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
+        style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'Arimo',
+            fontWeight: FontWeight.w600,
+            color: Color.fromARGB(255, 255, 255, 255)),
+        minFontSize: 12, // Tamaño de fuente mínimo
+        maxFontSize: 20, // Tamaño de fuente máximo
+        presetFontSizes: [20, 16, 14, 12],
+      ),
+    ),
+              )
+            
+            
+         
+          ],
+        ));
   }
-}
+  }
+

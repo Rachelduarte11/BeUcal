@@ -8,6 +8,7 @@ import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
 import 'package:becertus_proyecto/widgets/dashboard/global/range_jobs.dart';
+import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/analisis_datos.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,11 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
+<<<<<<< HEAD
       home: Login(),
+=======
+      home: HomeScreen(),
+>>>>>>> 71dce5d478cea390c109798dbf9f70e4585db6a0
       routes: {
         // '/myperformance': (context) => MyPerformance()
       },

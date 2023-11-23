@@ -99,34 +99,29 @@ class _NotificationScreen extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE8F8F7),
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_outlined, color: Color(0xff323232), size: 22,),
-            onPressed: () {
-              // Acción al presionar el botón de retroceso
-              Navigator.pop(context);
-            },
-          ),
-        backgroundColor: Colors.transparent, // Hace el AppBar transparente
-        elevation: 0,
-        
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Notificaciones',
-          style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold), // Texto de color negro
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search,
-                color: Colors.black), // Ícono de búsqueda de color negro
-            onPressed: () {
-              // Aquí puedes añadir la funcionalidad para la búsqueda
-            },
-          ),
-        ],
-      ),
+      appBar: currentIndex == 5
+          ? AppBar(
+              backgroundColor:
+                  Colors.transparent, // Hace el AppBar transparente
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              title: Text(
+                'Notificaciones',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold), // Texto de color negro
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.search,
+                      color: Colors.black), // Ícono de búsqueda de color negro
+                  onPressed: () {
+                    // Aquí puedes añadir la funcionalidad para la búsqueda
+                  },
+                ),
+              ],
+            )
+          : null,
       body: currentIndex >= 0 && currentIndex < screens.length
           ? screens[currentIndex]
           : notificationListView(),

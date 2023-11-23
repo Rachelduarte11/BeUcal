@@ -174,12 +174,12 @@ class _MainPerformanceState extends State<MainPerformance> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.48,
                     //height: 300,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
                     child: RadiusChartGen(),
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.46,
                     height: 120,
                     child: Column(
@@ -192,7 +192,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                               ED.toStringAsFixed(1),
                               0xffBBC700,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Expanded(
@@ -207,7 +207,7 @@ class _MainPerformanceState extends State<MainPerformance> {
                               FP.toStringAsFixed(1),
                               0xff00C1A7,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Expanded(

@@ -1,11 +1,18 @@
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ConfigProfile extends StatelessWidget {
   const ConfigProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    NotasProvider notasProvider = Provider.of<NotasProvider>(context);
+    String name = notasProvider.name ?? '';
+    String secondName = notasProvider.secondName ?? '';
+    String lastName = notasProvider.lastName ?? '';
+    String fullName = name + ' ' + secondName + ' ' + lastName;
     return Scaffold(
       backgroundColor: Color(0xffEDFFFB),
       body: SingleChildScrollView(
@@ -36,39 +43,40 @@ class ConfigProfile extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: 20),
-                      Container(
-                        alignment: Alignment.center,
-                        child: Center(
-                          child: SizedBox(
-                            width: 124,
-                            height: 124,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 4),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const CircleAvatar(
-                                backgroundColor: Colors.grey,
-                                backgroundImage: AssetImage(
-                                  'assets/images/StackPath.jpeg',
-                                ),
-                                radius: 60,
-                              ),
+                      Transform.translate(
+                        offset: const Offset(0, 0),
+                        child: Container(
+                          width: 125,
+                          height: 125,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.grey, // Color del borde gris
+                              width: 4.0,
+                            ),
+                          ),
+                          child: ClipOval(
+                            child: Image.network(
+                              notasProvider.photoUrl ?? '',
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
-                      const Text(
-                        "Carlos Paz Obada",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 23,
-                          fontWeight: FontWeight.w500,
+                      Center(
+                      child: Transform.translate(
+                        offset: const Offset(0, 10),
+                        child: Text(
+                          fullName,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
+                    ),
                     ],
                   ),
                 ),
@@ -94,136 +102,149 @@ class ConfigProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    Container(
-                      width: 320,
-                      height: 50,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: Transform.translate(
-                        offset: const Offset(20.0, 0.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                            ),
-                            SizedBox(width: 8),
-                            const Text(
-                              "Correo electronico",
-                              style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Mitr",
-                              ),
-                            ),
-                          ],
+                   const SizedBox(height: 10),
+                    GestureDetector(
+                      /*onTap: () {
+                        Navigator.push(
+                          context,
+                          
+                      },*/
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 197, 239, 230),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 7),
-                    Container(
-                      width: 320,
-                      height: 60,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: Transform.translate(
-                        offset: const Offset(20.0, 0.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              "Fecha de nacimiento",
-                              style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Mitr",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 7), // Espacio entre los contenedores
-                    Container(
-                      width: 320,
-                      height: 60,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: Transform.translate(
-                        offset: const Offset(20.0, 0.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              "Teléfono",
-                              style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Mitr",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 7),
-                    Container(
-                      width: 320,
-                      height: 60,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: GestureDetector(
-                        onTap: () {
-                          //funcion presionar
-                        },
+                        padding: EdgeInsetsDirectional.zero,
                         child: Transform.translate(
                           offset: const Offset(20.0, 0.0),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7)),
+                              Icon(
+                                Icons.email,
+                                size: 27,
+                                color: Colors.black,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                "Correo electronico",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Mitr",
                                 ),
                               ),
-                              const SizedBox(width: 8),
-                              const Text(
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      /*onTap: () {
+                        Navigator.push(
+                          context,
+                          
+                      },*/
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 197, 239, 230),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        padding: EdgeInsetsDirectional.zero,
+                        child: Transform.translate(
+                          offset: const Offset(20.0, 0.0),
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.date_range,
+                                size: 27,
+                                color: Colors.black,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                "Fecha de Nacimiento",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Mitr",
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      /*onTap: () {
+                        Navigator.push(
+                          context,
+                          
+                      },*/
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 197, 239, 230),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        padding: EdgeInsetsDirectional.zero,
+                        child: Transform.translate(
+                          offset: const Offset(20.0, 0.0),
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.phone,
+                                size: 27,
+                                color: Colors.black,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                "Teléfono",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Mitr",
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      /*onTap: () {
+                        Navigator.push(
+                          context,
+                          
+                      },*/
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 197, 239, 230),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        padding: EdgeInsetsDirectional.zero,
+                        child: Transform.translate(
+                          offset: const Offset(20.0, 0.0),
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.personal_injury_outlined,
+                                size: 27,
+                                color: Colors.black,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
                                 "Carrera",
                                 style: TextStyle(
                                   fontSize: 19,
@@ -237,34 +258,32 @@ class ConfigProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 7),
-                    Container(
-                      width: 320,
-                      height: 60,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      padding: EdgeInsetsDirectional.zero,
-                      child: GestureDetector(
-                        onTap: () {
-                          //funcion presionar
-                        },
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      /*onTap: () {
+                        Navigator.push(
+                          context,
+                          
+                      },*/
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 197, 239, 230),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        padding: EdgeInsetsDirectional.zero,
                         child: Transform.translate(
                           offset: const Offset(20.0, 0.0),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 197, 239, 230),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7)),
-                                ),
+                              Icon(
+                                Icons.location_history_rounded,
+                                size: 27,
+                                color: Colors.black,
                               ),
-                              const SizedBox(width: 8),
-                              const Text(
+                              SizedBox(width: 8),
+                              Text(
                                 "Redes Sociales",
                                 style: TextStyle(
                                   fontSize: 19,

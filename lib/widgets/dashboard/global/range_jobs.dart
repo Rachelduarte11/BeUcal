@@ -45,8 +45,8 @@ class _ProgressBarDeterminateStyleState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
-      width: 60,
+      height: 100,
+      width: 100,
       child: SfRadialGauge(
         axes: <RadialAxis>[
           RadialAxis(
@@ -54,32 +54,35 @@ class _ProgressBarDeterminateStyleState
             showTicks: false,
             startAngle: 270,
             endAngle: 270,
-            radiusFactor: 1.0,
+            radiusFactor: 1,
             axisLineStyle: const AxisLineStyle(
-              thickness: 1,
-              color: Color(0xff0BB49D),
-              thicknessUnit: GaugeSizeUnit.factor,
-            ),
+              thickness: 0.2,
+              color: Color.fromARGB(30, 0, 169, 181),
+                thicknessUnit: GaugeSizeUnit.factor,),
             pointers: <GaugePointer>[
               RangePointer(
                 value: progressValue,
-                width: 0.15,
+                width: 0.2,
                 enableAnimation: true,
-                animationDuration: 30,
+                animationDuration: 750,
                 color: Colors.white,
-                pointerOffset: 0.1,
-                cornerStyle: CornerStyle.bothCurve,
+                //pointerOffset: 0.1,
+               cornerStyle: CornerStyle.bothCurve,
                 animationType: AnimationType.linear,
                 sizeUnit: GaugeSizeUnit.factor,
+                gradient: const SweepGradient(
+                        colors: <Color>[Color(0xFF44DECC), Color(0xFF0BB49D)],
+                        stops: <double>[0.25, 0.75])
               )
             ],
             annotations: <GaugeAnnotation>[
               GaugeAnnotation(
-                positionFactor: 0.5,
+                positionFactor: 0.1,
                 widget: Text(
                   progressValue.toStringAsFixed(0) + '%',
                   style: const TextStyle(
                     color: Colors.white,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

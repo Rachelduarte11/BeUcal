@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 class ViewTasks extends StatelessWidget {
   const ViewTasks({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,6 +169,8 @@ class ViewTasks extends StatelessWidget {
     
   }
 
+  
+
   Widget TaskContents({
     required BuildContext context,
     required Color circleColor,
@@ -284,6 +287,7 @@ class ViewTasks extends StatelessWidget {
     );
   }
 }
+
 
 class DateList extends StatefulWidget {
   @override

@@ -442,7 +442,7 @@ class _CalendarState extends State<Calendar> {
                   ),
                  
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Expanded(
                   child: ValueListenableBuilder<List<Event>>(
                       valueListenable: _selectedEvents,
@@ -475,7 +475,7 @@ class _CalendarState extends State<Calendar> {
             ),
           ),
           Container(
-            height: 420,
+            height: 450,
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -495,7 +495,7 @@ class _CalendarState extends State<Calendar> {
                     Center(
                       child: Center(
                         child: Titles(
-                          text: 'Tareas Pendientes',
+                          text: 'Tareas',
                           size: 24,
                           fontFamily: 'Mitr',
                         ),
@@ -503,17 +503,17 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ],
                 ),
-                const _ToDoCard()
+
               ],
             ),
           ),
-
-          //Lllamando al Widgets de Tareas pendientes ---
-          const SizedBox(height: 10),
+          const SizedBox(height: 0),
         ],
       ),
     );
   }
+
+  //Evento eliminar fecha
 
   void _showDeleteDialog(BuildContext context, Event event) {
     showDialog(

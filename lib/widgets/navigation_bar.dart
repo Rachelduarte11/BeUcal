@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/models/user.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,6 +16,9 @@ class CustomeNavigationBar extends StatefulWidget {
 
   @override
   State<CustomeNavigationBar> createState() => _CustomeNavigationBarState();
+}
+
+class FirebaseAuth {
 }
 
 class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
@@ -170,7 +173,7 @@ class SpeedButton extends StatelessWidget {
 
 // ---- Nueva Tarea
 
-void _showModalBottomSheet(BuildContext context) {
+void _showModalBottomSheet(BuildContext context,) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     context: context,
@@ -225,42 +228,46 @@ void _showModalBottomSheet(BuildContext context) {
                     ),
                   ),
                   onTap: () {
+                    //Logica para Id estudiante: 
+                    String studentId = "kDkChIpT6jK1gIemu3kX";
                     // Acción cuando se selecciona la opción 2
-                    _agregarTareaFirestore();
+                    _agregarTareaFirestore(tituloController, notasController, studentId);
                     Navigator.pop(context); // Cierra la hoja de acción
                   },
                 ),
                 // Agrega más elementos según tus necesidades
               ],
             ),
-            SizedBox(
+            
+            const SizedBox(
               height: 20,
             ),
+            //titulo controller
             Container(
               height:
-                  40.0, // Ajusta la altura del fondo blanco según tus necesidades
+                  40.0, 
               child: TextField(
                 controller: tituloController,
-                style: TextStyle(
-                  color: Colors.black, // Color del texto
+                style: const TextStyle(
+                  color: Colors.black, 
                 ),
                 decoration: InputDecoration(
                   contentPadding:
-                      EdgeInsets.all(10.0), // Ajusta el relleno interno
+                      EdgeInsets.all(10.0), 
                   hintText: tituloController.text.isEmpty
                       ? 'Titulo'
-                      : '', // Mostrar o no el hintText
+                      : '', 
                   filled: true,
                   fillColor: const Color.fromARGB(
-                      255, 255, 255, 255), // Color de fondo
+                      255, 255, 255, 255),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide.none, // Elimina el borde
+                    borderSide: BorderSide.none, 
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
             ),
-            //continuar....
+            //Notas controller
             SizedBox(height: 8),
             Container(
               height: 150,
@@ -281,7 +288,7 @@ void _showModalBottomSheet(BuildContext context) {
                         filled: true,
                         hintText: tituloController.text.isEmpty ? 'Notas' : '',
                         contentPadding: EdgeInsets.zero,
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           fontSize: 16,
                           fontFamily: 'Arimo',
                           color: Color(0xff4B4B4B),
@@ -442,38 +449,39 @@ Container _TimeElection(
 
 // Función agregarTarea a firestore
 
-void _agregarTareaFirestore() async {
+void _agregarTareaFirestore(TextEditingController tituloController, TextEditingController notasController, String studentId)async {
   // Accede a la instancia de Firestore
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Obtén los valores de título y notas desde tus controladores o variables
-  String titulo = obtenerValorTitulo();
-  String notas = obtenerValorNotas();
+  // Obtén los valores de título y notas directamente de los controladores
+  String titulo = tituloController.text;
+  String notas = notasController.text;
 
   // Comprueba si el título no está vacío antes de agregar la tarea
   if (titulo.isNotEmpty) {
-    // Crea un nuevo documento en la colección "tareas" con título, notas y timestamp
-    await firestore.collection('tareas').add({
-      'titulo': titulo,
-      'notas': notas,
-      'timestamp': FieldValue.serverTimestamp(),
-    });
+    try {
+      // Obtén una referencia al documento del estudiante
+      DocumentReference estudianteDoc = firestore.collection('estudiantes').doc(studentId);
 
-    // Muestra un mensaje o realiza otras acciones según tus necesidades
-    print('Tarea agregada exitosamente');
+      // Crea un nuevo documento en la colección "tareas" dentro del documento del estudiante
+      await estudianteDoc.collection('tareas').add({
+        'titulo': titulo,
+        'notas': notas,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      // Muestra un mensaje o realiza otras acciones según tus necesidades
+      print('Tarea agregada exitosamente');
+    } catch (error) {
+      // Maneja el error al agregar la tarea a Firestore
+      print('Error al agregar la tarea a Firestore: $error');
+    }
   } else {
-    // Muestra un mensaje de error o realiza otras acciones si el título está vacío
+    // Muestra un mensaje de error si el título está vacío
     print('Error: El título no puede estar vacío');
   }
 }
 
-// Reemplaza las funciones obtenerValorXXX con tus propias lógicas para obtener los valores de los campos.
-String obtenerValorTitulo() {
-  // Implementa tu lógica aquí para obtener el título
-  return "Ejemplo de";
-}
 
-String obtenerValorNotas() {
-  // Implementa tu lógica aquí para obtener las notas
-  return "Ejemplo de notas";
-}
+
+

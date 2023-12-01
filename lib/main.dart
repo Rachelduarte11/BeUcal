@@ -1,4 +1,3 @@
-
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
@@ -23,27 +22,26 @@ void main() async {
   await Firebase.initializeApp(
     name: "BEUCAL",
     options: firebaseOptions,
-    
   );
-  //agregarNotas('kDkChIpT6jK1gIemu3kX');
   await initializeDateFormatting('es', null);
- 
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NotasProvider()),
         // Otros proveedores aquí si es necesario
       ],
-      child: MyApp(),
+      child: MyApp(isLoggedIn: isLoggedIn),
     ),
-    
   );
- 
 }
 
-
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class MyApp extends StatelessWidget {
               )),
       home: Login(),
       routes: {
-        // '/myperformance': (context) => MyPerformance()
+        // Define tus rutas aquí
       },
     );
   }

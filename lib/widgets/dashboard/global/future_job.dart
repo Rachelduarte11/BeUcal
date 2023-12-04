@@ -1,6 +1,8 @@
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/widgets/dashboard/global/range_jobs.dart';
 import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/analisis_datos.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AverageFutureJob extends StatefulWidget {
   const AverageFutureJob({
@@ -8,13 +10,15 @@ class AverageFutureJob extends StatefulWidget {
     required this.textFutureJob,
     required this.progressValue,
     required this.pathImages,
-    required this.pageJob
+    required this.pageJob,
+    required this.documentId,
   }) : super(key: key);
 
   final String textFutureJob;
   final double progressValue;
   final String pathImages;
   final dynamic pageJob;
+  final String documentId;
   @override
   State<AverageFutureJob> createState() => _AverageFutureJobState();
 }
@@ -24,18 +28,28 @@ class _AverageFutureJobState extends State<AverageFutureJob> {
 
   @override
   Widget build(BuildContext context) {
+    NotasProvider notasProvider = Provider.of<NotasProvider>(context);
+
     return ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
+        NotasProvider notasProvider =
+            Provider.of<NotasProvider>(context, listen: false);
+       String documentId = widget.documentId;
+        await notasProvider.obtenerDatosJobs(documentId);
+       // String? documentId = notasProvider.;
+       
+        await notasProvider.obtenerDatosJobs(documentId);
+        String? photoUrlJob = notasProvider.photoUrlJob;
+
+        print(photoUrlJob);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => widget.pageJob));
       },
-       style: ElevatedButton.styleFrom(
-       primary: Colors.transparent,
-       elevation: 0 ,
-      padding: EdgeInsets.all(4)
-  ),
+      style: ElevatedButton.styleFrom(
+          primary: Colors.transparent,
+          elevation: 0,
+          padding: EdgeInsets.all(4)),
       child: Container(
-          
           height: MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width * 0.45,
           decoration: BoxDecoration(
@@ -51,7 +65,7 @@ class _AverageFutureJobState extends State<AverageFutureJob> {
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(10)),
-          child: buildDefaultContent()),
+          child: buildDefaultContent(/*notasProvider.descripcionJob ?? ''*/)),
     );
   }
 

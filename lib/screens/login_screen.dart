@@ -259,8 +259,7 @@ class _LoginState extends State<Login> {
                               await notasProvider
                                   .obtenerDatosEstudiante(studentId);
                               String? photoUrl = notasProvider.photoUrl;
-
-                              print(photoUrl);
+                              
                               print(
                                   "Acceso permitido, ID del estudiante: $studentId");
                               SharedPreferences prefs =

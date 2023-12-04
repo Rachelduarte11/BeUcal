@@ -481,7 +481,3 @@ void _agregarTareaFirestore(TextEditingController tituloController, TextEditingC
     print('Error: El título no puede estar vacío');
   }
 }
-
-
-
-

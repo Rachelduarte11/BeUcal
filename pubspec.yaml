@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^23.1.42
   syncfusion_flutter_gauges: ^23.1.44
   table_calendar: ^3.0.8
+  page_transition: "^2.1.0"
 
 
 dev_dependencies:
@@ -69,6 +70,7 @@ flutter:
      - assets/elements/
      - assets/images/iconos/
      - assets/images/jobs/
+     - assets/images/fondos/
 
 
   

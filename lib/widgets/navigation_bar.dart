@@ -327,11 +327,11 @@ void _showModalBottomSheet(BuildContext context,) {
               chipData('Proyecto 1', 0xffFD6A6A),
               chipData('Inglés 1', 0xffEB078D),
             ]),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             _textUserOption('Elige la fecha'),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             SizedBox(
@@ -360,7 +360,7 @@ Container _textUserOption(String textUser) {
     alignment: Alignment.centerLeft,
     child: Text(
       textUser,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 16,
           fontFamily: 'Mitr',
           color: Color(0xff4B4B4B),

@@ -1,8 +1,9 @@
 import 'dart:ui';
-
 import 'package:becertus_proyecto/models/colors.dart';
+import 'package:becertus_proyecto/models/user.dart';
 import 'package:becertus_proyecto/screens/view_task.dart';
 import 'package:becertus_proyecto/widgets/chip_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -17,73 +18,77 @@ class CustomeNavigationBar extends StatefulWidget {
   State<CustomeNavigationBar> createState() => _CustomeNavigationBarState();
 }
 
+class FirebaseAuth {
+}
+
 class _CustomeNavigationBarState extends State<CustomeNavigationBar> {
   int currentIndex = 0;
 
   void onTab(int index) {
-  setState(() {
-    if (index != 4) { // Cambiado de 3 a 4
-      currentIndex = index;
-      widget.voidCallbackParam(index);
-    }
-  });
-}
+    setState(() {
+      if (index != 4) {
+        // Cambiado de 3 a 4
+        currentIndex = index;
+        widget.voidCallbackParam(index);
+      }
+    });
+  }
 
+  TextEditingController tituloController = TextEditingController(text: "");
+  TextEditingController notasController = TextEditingController(text: "");
 
 //barra de menu
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
-          child: BottomNavigationBar(          
-            elevation: 0,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_rounded,
-                  size: 28,
-                ),
-                label: 'Home',
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 30),
+        child: BottomNavigationBar(
+          elevation: 0,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_rounded,
+                size: 28,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.stacked_bar_chart_rounded,
-                  size: 28,
-                ),
-                label: 'Stack',
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.stacked_bar_chart_rounded,
+                size: 28,
               ),
-              BottomNavigationBarItem(
+              label: 'Stack',
+            ),
+            BottomNavigationBarItem(
                 icon: Icon(
                   Icons.calendar_month_outlined,
                   size: 28,
                 ),
-                label: 'Calendar'  
+                label: 'Calendar'),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_outline_outlined,
+                size: 28,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person_outline_outlined,
-                  size: 28,
-                ),
-                label: 'Play',
-              ),
-              BottomNavigationBarItem(
-                icon: SpeedButton(),
-                label: 'Add',
-              )
-            ],
-            onTap: onTab,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Color.fromARGB(18, 107, 107, 107),
-            showUnselectedLabels: false,
-            showSelectedLabels: false,
-            currentIndex: currentIndex,
-            unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
-            selectedItemColor: Color.fromARGB(255, 34, 34, 33),
-          ),
+              label: 'Play',
+            ),
+            BottomNavigationBarItem(
+              icon: SpeedButton(),
+              label: 'Add',
+            )
+          ],
+          onTap: onTab,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Color.fromARGB(18, 107, 107, 107),
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+          currentIndex: currentIndex,
+          unselectedItemColor: const Color.fromARGB(255, 107, 107, 107),
+          selectedItemColor: Color.fromARGB(255, 34, 34, 33),
         ),
-      );
-    
+      ),
+    );
   }
 }
 
@@ -166,12 +171,16 @@ class SpeedButton extends StatelessWidget {
   //Size get preferredSize => const Size.fromHeight(53.0);
 }
 
-void _showModalBottomSheet(BuildContext context) {
+// ---- Nueva Tarea
+
+void _showModalBottomSheet(BuildContext context,) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     context: context,
     isScrollControlled: true,
     builder: (BuildContext context) {
+      TextEditingController tituloController = TextEditingController(text: "");
+      TextEditingController notasController = TextEditingController(text: "");
       return Container(
         decoration: const BoxDecoration(
             color: Color(0XFFF3F3F3),
@@ -210,7 +219,7 @@ void _showModalBottomSheet(BuildContext context) {
                       fontWeight: FontWeight.w500),
                 ),
                 InkWell(
-                  child: const Text(
+                  child: Text(
                     'Agregar',
                     style: TextStyle(
                       fontFamily: 'Mitr',
@@ -219,19 +228,90 @@ void _showModalBottomSheet(BuildContext context) {
                     ),
                   ),
                   onTap: () {
+                    //Logica para Id estudiante: 
+                    String studentId = "kDkChIpT6jK1gIemu3kX";
                     // Acción cuando se selecciona la opción 2
+                    _agregarTareaFirestore(tituloController, notasController, studentId);
                     Navigator.pop(context); // Cierra la hoja de acción
                   },
                 ),
                 // Agrega más elementos según tus necesidades
               ],
             ),
-            SizedBox(
+            
+            const SizedBox(
               height: 20,
             ),
-            _TextField(context, 50, 'Título'),
+            //titulo controller
+            Container(
+              height:
+                  40.0, 
+              child: TextField(
+                controller: tituloController,
+                style: const TextStyle(
+                  color: Colors.black, 
+                ),
+                decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.all(10.0), 
+                  hintText: tituloController.text.isEmpty
+                      ? 'Titulo'
+                      : '', 
+                  filled: true,
+                  fillColor: const Color.fromARGB(
+                      255, 255, 255, 255),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none, 
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            //Notas controller
             SizedBox(height: 8),
-            _TextField(context, 150, 'Notas'),
+            Container(
+              height: 150,
+              padding: EdgeInsets.only(left: 10, top: 0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Color(0xffD9D9D9)),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: notasController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        hintText: tituloController.text.isEmpty ? 'Notas' : '',
+                        contentPadding: EdgeInsets.zero,
+                        hintStyle: const TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Arimo',
+                          color: Color(0xff4B4B4B),
+                        ),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: InputBorder.none,
+                      ),
+                      style: TextStyle(
+                        color: Color(0xff4B4B4B),
+                        fontFamily: 'Arimo',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
@@ -362,8 +442,46 @@ Container _TimeElection(
             )
           ],
         ),
-    )
+      )
     ]),
-    );
-  
+  );
 }
+
+// Función agregarTarea a firestore
+
+void _agregarTareaFirestore(TextEditingController tituloController, TextEditingController notasController, String studentId)async {
+  // Accede a la instancia de Firestore
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  // Obtén los valores de título y notas directamente de los controladores
+  String titulo = tituloController.text;
+  String notas = notasController.text;
+
+  // Comprueba si el título no está vacío antes de agregar la tarea
+  if (titulo.isNotEmpty) {
+    try {
+      // Obtén una referencia al documento del estudiante
+      DocumentReference estudianteDoc = firestore.collection('estudiantes').doc(studentId);
+
+      // Crea un nuevo documento en la colección "tareas" dentro del documento del estudiante
+      await estudianteDoc.collection('tareas').add({
+        'titulo': titulo,
+        'notas': notas,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      // Muestra un mensaje o realiza otras acciones según tus necesidades
+      print('Tarea agregada exitosamente');
+    } catch (error) {
+      // Maneja el error al agregar la tarea a Firestore
+      print('Error al agregar la tarea a Firestore: $error');
+    }
+  } else {
+    // Muestra un mensaje de error si el título está vacío
+    print('Error: El título no puede estar vacío');
+  }
+}
+
+
+
+

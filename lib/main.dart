@@ -1,11 +1,9 @@
+
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
-import 'package:becertus_proyecto/screens/Started/loading.dart';
-import 'package:becertus_proyecto/screens/calendar.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
 import 'package:becertus_proyecto/screens/login_screen.dart';
-import 'package:becertus_proyecto/screens/profile.dart';
 import 'package:becertus_proyecto/widgets/dashboard/global/range_jobs.dart';
 import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/analisis_datos.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +13,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'widgets/dashboard/global/competencias/temperature.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

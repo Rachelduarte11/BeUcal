@@ -315,24 +315,19 @@ class _LoginState extends State<Login> {
                                         Provider.of<NotasProvider>(context,
                                             listen: false);
 
-                                    if (studentId != null) {
-                                      await notasProvider
-                                          .obtenerNotasEstudiante(studentId);
-                                      await notasProvider
-                                          .obtenerDatosEstudiante(studentId);
-                                      String? photoUrl = notasProvider.photoUrl;
+                                  if (studentId != null) {
+                                    await notasProvider
+                                        .obtenerNotasEstudiante(studentId);
+                                    await notasProvider
+                                        .obtenerDatosEstudiante(studentId);
+                                    String? photoUrl = notasProvider.photoUrl;
 
-                                      print(photoUrl);
-                                      print(
-                                          "Acceso permitido, ID del estudiante: $studentId");
-                                      SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
-                                      await prefs.setBool('session', true);
-
-                                      // Establece un temporizador para limpiar la sesión después de 1 minuto
-                                      Timer(Duration(minutes: 1), () async {
-                                        await prefs.setBool('session', false);
-                                      });
+                                    print(photoUrl);
+                                    print(
+                                        "Acceso permitido, ID del estudiante: $studentId");
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    await prefs.setBool('isLoggedIn', true);
 
                                       // Limpia los controladores y navega a HomeScreen
                                       emailController.clear();

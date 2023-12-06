@@ -103,10 +103,12 @@ class MyApptry extends StatelessWidget {
 */
 class NotasProvider with ChangeNotifier {
   String? _photoUrl;
+  String? _photoUrlJob;
   String? _name;
   String? _second_name;
   String? _last_name;
   String? get photoUrl => _photoUrl;
+  String? get photoUrlJob =>_photoUrlJob;
   String? get name => _name;
   String? get secondName => _second_name;
   String? get lastName => _last_name;
@@ -145,6 +147,36 @@ class NotasProvider with ChangeNotifier {
         _last_name = last_name;
 
         notifyListeners();
+      } else {
+        // Si el documento no existe, o no tiene una URL de foto de perfil, devolver una cadena vacía
+        print('El documento no existe');
+      }
+    } catch (e) {
+      print('Error al obtener datos del estudiante: $e');
+      // Manejar el error según sea necesario
+    }
+  }
+
+  Future<void> obtenerDatosJobs(String documentId) async {
+    try {
+      DocumentReference<Map<String, dynamic>> documentRef = FirebaseFirestore
+          .instance
+          .collection('puestos laborales')
+          .doc('PnIrvPJVwZacpHLBYmpi')
+          .collection(documentId)
+          .doc('datos constantes'); // Ajusta el name del documento
+
+      // Obtener los datos del documento
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await documentRef.get();
+
+      if (snapshot.exists) {
+        // Obtener la URL de la foto de perfil
+        String photoUrlJob = snapshot.data()?['img_url'] ?? '';
+
+        // Guardar los datos obtenidos en las propiedades de NotasProvider
+        _photoUrlJob = photoUrlJob;
+    notifyListeners();
+  
       } else {
         // Si el documento no existe, o no tiene una URL de foto de perfil, devolver una cadena vacía
         print('El documento no existe');

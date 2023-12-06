@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:ffi';
+import 'package:becertus_proyecto/screens/home_teacher.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/screens/home_screen.dart';
@@ -6,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+List<bool> isSelected = [true, false];
 
 Future<String?> obtenerIdEstudiante(String email, String password) async {
   try {
@@ -110,7 +114,41 @@ class _LoginState extends State<Login> {
                             color: Color(0xff000000),
                           ),
                         ),
-
+                        SizedBox(height: 20),
+                        ToggleButtons(
+                          borderColor: Colors.grey,
+                          fillColor: Color(0xff323232),
+                          borderWidth: 2,
+                          selectedBorderColor: Color(0xff323232),
+                          selectedColor: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text('Estudiante'),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text('Docente'),
+                            ),
+                          ],
+                          onPressed: (int index) {
+                            setState(() {
+                              for (int buttonIndex = 0;
+                                  buttonIndex < isSelected.length;
+                                  buttonIndex++) {
+                                if (buttonIndex == index) {
+                                  isSelected[buttonIndex] = true;
+                                } else {
+                                  isSelected[buttonIndex] = false;
+                                }
+                              }
+                            });
+                          },
+                          isSelected: isSelected,
+                        ),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Column(
@@ -257,73 +295,90 @@ class _LoginState extends State<Login> {
                               ),
                               ElevatedButton(
                                 onPressed: () async {
-                                  String? studentId = await obtenerIdEstudiante(
-                                    emailController.text,
-                                    passwordController.text,
-                                  );
-                                  bool usuarioEncontrado = false;
-                                  NotasProvider notasProvider =
-                                      Provider.of<NotasProvider>(context,
-                                          listen: false);
-
-                                  if (studentId != null) {
-                                    await notasProvider
-                                        .obtenerNotasEstudiante(studentId);
-                                    await notasProvider
-                                        .obtenerDatosEstudiante(studentId);
-                                    String? photoUrl = notasProvider.photoUrl;
-
-                                    print(photoUrl);
-                                    print(
-                                        "Acceso permitido, ID del estudiante: $studentId");
-                                    SharedPreferences prefs =
-                                        await SharedPreferences.getInstance();
-                                    await prefs.setBool('isLoggedIn', true);
-
-                                    // Limpia los controladores y navega a HomeScreen
-                                    emailController.clear();
-                                    passwordController.clear();
+                                  if (isSelected[1]) {
                                     Navigator.push(
                                       context,
                                       PageTransition(
                                         type: PageTransitionType.rightToLeft,
-                                        child: HomeScreen(),
+                                        child: HomeTeacherScreen(),
                                         duration: Duration(milliseconds: 400),
                                       ),
                                     );
-                                    emailController.clear();
-                                    passwordController.clear();
-                                  } else if (!usuarioEncontrado) {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Text(
-                                            'Error',
-                                            style: TextStyle(
-                                              color: Colors
-                                                  .black, // Cambiar a negro o a otro color más oscuro según el diseño
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          content: Text(
-                                            'Credenciales inválidas',
-                                            style: TextStyle(
-                                              color: Colors
-                                                  .black, // Cambiar a negro o a otro color más oscuro según el diseño
-                                            ),
-                                          ),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              child: Text('Cerrar'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
+                                  } else {
+                                    String? studentId =
+                                        await obtenerIdEstudiante(
+                                      emailController.text,
+                                      passwordController.text,
                                     );
+                                    bool usuarioEncontrado = false;
+                                    NotasProvider notasProvider =
+                                        Provider.of<NotasProvider>(context,
+                                            listen: false);
+
+                                    if (studentId != null) {
+                                      await notasProvider
+                                          .obtenerNotasEstudiante(studentId);
+                                      await notasProvider
+                                          .obtenerDatosEstudiante(studentId);
+                                      String? photoUrl = notasProvider.photoUrl;
+
+                                      print(photoUrl);
+                                      print(
+                                          "Acceso permitido, ID del estudiante: $studentId");
+                                      SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      await prefs.setBool('session', true);
+
+                                      // Establece un temporizador para limpiar la sesión después de 1 minuto
+                                      Timer(Duration(minutes: 1), () async {
+                                        await prefs.setBool('session', false);
+                                      });
+
+                                      // Limpia los controladores y navega a HomeScreen
+                                      emailController.clear();
+                                      passwordController.clear();
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: HomeScreen(),
+                                          duration: Duration(milliseconds: 400),
+                                        ),
+                                      );
+                                      emailController.clear();
+                                      passwordController.clear();
+                                    } else if (!usuarioEncontrado) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              'Error',
+                                              style: TextStyle(
+                                                color: Colors
+                                                    .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            content: Text(
+                                              'Credenciales inválidas',
+                                              style: TextStyle(
+                                                color: Colors
+                                                    .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                              ),
+                                            ),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                child: Text('Cerrar'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(

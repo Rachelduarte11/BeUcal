@@ -964,7 +964,7 @@ void _borrarTareaFirestore(String tareaId) async {
   try {
     await FirebaseFirestore.instance
         .collection('estudiantes')
-        .doc('kDkChIpT6jK1gIemu3kX')
+        .doc('eGYtAQiyan12554BOG6D')
         .collection('tareas')
         .doc(tareaId)
         .delete();

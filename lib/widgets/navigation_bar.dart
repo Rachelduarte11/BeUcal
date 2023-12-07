@@ -229,7 +229,7 @@ void _showModalBottomSheet(BuildContext context,) {
                   ),
                   onTap: () {
                     //Logica para Id estudiante: 
-                    String studentId = "kDkChIpT6jK1gIemu3kX";
+                    String studentId = "eGYtAQiyan12554BOG6D";
                     // Acción cuando se selecciona la opción 2
                     _agregarTareaFirestore(tituloController, notasController, studentId);
                     Navigator.pop(context); // Cierra la hoja de acción
@@ -327,11 +327,11 @@ void _showModalBottomSheet(BuildContext context,) {
               chipData('Proyecto 1', 0xffFD6A6A),
               chipData('Inglés 1', 0xffEB078D),
             ]),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             _textUserOption('Elige la fecha'),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             SizedBox(
@@ -360,7 +360,7 @@ Container _textUserOption(String textUser) {
     alignment: Alignment.centerLeft,
     child: Text(
       textUser,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 16,
           fontFamily: 'Mitr',
           color: Color(0xff4B4B4B),
@@ -481,7 +481,3 @@ void _agregarTareaFirestore(TextEditingController tituloController, TextEditingC
     print('Error: El título no puede estar vacío');
   }
 }
-
-
-
-

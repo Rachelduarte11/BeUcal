@@ -92,7 +92,7 @@ class _CalendarState extends State<Calendar> {
         children: [
           SizedBox(height: 0),
           Container(
-            height: 550,
+            height: 540,
             decoration: const BoxDecoration(
               color: Color(0xffEDFFFB),
               borderRadius: BorderRadius.only(
@@ -220,7 +220,7 @@ class _CalendarState extends State<Calendar> {
                 SizedBox(height: 20),
                 GestureDetector(
                   child: Container(
-                    height: 480,
+                    height: 485,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -482,7 +482,7 @@ class _CalendarState extends State<Calendar> {
               ],
             ),
           ),
-          // Reuniones -----
+          // Tareas recien agregadas -----
           Container(
             margin: const EdgeInsets.only(left: 15),
             child: const Text(
@@ -496,14 +496,12 @@ class _CalendarState extends State<Calendar> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 280,
-            width: 100,
-            margin: EdgeInsets.all(0),
+            height: 315,
+            width: 300,
+           
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(20),
-              ),
+              borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
                   blurRadius: 3,
@@ -515,66 +513,78 @@ class _CalendarState extends State<Calendar> {
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('estudiantes')
-                  .doc('kDkChIpT6jK1gIemu3kX')
+                  .doc('eGYtAQiyan12554BOG6D')
                   .collection('tareas')
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 }
+
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return Center(child: Text('No hay tareas agregadas',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                      fontFamily: 'Arimo'
-                    )));
+                  return const Center(
+                    child: Text(
+                      'No hay tareas agregadas',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontFamily: 'Arimo',
+                      ),
+                    ),
+                  );
                 }
                 var tasks = snapshot.data!.docs;
-                return GestureDetector(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      padding: const EdgeInsets.all(30),
-                      child: Column(
-                        children: tasks.map((task) {
-                          return Container(
-                            padding: EdgeInsets.all(10),
-                            child: Container(
-                              width: 260,
-                              padding: EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 225, 109, 56),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 10,
-                                        spreadRadius: 0,
-                                        color: Colors.grey)
-                                  ]),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                return SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: tasks.map((task) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 15),
+                          decoration: BoxDecoration(
+                           color: const Color.fromARGB(169, 0, 0, 0),
+//                          color:  const Color.fromARGB(255, 225, 110, 56),
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 2,
+                                spreadRadius: 0,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 10),
+                              Row(
                                 children: [
-                                  const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.title,
-                                        color:
-                                            Color.fromARGB(255, 211, 204, 204),
-                                        size: 20,
-                                      ),
-                                      SizedBox(width: 5),
-                                      Text(
-                                        'Título:',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Mitr',
-                                          color: Color.fromARGB(
-                                              255, 211, 204, 204),
-                                        ),
-                                      ),
-                                    ],
+                                  SizedBox(width: 10),
+                                  Container(
+                                     height: 30,
+                                    width: 30,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(50),
+                                      )
+                                    ),
+                                    child: const Icon(
+                                    Icons.title,
+                                    color: Colors.black,
+                                    size: 20,
                                   ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  const Text(
+                                    'Título:',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Mitr',
+                                      color: Color.fromARGB(255, 211, 204, 204),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
                                   Text(
                                     '${task['titulo']}',
                                     style: const TextStyle(
@@ -583,27 +593,37 @@ class _CalendarState extends State<Calendar> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  SizedBox(height: 15),
-                                  const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.note,
-                                        color:
-                                            Color.fromARGB(255, 211, 204, 204),
-                                        size: 20,
-                                      ),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        'Notas:',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Mitr',
-                                          color: Color.fromARGB(
-                                              255, 211, 204, 204),
-                                        ),
-                                      ),
-                                    ],
+                                ],
+                              ),
+                              SizedBox(height: 15),
+                              Row(
+                                children: [
+                                  SizedBox(width: 10),
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(50)
+                                      )
+                                    ),
+                                    child: const Icon(
+                                    Icons.note,
+                                    color: Colors.black,
+                                    size: 20,
                                   ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  const Text(
+                                    'Notas:',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Mitr',
+                                      color: Color.fromARGB(255, 211, 204, 204),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
                                   Text(
                                     '${task['notas']}',
                                     style: const TextStyle(
@@ -612,42 +632,43 @@ class _CalendarState extends State<Calendar> {
                                       fontFamily: 'Mitr',
                                     ),
                                   ),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Fecha: ${DateTime.now()}',
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          color:
-                                              Color.fromARGB(255, 0, 255, 221),
-                                        ),
-                                      ),
-                                      IconButton(
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.white,
-                                        ),
-                                        onPressed: () {
-                                          _mostrarDialogoEliminar(
-                                              context, task.id);
-                                        },
-                                      ),
-                                    ],
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(width: 1),
+                                  Text(
+                                    'Fecha: ${DateTime.now()}',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 0, 255, 221),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      _mostrarDialogoEliminar(context, task.id);
+                                    },
                                   ),
                                 ],
                               ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                 );
               },
             ),
           ),
+          // Reunionnes -----------
           SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.only(left: 15),
@@ -698,13 +719,13 @@ class _CalendarState extends State<Calendar> {
                         itemBuilder: (context, index) {
                           return Container(
                             margin: const EdgeInsets.symmetric(
-                              horizontal: 12,
+                              horizontal: 20,
                               vertical: 20,
                             ),
                             decoration: BoxDecoration(
                               border: Border.all(),
-                              borderRadius: BorderRadius.circular(12),
-                              color: Color.fromARGB(255, 225, 110, 56),
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color.fromRGBO(18, 177, 158, 1),
                             ),
                             child: ListTile(
                               onTap: () => print(""),
@@ -943,7 +964,7 @@ void _borrarTareaFirestore(String tareaId) async {
   try {
     await FirebaseFirestore.instance
         .collection('estudiantes')
-        .doc('kDkChIpT6jK1gIemu3kX')
+        .doc('eGYtAQiyan12554BOG6D')
         .collection('tareas')
         .doc(tareaId)
         .delete();

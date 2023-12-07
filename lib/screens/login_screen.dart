@@ -35,6 +35,30 @@ Future<String?> obtenerIdEstudiante(String email, String password) async {
     return null;
   }
 }
+Future<String?> obtenerIdDocente(String email, String password) async {
+  try {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
+        .instance
+        .collection("docentes")
+        .where("email", isEqualTo: email)
+        .where("password", isEqualTo: password)
+        .get();
+
+    if (querySnapshot.size == 1) {
+      // Si se encuentra un estudiante con las credenciales proporcionadas
+      String studentId = querySnapshot.docs[0].id;
+
+      return studentId;
+    } else {
+      // Si no se encuentra ningún estudiante con las credenciales proporcionadas
+      return null;
+    }
+  } catch (e) {
+    // Manejar cualquier error que pueda ocurrir durante la consulta
+    print("Error al obtener ID del estudiante: $e");
+    return null;
+  }
+}
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -296,14 +320,52 @@ class _LoginState extends State<Login> {
                               ElevatedButton(
                                 onPressed: () async {
                                   if (isSelected[1]) {
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: HomeTeacherScreen(),
-                                        duration: Duration(milliseconds: 400),
-                                      ),
+                                     String? docenteId =
+                                        await obtenerIdDocente(
+                                      emailController.text,
+                                      passwordController.text,
                                     );
+                                    if(docenteId != null){
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: HomeTeacherScreen(),
+                                          duration: Duration(milliseconds: 400),
+                                        ),
+                                      );
+                                    }else{
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              'Error',
+                                              style: TextStyle(
+                                                color: Colors
+                                                    .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            content: Text(
+                                              'Credenciales inválidas',
+                                              style: TextStyle(
+                                                color: Colors
+                                                    .black, // Cambiar a negro o a otro color más oscuro según el diseño
+                                              ),
+                                            ),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                child: Text('Cerrar'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
                                   } else {
                                     String? studentId =
                                         await obtenerIdEstudiante(

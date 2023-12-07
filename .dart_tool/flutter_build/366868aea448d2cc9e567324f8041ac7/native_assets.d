@@ -1,0 +1,1 @@
+ I:\\Proyectos\ programacion\\BeCertus-1-main\\BeCertus-1-main\\.dart_tool\\flutter_build\\366868aea448d2cc9e567324f8041ac7\\native_assets.yaml: 

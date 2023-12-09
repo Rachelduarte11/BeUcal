@@ -1,20 +1,13 @@
 
+import 'package:becertus_proyecto/Students/screens/home_teacher.dart';
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
-<<<<<<< Updated upstream
 import 'package:becertus_proyecto/Students/screens/home_screen.dart';
 import 'package:becertus_proyecto/Students/screens/login_screen.dart';
 import 'package:becertus_proyecto/Students/screens/performance_screen.dart';
 import 'package:becertus_proyecto/Students/dashboard/global/range_jobs.dart';
 import 'package:becertus_proyecto/Students/jobs/jobs_screen.dart/analisis_datos.dart';
-=======
-import 'package:becertus_proyecto/screens/home_screen.dart';
-import 'package:becertus_proyecto/screens/home_teacher.dart';
-import 'package:becertus_proyecto/screens/login_screen.dart';
-import 'package:becertus_proyecto/widgets/dashboard/global/range_jobs.dart';
-import 'package:becertus_proyecto/widgets/dashboard/jobs/jobs_screen.dart/analisis_datos.dart';
->>>>>>> Stashed changes
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,7 +50,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           textTheme: Theme.of(context).textTheme.apply(
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
-                displayColor: Colors.white,
+                displayColor: const Color.fromARGB(255, 26, 25, 25),
               )),
       home: HomeTeacherScreen(),
       routes: {

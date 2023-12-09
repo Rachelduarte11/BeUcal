@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:becertus_proyecto/models/colors.dart';
-import 'package:becertus_proyecto/screens/notification.dart';
-import 'package:becertus_proyecto/widgets/header_section.dart';
+import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,18 +22,25 @@ class HomeTeacherScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(color: Colors.orange),
+                        margin: EdgeInsets.only(bottom: 70),
+                        height: 140,
+                        width: 165,
+                        decoration: BoxDecoration(color: Colors.orange,
+                          borderRadius: BorderRadius.circular(10)
+                        ),                        
                       ),
+                      SizedBox(width: 10),
                       Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(color: Colors.green),
+                        height: 210,
+                        width: 165,
+                        decoration: BoxDecoration(color: Color.fromARGB(255, 179, 201, 68),
+                          borderRadius: BorderRadius.circular(10)
+                        ),
                       )
                     ],
                   ),
@@ -44,23 +49,48 @@ class HomeTeacherScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(color: Colors.green),
+                        height: 210,
+                        width: 165,
+                        child: Transform.translate(
+                          offset: Offset(0.0,-80.0), 
+                          child: Container(
+                            decoration: BoxDecoration(color: Color.fromARGB(255, 179, 201, 68),
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                          ),
+                        ),
                       ),
+                      SizedBox(width: 10),
                       Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(color: Colors.lightBlue),
-                      )
+                        height: 140,
+                        width: 165,
+                        child: Transform.translate(offset: Offset(0, -45),
+                          child: Container(
+                          decoration: BoxDecoration(
+                            color:const Color(0xff0BB49D),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          ),
+                        ),                        
+                      ),
                     ],
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+                  ),                  
+                  Row(
+                    children: [Transform.translate(
+                      offset: Offset(30, -70),
+                      child: Container(margin: EdgeInsets.only(bottom: 30), child: const Text("Actividades",                    
+                        style: TextStyle(color: Colors.black, fontSize: 23, fontFamily: 'Mitr')
+                          )
+                        ),
+                    )
+                    ],
+                  )
+                ],                
+              ),              
+            ),                        
+          ),            
+        ],        
+      ),    
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HomeTeacherScreen extends StatelessWidget {
   const HomeTeacherScreen({super.key});
@@ -15,6 +14,7 @@ class HomeTeacherScreen extends StatelessWidget {
 
     CustomAppBarTeacher(greeting);
     return Scaffold(
+      backgroundColor: const Color(0xffEDFFFB),
       body: Column(
         children: [
           CustomAppBarTeacher(greeting),
@@ -30,16 +30,67 @@ class HomeTeacherScreen extends StatelessWidget {
                         margin: EdgeInsets.only(bottom: 70),
                         height: 140,
                         width: 165,
-                        decoration: BoxDecoration(color: Colors.orange,
-                          borderRadius: BorderRadius.circular(10)
-                        ),                        
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Container(
+                                height: 70,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(101, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Image.asset(
+                                    'assets/images/recursos1.png',
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                            SizedBox(height: 0),
+                            const Text("Tareas",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontFamily: 'Mitr',
+                                ))
+                          ],
+                        ),
                       ),
                       SizedBox(width: 10),
                       Container(
                         height: 210,
                         width: 165,
-                        decoration: BoxDecoration(color: Color.fromARGB(255, 179, 201, 68),
-                          borderRadius: BorderRadius.circular(10)
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 179, 201, 68),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Container(
+                                height: 70,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(101, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Image.asset(
+                                    'assets/images/recursos1.png',
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            const Text(
+                              "Cursos y Secciones",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontFamily: 'Mitr',
+                              ),
+                            )
+                          ],
                         ),
                       )
                     ],
@@ -52,10 +103,39 @@ class HomeTeacherScreen extends StatelessWidget {
                         height: 210,
                         width: 165,
                         child: Transform.translate(
-                          offset: Offset(0.0,-80.0), 
+                          offset: Offset(0.0, -80.0),
                           child: Container(
-                            decoration: BoxDecoration(color: Color.fromARGB(255, 179, 201, 68),
-                              borderRadius: BorderRadius.circular(10)
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 179, 201, 68),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Container(
+                                    height: 70,
+                                    width: 80,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(101, 255, 255, 255),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Image.asset(
+                                        'assets/images/logros.png',
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                const Text(
+                                  "Gestión de Calificaciones",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontFamily: 'Mitr',
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
@@ -64,33 +144,101 @@ class HomeTeacherScreen extends StatelessWidget {
                       Container(
                         height: 140,
                         width: 165,
-                        child: Transform.translate(offset: Offset(0, -45),
+                        child: Transform.translate(
+                          offset: Offset(0, -45),
                           child: Container(
-                          decoration: BoxDecoration(
-                            color:const Color(0xff0BB49D),
-                            borderRadius: BorderRadius.circular(10),
+                            decoration: BoxDecoration(
+                              color: const Color(0xff0BB49D),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Container(
+                                    height: 70,
+                                    width: 80,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(101, 255, 255, 255),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Image.asset(
+                                        'assets/images/logros.png',
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                                SizedBox(height: 0),
+                                const Text("Horario",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontFamily: 'Mitr',
+                                    ))
+                              ],
+                            ),
                           ),
-                          ),
-                        ),                        
+                        ),
                       ),
                     ],
-                  ),                  
+                  ),
                   Row(
-                    children: [Transform.translate(
-                      offset: Offset(30, -70),
-                      child: Container(margin: EdgeInsets.only(bottom: 30), child: const Text("Actividades",                    
-                        style: TextStyle(color: Colors.black, fontSize: 23, fontFamily: 'Mitr')
-                          )
+                    children: [
+                      Transform.translate(
+                        offset: Offset(30, -70),
+                        child: Container(
+                            margin: EdgeInsets.only(bottom: 30),
+                            child: const Text("Actividades",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 23,
+                                    fontFamily: 'Mitr'))),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Transform.translate(
+                        offset: Offset(28, -90),
+                        child: Container(
+                          height: 150,
+                          width: 340,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 155, 144, 232),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Container(
+                                margin: EdgeInsets.only(right: 110),
+                                child: const Text("Plataformas Móviles",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Mitr',
+                                        fontSize: 20)),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 210),
+                                child: const Text(
+                                  "Sección I03",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(171, 255, 255, 255),
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                    )
+                      )
                     ],
                   )
-                ],                
-              ),              
-            ),                        
-          ),            
-        ],        
-      ),    
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

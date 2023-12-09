@@ -1,5 +1,5 @@
 import 'package:becertus_proyecto/functions/data.dart';
-import 'package:becertus_proyecto/screens/login_screen.dart';
+import 'package:becertus_proyecto/Students/screens/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

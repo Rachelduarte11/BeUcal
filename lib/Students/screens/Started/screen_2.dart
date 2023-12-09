@@ -56,23 +56,21 @@ class SecondScreen extends StatelessWidget {
                       )),
                   child: Column(
                     children: [
-                      SizedBox(
-                        //width: 240,
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10),
-                          alignment: Alignment.topCenter,
-                          child: const Text(
-                            '¡Te damos la Bienvenida!',
-                            style: TextStyle(
-                              decoration: TextDecoration.none,
-                              height: 1.2,
-                              fontFamily: 'Mitr',
-                              fontSize: 34,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xff323232),
-                            ),
-                            textAlign: TextAlign.center,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.only(top: 10),
+                        alignment: Alignment.topCenter,
+                        child: const Text(
+                          '¡Optimizando el Éxito Académico!',
+                          style: TextStyle(
+                            decoration: TextDecoration.none,
+                            height: 1.2,
+                            fontFamily: 'Mitr',
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xff323232),
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(height: 7,),
@@ -81,10 +79,10 @@ class SecondScreen extends StatelessWidget {
                         child: const SizedBox(
                           width: 300,
                           child: Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non ante nec quam sodales venenatis',
+                            'Explora BeUcal y descubre cómo estamos transformando la experiencia estudiantil. ¡Prepárate para alcanzar tus metas académicas de manera eficiente y efectiva!',
                             style: TextStyle(
                               fontFamily: 'Mitr',
-                              fontSize: 20,
+                              fontSize: 16,
                               height: 1.3,
                               fontWeight: FontWeight.w400,
                               color: Color(0xff323232),
@@ -95,7 +93,7 @@ class SecondScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -108,7 +106,7 @@ class SecondScreen extends StatelessWidget {
                         child: Container(
                             margin: EdgeInsets.only(top: 5),
                           width: 150,
-                          height: 55,
+                          height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: const [

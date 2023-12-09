@@ -11,137 +11,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 //Se guardan Datos de los futuros trabajos en lista y mapas que funcionan de
 // forma dinamica para los diferentes puestos laborales
-class MovingAvatar extends StatefulWidget {
-    final List<JobInfo> jobList;
-  final int initialIndex;
 
-  const MovingAvatar({
-    Key? key,
-    required this.jobList,
-    this.initialIndex = 0,
-  }) : super(key: key);
-
-  @override
-  _MovingAvatarState createState() => _MovingAvatarState();
-}
-
-class _MovingAvatarState extends State<MovingAvatar> {
-   late double _pointerValue;
-
-  late String photoUrl;
-
-   @override
-  void initState() {
-    super.initState();
-    _pointerValue = widget.jobList[widget.initialIndex].progressValue;
-    photoUrl = '';
-  }
-  @override
-  void didChangeDependencies() {
-    final NotasProvider notasProvider =
-        Provider.of<NotasProvider>(context, listen: false);
-    precacheImage(NetworkImage(notasProvider.photoUrl ?? ''), context);
-    super.didChangeDependencies();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    NotasProvider notasProvider = Provider.of<NotasProvider>(context);
-    photoUrl = notasProvider.photoUrl?? '';
-    return Container(
-      alignment: Alignment.center,
-      child: Container(
-        alignment: Alignment.center,
-        child: _buildMovingAvatar(context),
-      ),
-    );
-  }
-
-  Widget _buildMovingAvatar(BuildContext context) {
-    final Brightness brightness = Theme.of(context).brightness;
-    final NotasProvider notasProvider =
-        Provider.of<NotasProvider>(context, listen: false);
-
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
-            child: SfLinearGauge(
-              maximum:100.0,
-              interval: 100.0,
-              animateAxis: true,
-              
-              minorTicksPerInterval: 0,
-              axisTrackStyle: LinearAxisTrackStyle(
-                thickness: 25,
-                borderWidth: 1,
-              
-                borderColor: brightness == Brightness.dark
-                    ? const Color(0xff898989)
-                    : Colors.grey[350],
-                color: brightness == Brightness.light
-                    ? const Color(0xffE8EAEB)
-                    : const Color(0xff62686A),
-              ),
-              barPointers: <LinearBarPointer>[
-                LinearBarPointer(
-                  
-                  value: _pointerValue,
-                  animationDuration: 3000,
-                  thickness: 25,
-                  color: const Color(0xff0BB49D),
-                ),
-                LinearBarPointer(
-                  value: 80,
-                  enableAnimation: false,
-                  thickness: 25,
-                  offset: 60,
-                  color: Colors.transparent,
-                  position: LinearElementPosition.outside,
-                ),
-              ],
-              markerPointers: <LinearMarkerPointer>[
-                LinearWidgetPointer(
-                  value: _pointerValue,
-                  animationDuration: 2800,
-                  onAnimationCompleted: () {
-                    photoUrl = notasProvider.photoUrl ?? '';
-                  },
-                  position: LinearElementPosition.outside,
-                  child: SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          photoUrl), // Establecer la imagen de fondo
-                      radius:
-                          40, // Puedes ajustar el tamaño según tus necesidades
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-           // margin: const EdgeInsets.only(top: 10),
-            child: Text(
-              '${_pointerValue.toStringAsFixed(0)}%',
-              style: const TextStyle(
-                fontSize: 18,
-                fontFamily: 'Mitr',
-                color: Color(0xff0BB49D),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
 //Clase para las competencias (PODER COLOCAR EL NOMBRE Y PORCENTAJE DE LA COMPETENCIA)
 class Competency {
   final String name;
@@ -180,7 +50,13 @@ class JobInfo {
 final List<JobInfo> jobList = [
   JobInfo(
     textFutureJob: 'Analista de Inventario y abastecimiento',
-    progressValue: 90,
+    progressValue: calculateAverage([
+      Competency(name: 'Competencia 1', percentage: 90, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 96, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 85, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 80, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 70, color:ColorConstants.color5),
+    ],),
     pathImages: 'assets/images/jobs/analista-inventario.png',
     pageJob: AnalisisInventario(),
     documentId: 'analista de inventario y abastecimiento',
@@ -196,17 +72,24 @@ En un entorno empresarial dinámico, los analistas de inventarios y abastecimien
           Uso de Tecnología
           Negociación
           ''',
-     competencies: [
-      Competency(name: 'Competencia 1', percentage: 20, color: ColorConstants.color1),
-      Competency(name: 'Competencia 2', percentage: 50, color:ColorConstants.color2),
-      Competency(name: 'Competencia 3', percentage: 30, color:ColorConstants.color3),
-      Competency(name: 'Competencia 4', percentage: 60, color:ColorConstants.color4),
-      Competency(name: 'Competencia 5', percentage: 40, color:ColorConstants.color5),
-    ],     
+    competencies: [
+     Competency(name: 'Competencia 1', percentage: 90, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 96, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 85, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 80, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 70, color:ColorConstants.color5),
+    ],
   ),
+  
   JobInfo(
     textFutureJob: 'Asistente de consultorías',
-    progressValue: 50,
+    progressValue: calculateAverage([
+     Competency(name: 'Competencia 1', percentage: 70, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 60, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 50, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 40, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 40, color:ColorConstants.color5),
+    ],),
     pathImages: 'assets/images/jobs/asistente.png',
     pageJob: Asistente(),
     documentId: 'Asistente de consultorías',
@@ -221,16 +104,23 @@ En un entorno empresarial dinámico, los analistas de inventarios y abastecimien
           Seguimiento de Tareas
           ''',
           competencies: [
-      Competency(name: 'Competencia 1', percentage: 80, color: ColorConstants.color1),
-      Competency(name: 'Competencia 2', percentage: 90, color:ColorConstants.color2),
-      Competency(name: 'Competencia 3', percentage: 80, color:ColorConstants.color3),
-      Competency(name: 'Competencia 4', percentage: 90, color:ColorConstants.color4),
-      Competency(name: 'Competencia 5', percentage: 90, color:ColorConstants.color5),
+      Competency(name: 'Competencia 1', percentage: 70, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 60, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 50, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 40, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 40, color:ColorConstants.color5),
     ],
   ),
+
   JobInfo(
     textFutureJob: 'Analista de datos',
-    progressValue: 30,
+    progressValue: calculateAverage([
+      Competency(name: 'Competencia 1', percentage: 20, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 50, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 30, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 60, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 40, color:ColorConstants.color5),
+    ],),
     pathImages: 'assets/images/jobs/analista-datos.png',
     pageJob: AnalisisDatos(),
     documentId: 'asistente de consultorias',
@@ -245,16 +135,23 @@ En un entorno empresarial dinámico, los analistas de inventarios y abastecimien
           Colaboración
           ''',
         competencies: [
-      Competency(name: 'Competencia 1', percentage: 80, color: ColorConstants.color1),
-      Competency(name: 'Competencia 2', percentage: 90, color:ColorConstants.color2),
-      Competency(name: 'Competencia 3', percentage: 80, color:ColorConstants.color3),
-      Competency(name: 'Competencia 4', percentage: 90, color:ColorConstants.color4),
-      Competency(name: 'Competencia 5', percentage: 90, color:ColorConstants.color5),
+      Competency(name: 'Competencia 1', percentage: 20, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 50, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 30, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 60, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 40, color:ColorConstants.color5),
     ],
   ),
+
   JobInfo(
     textFutureJob: 'Especialista en RR.HH',
-    progressValue: 20,
+    progressValue: calculateAverage([
+      Competency(name: 'Competencia 1', percentage: 20, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 10, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 10, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 20, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 15, color:ColorConstants.color5),
+    ],),
     pathImages: 'assets/images/jobs/rrhh.png',
     pageJob: RRHH(),
     documentId: 'rrhh',
@@ -269,14 +166,18 @@ En un entorno empresarial dinámico, los analistas de inventarios y abastecimien
           Cumplimiento Normativo
 ''',
    competencies: [
-      Competency(name: 'Competencia 1', percentage: 80, color: ColorConstants.color1),
-      Competency(name: 'Competencia 2', percentage: 90, color:ColorConstants.color2),
-      Competency(name: 'Competencia 3', percentage: 80, color:ColorConstants.color3),
-      Competency(name: 'Competencia 4', percentage: 90, color:ColorConstants.color4),
-      Competency(name: 'Competencia 5', percentage: 90, color:ColorConstants.color5),
-    ],
+       Competency(name: 'Competencia 1', percentage: 20, color: ColorConstants.color1),
+      Competency(name: 'Competencia 2', percentage: 10, color:ColorConstants.color2),
+      Competency(name: 'Competencia 3', percentage: 10, color:ColorConstants.color3),
+      Competency(name: 'Competencia 4', percentage: 20, color:ColorConstants.color4),
+      Competency(name: 'Competencia 5', percentage: 15, color:ColorConstants.color5),
+   ],
   ),
 ];
+
+
+
+
 class DetailsButton extends StatelessWidget {
   final int selectedIndex;
 
@@ -391,7 +292,9 @@ class DonutChartGen extends StatelessWidget {
     );
   }
 
-  List<GDPData> getChartData(List<Competency> competencies) {
+  
+}
+List<GDPData> getChartData(List<Competency> competencies) {
      return competencies.map((competency) {
       return GDPData(competency.name, competency.percentage, competency.color);
     }).toList();
@@ -407,8 +310,6 @@ class DonutChartGen extends StatelessWidget {
 
     return totalPercentage / competencies.length;
   }
-}
-
 class GDPData {
   GDPData(this.course, this.value, this.color);
   final String course;
@@ -422,4 +323,10 @@ class ColorConstants {
   static const Color color3 = Color(0xff09806F);
   static const Color color4 = Color(0xffFF6B6B);
   static const Color color5 = Color.fromARGB(225, 248, 178, 37);
+}
+String getTextFutureJobFromJobList(int index) {
+  if (index >= 0 && index < jobList.length) {
+    return jobList[index].textFutureJob;
+  }
+  return ''; // Manejar el caso en el que el índice está fuera de rango
 }

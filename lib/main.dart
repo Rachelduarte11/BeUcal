@@ -1,4 +1,6 @@
 
+import 'package:becertus_proyecto/Students/jobs/jobs_screen.dart/analisis_inventario.dart';
+import 'package:becertus_proyecto/Students/screens/Started/screen_1.dart';
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: Colors.white,
               )),
-      home: Login(),
+      home: HomeScreen(),
       routes: {
         // Define tus rutas aquí
       },

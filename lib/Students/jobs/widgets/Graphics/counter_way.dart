@@ -1,17 +1,21 @@
+import 'package:becertus_proyecto/Students/jobs/widgets/Graphics/graphics_and_maps.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class MovingAvatar extends StatefulWidget {
-  const MovingAvatar({Key? key}) : super(key: key);
+   final int jobInfoIndex; // Nuevo parámetro para indicar el índice en jobList
+
+  const MovingAvatar({Key? key, required this.jobInfoIndex}) : super(key: key);
 
   @override
   _MovingAvatarState createState() => _MovingAvatarState();
 }
 
 class _MovingAvatarState extends State<MovingAvatar> {
-  final double _pointerValue = 80;
+  
+
 
   late String photoUrl = '';
 
@@ -25,18 +29,26 @@ class _MovingAvatarState extends State<MovingAvatar> {
 
   @override
   Widget build(BuildContext context) {
+    
     NotasProvider notasProvider = Provider.of<NotasProvider>(context);
     photoUrl = notasProvider.photoUrl?? '';
+    
+    JobInfo jobInfo = jobList[widget.jobInfoIndex];
+
+    // Usar el valor de progressValue en lugar de un valor fijo
+    final double _pointerValue = jobInfo.progressValue;
+
     return Container(
       alignment: Alignment.center,
       child: Container(
+        
         alignment: Alignment.center,
-        child: _buildMovingAvatar(context),
+        child: _buildMovingAvatar(context, _pointerValue),
       ),
     );
   }
 
-  Widget _buildMovingAvatar(BuildContext context) {
+  Widget _buildMovingAvatar(BuildContext context, double pointerValue) {
     final Brightness brightness = Theme.of(context).brightness;
     final NotasProvider notasProvider =
         Provider.of<NotasProvider>(context, listen: false);
@@ -68,7 +80,7 @@ class _MovingAvatarState extends State<MovingAvatar> {
               barPointers: <LinearBarPointer>[
                 LinearBarPointer(
                   
-                  value: _pointerValue,
+                  value: pointerValue,
                   animationDuration: 3000,
                   thickness: 25,
                   color: const Color(0xff0BB49D),
@@ -84,7 +96,7 @@ class _MovingAvatarState extends State<MovingAvatar> {
               ],
               markerPointers: <LinearMarkerPointer>[
                 LinearWidgetPointer(
-                  value: _pointerValue,
+                  value: pointerValue,
                   animationDuration: 2800,
                   onAnimationCompleted: () {
                     photoUrl = notasProvider.photoUrl ?? '';
@@ -111,7 +123,7 @@ class _MovingAvatarState extends State<MovingAvatar> {
               children: <Widget>[
                
                 Text(
-                  _pointerValue.toStringAsFixed(0),
+                  pointerValue.toStringAsFixed(0),
                   style: const TextStyle(
                     fontSize: 24,
                     color: Color(0xff0BB49D),

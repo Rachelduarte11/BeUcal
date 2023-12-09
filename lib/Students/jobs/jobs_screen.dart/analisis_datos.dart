@@ -1,4 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:becertus_proyecto/Students/jobs/model/competences_maps.dart';
+import 'package:becertus_proyecto/Students/jobs/widgets/Graphics/graphics_and_maps.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:becertus_proyecto/Students/screens/calendar.dart';
@@ -41,7 +43,8 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
     }
   }
 
-  int selectedND = 0; // 0: Todos, 1: ND1, 2: ND2, 3: ND3
+  int selectedIndex = 0; 
+ String textFutureJob = getTextFutureJobFromJobList(2); // Obtener el valor de textFutureJob para el índice 2
 
   Color colorND1 = const Color(0xFFFD6A6A);
   Color colorND2 = const Color(0XFFE7E2E2);
@@ -49,6 +52,7 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
   Color textColorND2 = Colors.black;
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       backgroundColor: const Color(0xFFE8F8F7),
       // drawer: MyDrawer(),
@@ -66,9 +70,9 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
               Navigator.pop(context);
             },
           ),
-          title: const Text(
-            'Analista de Datos',
-            style: TextStyle(
+          title: Text(
+            textFutureJob,
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -83,17 +87,19 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
               true, // La AppBar permanece fija cuando se hace scroll hacia arriba
         ),
         SliverToBoxAdapter(
+          child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
           child: Container(
             // Tu contenido aquí
             height: MediaQuery.of(context).size.height*1.1 ,
-            color: const Color(0xFFE8F8F7),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
+           
+
+            
               child: Container(
                 //alignment: Alignment.bottomCenter,
                 width: MediaQuery.of(context).size.width,
-                height: selectedND==1 ? MediaQuery.of(context).size.height * 1.5:
-                MediaQuery.of(context).size.height*1.1 ,
+                height: selectedIndex==1 ? MediaQuery.of(context).size.height * 1.5:
+                MediaQuery.of(context).size.height*1.2 ,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -132,7 +138,7 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  selectedND = 0;
+                                  selectedIndex = 0;
                                 });
                               },
                               child: Container(
@@ -141,13 +147,13 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
                                     border:
                                         Border.all(color: greyLight, width: 0.5),
                                     borderRadius: BorderRadius.circular(5),
-                                    color: selectedND == 0
+                                    color: selectedIndex == 0
                                         ? const Color.fromARGB(238, 238, 238, 238)
                                         : Colors.transparent),
                                 margin: const EdgeInsets.symmetric(horizontal: 4),
                                 child: Text('Todos',
                                     style: TextStyle(
-                                        color: selectedND == 0
+                                        color: selectedIndex == 0
                                             ? const Color(0xff0BB49D)
                                             : const Color(0XFFE7E2E2))),
                               ),
@@ -155,7 +161,7 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  selectedND = 1;
+                                  selectedIndex = 1;
                                 });
                               },
                               child: Container(
@@ -164,13 +170,13 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
                                     border:
                                         Border.all(color: greyLight, width: 0.5),
                                     borderRadius: BorderRadius.circular(5),
-                                    color: selectedND == 1
+                                    color: selectedIndex == 1
                                         ? const Color.fromARGB(238, 238, 238, 238)
                                         : Colors.transparent),
                                 margin: const EdgeInsets.symmetric(horizontal: 4),
                                 child: Text('Detalles',
                                     style: TextStyle(
-                                        color: selectedND == 1
+                                        color: selectedIndex == 1
                                             ? const Color(0xff0BB49D)
                                             : const Color(0XFFE7E2E2))),
                               ),
@@ -178,26 +184,43 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
                           ],
                         ),
                       ),
-                      if (selectedND == 1) const DetailsButton(),
+                      if (selectedIndex == 1) const DetailsButton(selectedIndex: 0,),
                       Visibility(
-                        visible: selectedND != 1,
+                        visible: selectedIndex != 1,
                         child: Container(
                           padding: const EdgeInsets.only(top: 10),
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height*0.6,
+                          height: MediaQuery.of(context).size.height,
                           decoration: const BoxDecoration(
-                              color: Color(0xffE8F8F6),
+                              color: Colors.transparent,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(40),
                                   topRight: Radius.circular(40))),
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height * 0.3,
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 _leyendaAbilitys(context),
-                                const MovingAvatar(),
+                                Center(
+                                  child: Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                        width: MediaQuery.of(context).size.width * 0.95,
+                                        height: MediaQuery.of(context).size.height * 0.25,
+                                        padding: const EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0XFFF5F5F5),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color.fromARGB(62, 133, 132, 132),
+                                                offset: Offset(1, 1),
+                                                blurRadius: 3.5,
+                                              ),
+                                            ],
+                                            borderRadius: BorderRadius.circular(30)),
+                                    child: const MovingAvatar(jobInfoIndex: 2, )),
+                                ),
                                 
                                 noDevelopmentAbilitys(context)
                               ],
@@ -297,13 +320,8 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
             child: Wrap(
               spacing: 4.0, // Espaciado horizontal entre los elementos
               runSpacing: 4.0,
-              children: [
-                CircleAndText('Texto 1', ColorConstants.color1),
-                CircleAndText('Texto 1', ColorConstants.color2),
-                CircleAndText('Texto 1', ColorConstants.color3),
-                CircleAndText('Texto 1', ColorConstants.color4),
-                CircleAndText('Texto 1', ColorConstants.color5),
-              ],
+              children: CircleAndText.generateCircleAndTextWidgets(),
+             
             ),
           ),
         ),
@@ -416,172 +434,4 @@ class _AnalisisDatosState extends State<AnalisisDatos> {
   }
 }
 
-class CircleAndText extends StatelessWidget {
-  final String text;
-  final Color color;
 
-  CircleAndText(this.text, this.color);
-
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 5),
-      width: MediaQuery.of(context).size.width * 0.40,
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 6,
-            backgroundColor: color,
-          ),
-          const SizedBox(width: 8),
-          Text(
-            text,
-            style: TextStyle(
-                color: Color(0xff323232),
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Arimo'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class DonutChartGen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final value1 = 19.0;
-    final value2 = 10.0;
-    final value3 = 20.0;
-    final value4 = 10.0;
-    final value5 = 20.0;
-
-    final _chartData = getChartData(value1, value2, value3, value4, value5);
-    final averageData = value1 + value2 + value3 + value4 + value5;
-    return SfCircularChart(
-      series: <CircularSeries>[
-        DoughnutSeries<GDPData, dynamic>(
-          dataSource: _chartData,
-          innerRadius: '50%',
-          explode: true,
-          explodeOffset: '10%',
-          dataLabelSettings: const DataLabelSettings(
-              isVisible: true,
-              labelPosition: ChartDataLabelPosition.outside,
-              textStyle: TextStyle(color: Colors.white, fontSize: 16)),
-          xValueMapper: (GDPData data, _) => data.course,
-          yValueMapper: (GDPData data, _) => data.value,
-          pointColorMapper: (GDPData data, _) => data.color,
-        ),
-      ],
-      annotations: <CircularChartAnnotation>[
-        CircularChartAnnotation(
-          widget: Center(
-            child: Text(
-              averageData.toStringAsFixed(0) + '%',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  List<GDPData> getChartData(double value1, double value2, double value3,
-      double value4, double value5) {
-    return [
-      GDPData('Category 1', value1, ColorConstants.color1),
-      GDPData('Category 2', value2, ColorConstants.color2),
-      GDPData('Category 3', value3, ColorConstants.color3),
-      GDPData('Category 4', value4, ColorConstants.color4),
-      GDPData('Category 5', value5, ColorConstants.color5),
-    ];
-  }
-}
-
-class ColorConstants {
-  static const Color color1 = Color(0xffBBC700);
-  static const Color color2 = Color.fromARGB(255, 106, 193, 0);
-  static const Color color3 = Color(0xff09806F);
-  static const Color color4 = Color(0xffFF6B6B);
-  static const Color color5 = Color.fromARGB(225, 248, 178, 37);
-}
-
-class GDPData {
-  GDPData(this.course, this.value, this.color);
-  final String course;
-  final double value;
-  final Color color;
-}
-
-class DetailsButton extends StatelessWidget {
-  const DetailsButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    NotasProvider notasProvider = Provider.of<NotasProvider>(context);
-    String? photoUrlJob = notasProvider.photoUrlJob;
-    return Container(
-      padding: const EdgeInsets.only(top: 10, right: 25, left: 25),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height ,
-      decoration: const BoxDecoration(
-          color: Color(0xffE8F8F6),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40), topRight: Radius.circular(40))),
-      child:  Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width *0.9,
-            height: MediaQuery.of(context).size.height *0.2,
-            margin: const EdgeInsets.only(bottom: 5, top: 5),
-            
-              child: Container(
-                decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(30))
-            ),
-                child: Image.network(photoUrlJob??'', fit: BoxFit.cover,)),
-         
-          ),
-          const Center(
-          
-            child: Text(
-              '''Un analista de datos es un profesional especializado en interpretar y analizar conjuntos de datos para extraer información valiosa y respaldar la toma de decisiones. Utiliza herramientas y técnicas estadísticas, así como habilidades en programación y visualización de datos, para identificar patrones, tendencias y conocimientos clave.Los analistas de datos trabajan en diversos sectores, desde negocios y finanzas hasta salud y tecnología, colaborando con equipos para resolver problemas específicos, mejorar procesos y optimizar estrategias empresariales.''',
-              style: TextStyle(fontSize: 12, color: Color(0xff323232),),
-            ),
-          ),
-          const SizedBox(height: 5,),
-          const Text(
-              'Responsabilidades Típicas',
-              style: TextStyle(fontSize: 16, color: Color(0xff323232),  fontFamily: 'Mitr'),
-            ),
-          const Text(
-  '''
-  Recopilación de Datos
-  Análisis Estadístico
-  Modelado de Datos
-  Visualización de Datos
-  Informes y Presentaciones
-  Colaboración
-  ''',style: TextStyle(fontSize: 14, color: Color(0xff323232), fontFamily: 'Arimo'),
-          ),
-          const SizedBox(height: 5,),
-          const Text(
-              'Tendencias de Carrera',
-              style: TextStyle(fontSize: 16, color: Color(0xff323232), fontFamily: 'Mitr'),
-            ),
-          const Center(
-            child: Text(
-              '''Con la creciente importancia de los datos en el mundo empresarial, la demanda de analistas de datos está en aumento. Se espera que la profesión continúe siendo clave en la toma de decisiones estratégicas y el desarrollo de soluciones innovadoras en diversas industrias. La capacitación continua en nuevas tecnologías y técnicas de análisis de datos es esencial para mantenerse relevante en este campo en constante evolución.''',
-              style: TextStyle(fontSize: 12, color: Color(0xff323232)),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}

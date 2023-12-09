@@ -54,33 +54,31 @@ class OneScreen extends StatelessWidget {
                       )),
                   child: Column(
                     children: [
-                      SizedBox(
-                        //width: 240,
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10),
-                          alignment: Alignment.topCenter,
-                          child: const Text(
-                            '¡Te damos la Bienvenida!',
-                            style: TextStyle(
-                              decoration: TextDecoration.none,
-                              height: 1.2,
-                              fontFamily: 'Mitr',
-                              fontSize: 34,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xff323232),
-                            ),
-                            textAlign: TextAlign.center,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.only(top: 10),
+                        alignment: Alignment.topCenter,
+                        child: const Text(
+                          '¡Te damos la Bienvenida!',
+                          style: TextStyle(
+                            decoration: TextDecoration.none,
+                            height: 1.2,
+                            fontFamily: 'Mitr',
+                            fontSize: 32,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xff323232),
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(height: 7,),
                       const SizedBox(
                         width: 300,
                         child: Text(
-                          'Lorem ipsum dolo sit amet, consectetur adipiscing elit. Nullam non ante nec quam sodales venenatis',
+                          'BeUcal es la herramienta perfecta para el seguimiento del rendimiento académico, mejora tu seguimiento académico, visualiza tu progreso  y mantén un control detallado de tus notas.',
                           style: TextStyle(
                             fontFamily: 'Mitr',
-                            fontSize: 20,
+                            fontSize: 16,
                             height: 1.3,
                             fontWeight: FontWeight.w400,
                             color: Color(0xff323232),
@@ -115,8 +113,8 @@ class OneScreen extends StatelessWidget {
                                   radius: 0.8,
                                 ),
                               ),
-                              width: 48,
-                              height: 48,
+                              width: 45,
+                              height: 45,
                               child: ButtonTheme(
                                   child: const Icon(
                                 Icons.arrow_forward_ios_rounded,

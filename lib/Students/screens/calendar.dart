@@ -18,6 +18,11 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  bool isExpanded = false;
+  bool isSwiped = false;
+  TextEditingController notesController = TextEditingController();
+
+
   void _deleteEvent(Event event) {
     setState(() {
       events[_selectedDay!]?.remove(event);
@@ -539,128 +544,7 @@ class _CalendarState extends State<Calendar> {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: tasks.map((task) {
-                        return Container(
-                          margin: EdgeInsets.only(bottom: 15),
-                          decoration: BoxDecoration(
-                           color: const Color.fromARGB(169, 0, 0, 0),
-//                          color:  const Color.fromARGB(255, 225, 110, 56),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: const [
-                              BoxShadow(
-                                blurRadius: 2,
-                                spreadRadius: 0,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  SizedBox(width: 10),
-                                  Container(
-                                     height: 30,
-                                    width: 30,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(50),
-                                      )
-                                    ),
-                                    child: const Icon(
-                                    Icons.title,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  const Text(
-                                    'Título:',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Mitr',
-                                      color: Color.fromARGB(255, 211, 204, 204),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    '${task['titulo']}',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Mitr',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  SizedBox(width: 10),
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(50)
-                                      )
-                                    ),
-                                    child: const Icon(
-                                    Icons.note,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  const Text(
-                                    'Notas:',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Mitr',
-                                      color: Color.fromARGB(255, 211, 204, 204),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    '${task['notas']}',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontFamily: 'Mitr',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(width: 1),
-                                  Text(
-                                    'Fecha: ${DateTime.now()}',
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 0, 255, 221),
-                                    ),
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {
-                                      _mostrarDialogoEliminar(context, task.id);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
+                        return addNewTask(task, context, false, DateFormat.ABBR_MONTH_DAY);
                       }).toList(),
                     ),
                   ),
@@ -921,6 +805,116 @@ class _CalendarState extends State<Calendar> {
             ),
           ),
           const SizedBox(height: 0),
+        ],
+      ),
+    );
+  }
+
+  Container addNewTask(QueryDocumentSnapshot<Map<String, dynamic>> task, BuildContext context, bool check, String timeTask) {
+     return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      height:
+          isExpanded ? 120 : 65, // Cambiar la altura según si está expandido
+      decoration: BoxDecoration(
+        color: Color(0xffFFFFFF),
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(51, 0, 0, 0),
+            offset: Offset(0, 3),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              Theme(
+                child: Transform.scale(
+                  scale: 1.5,
+                  child: Checkbox(
+                    shape: CircleBorder(),
+                    activeColor: Color(0xff44DECC),
+                    checkColor: Color.fromARGB(255, 249, 249, 249),
+                    value: check,
+                    onChanged: (Bool) {},
+                  ),
+                ),
+                data: ThemeData(
+                  primarySwatch: Colors.green,
+                  unselectedWidgetColor: Color(0xff44DECC),
+                ),
+              ),
+              SizedBox(width: 10),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${task['titulo']}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Arimo',
+                        color: Color(0xFF323232),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    Text(
+                      timeTask,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Arimo',
+                        color: Color(0xFF323232),
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isExpanded =
+                        !isExpanded; // Cambia el estado al tocar la flecha
+                  });
+                },
+                child: Row(
+                  children: [
+                    //chip,
+                    SizedBox(width: 10),
+                    Image.asset(
+                      'assets/elements/flecha-hacia-abajo-para-navegar (1).png',
+                      width: 18,
+                      height: 18,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (isExpanded)
+            Container(
+              // Aquí puedes agregar detalles adicionales cuando está expandido
+              padding: EdgeInsets.all(16),
+              child: Text(
+                '${task['notas']}',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF323232),
+                ),
+              ),
+            ),
         ],
       ),
     );

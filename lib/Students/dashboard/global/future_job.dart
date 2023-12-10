@@ -1,6 +1,5 @@
-import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/Students/dashboard/global/range_jobs.dart';
-import 'package:becertus_proyecto/Students/jobs/jobs_screen.dart/analisis_datos.dart';
+import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

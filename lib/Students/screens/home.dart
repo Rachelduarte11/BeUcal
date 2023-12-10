@@ -3,6 +3,7 @@ import 'package:becertus_proyecto/Students/screens/calendar.dart';
 import 'package:becertus_proyecto/Students/screens/performance_screen.dart';
 import 'package:becertus_proyecto/Students/screens/profile.dart';
 import 'package:becertus_proyecto/Students/widgets/chip_data.dart';
+import 'package:becertus_proyecto/Students/widgets/group_habilitys.dart';
 import 'package:becertus_proyecto/Students/widgets/group_home.dart';
 import 'package:becertus_proyecto/Students/widgets/header_section.dart';
 
@@ -16,7 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomePage> {
-  List<Widget> fragments = const [HomePage(), MyPerformance(), Calendar(), MyProfile()];
+  List<Widget> fragments =
+  [HomePage(), MyPerformance(), Calendar(), MyProfile()];
   int currentIndex = 0;
 
   @override
@@ -45,12 +47,7 @@ class _HomeScreenState extends State<HomePage> {
                 children: [
                   GroupMain(),
                   GroupHabilitys(),
-                 /* Titles(
-                    text: 'Tareas Pendientes',
-                    size: 24,
-                    fontFamily: 'Mitr',
-                  ),*/
-                 // _ToDoCard(),
+               
                 ],
               ),
             ),

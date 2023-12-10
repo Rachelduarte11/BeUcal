@@ -22,7 +22,7 @@ class DashboardIntroProgramacion extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GlassmorphicContainer(
-                    width: MediaQuery.of(context).size.width * 0.88,
+                    width: MediaQuery.of(context).size.width * 0.9,
                     height: MediaQuery.of(context).size.height * 0.41,
                     borderRadius: 10,
                     blur: 20,

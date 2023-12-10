@@ -29,7 +29,7 @@ class _AnalisisInventarioState extends State<AnalisisInventario> {
   final List<Widget> screens = [
     const HomePage(),
     const MyPerformance(),
-    const Calendar(),
+    Calendar(),
     const MyProfile(),
   ];
 

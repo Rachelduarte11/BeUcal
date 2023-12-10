@@ -5,6 +5,7 @@ import 'package:becertus_proyecto/Students/widgets/chip_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:intl/intl.dart';
 
 typedef VoidCallbackParam = Function(int index);
 
@@ -461,12 +462,14 @@ void _agregarTareaFirestore(TextEditingController tituloController, TextEditingC
     try {
       // Obtén una referencia al documento del estudiante
       DocumentReference estudianteDoc = firestore.collection('estudiantes').doc(studentId);
+  String formattedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
 
       // Crea un nuevo documento en la colección "tareas" dentro del documento del estudiante
       await estudianteDoc.collection('tareas').add({
         'titulo': titulo,
         'notas': notas,
         'timestamp': FieldValue.serverTimestamp(),
+        'fecha': formattedDate,
       });
 
       // Muestra un mensaje o realiza otras acciones según tus necesidades

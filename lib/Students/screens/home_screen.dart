@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   
-  List<Widget> fragments = const [HomePage(), MyPerformance(), Calendar(), MyProfile(),];
+  List<Widget> fragments =  [HomePage(), MyPerformance(), Calendar(), MyProfile(),];
   
   int currentIndex = 0;
 

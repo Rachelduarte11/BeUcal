@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'package:becertus_proyecto/Students/screens/home_screen.dart';
 import 'package:becertus_proyecto/Students/screens/home_teacher.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
-import 'package:becertus_proyecto/Students/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +35,7 @@ Future<String?> obtenerIdEstudiante(String email, String password) async {
     return null;
   }
 }
+
 Future<String?> obtenerIdDocente(String email, String password) async {
   try {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
@@ -139,40 +140,48 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        ToggleButtons(
-                          borderColor: Colors.grey,
-                          fillColor: Color(0xff323232),
-                          borderWidth: 2,
-                          selectedBorderColor: Color(0xff323232),
-                          selectedColor: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('Estudiante'),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('Docente'),
-                            ),
-                          ],
-                          onPressed: (int index) {
-                            setState(() {
-                              for (int buttonIndex = 0;
-                                  buttonIndex < isSelected.length;
-                                  buttonIndex++) {
-                                if (buttonIndex == index) {
-                                  isSelected[buttonIndex] = true;
-                                } else {
-                                  isSelected[buttonIndex] = false;
+                        Container(
+                          height: 40,
+                          child: ToggleButtons(
+                            borderColor: Colors.grey,
+                            fillColor: Color(0xff323232),
+                            borderWidth: 2,
+                            selectedBorderColor: Color(0xff323232),
+                            selectedColor: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Estudiante',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Docente',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                              ),
+                            ],
+                            onPressed: (int index) {
+                              setState(() {
+                                for (int buttonIndex = 0;
+                                    buttonIndex < isSelected.length;
+                                    buttonIndex++) {
+                                  if (buttonIndex == index) {
+                                    isSelected[buttonIndex] = true;
+                                  } else {
+                                    isSelected[buttonIndex] = false;
+                                  }
                                 }
-                              }
-                            });
-                          },
-                          isSelected: isSelected,
+                              });
+                            },
+                            isSelected: isSelected,
+                          ),
                         ),
+
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Column(
@@ -320,12 +329,11 @@ class _LoginState extends State<Login> {
                               ElevatedButton(
                                 onPressed: () async {
                                   if (isSelected[1]) {
-                                     String? docenteId =
-                                        await obtenerIdDocente(
+                                    String? docenteId = await obtenerIdDocente(
                                       emailController.text,
                                       passwordController.text,
                                     );
-                                    if(docenteId != null){
+                                    if (docenteId != null) {
                                       Navigator.push(
                                         context,
                                         PageTransition(
@@ -334,7 +342,7 @@ class _LoginState extends State<Login> {
                                           duration: Duration(milliseconds: 400),
                                         ),
                                       );
-                                    }else{
+                                    } else {
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
@@ -377,19 +385,19 @@ class _LoginState extends State<Login> {
                                         Provider.of<NotasProvider>(context,
                                             listen: false);
 
-                                  if (studentId != null) {
-                                    await notasProvider
-                                        .obtenerNotasEstudiante(studentId);
-                                    await notasProvider
-                                        .obtenerDatosEstudiante(studentId);
-                                    String? photoUrl = notasProvider.photoUrl;
+                                    if (studentId != null) {
+                                      await notasProvider
+                                          .obtenerNotasEstudiante(studentId);
+                                      await notasProvider
+                                          .obtenerDatosEstudiante(studentId);
+                                      String? photoUrl = notasProvider.photoUrl;
 
-                                    print(photoUrl);
-                                    print(
-                                        "Acceso permitido, ID del estudiante: $studentId");
-                                    SharedPreferences prefs =
-                                        await SharedPreferences.getInstance();
-                                    await prefs.setBool('isLoggedIn', true);
+                                      print(photoUrl);
+                                      print(
+                                          "Acceso permitido, ID del estudiante: $studentId");
+                                      SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      await prefs.setBool('isLoggedIn', true);
 
                                       // Limpia los controladores y navega a HomeScreen
                                       emailController.clear();

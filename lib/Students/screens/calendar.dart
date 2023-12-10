@@ -22,7 +22,6 @@ class _CalendarState extends State<Calendar> {
   bool isSwiped = false;
   TextEditingController notesController = TextEditingController();
 
-
   void _deleteEvent(Event event) {
     setState(() {
       events[_selectedDay!]?.remove(event);
@@ -503,7 +502,6 @@ class _CalendarState extends State<Calendar> {
           Container(
             height: 315,
             width: 300,
-           
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -525,7 +523,6 @@ class _CalendarState extends State<Calendar> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 }
-
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                   return const Center(
                     child: Text(
@@ -544,7 +541,8 @@ class _CalendarState extends State<Calendar> {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: tasks.map((task) {
-                        return addNewTask(task, context, false, DateFormat.ABBR_MONTH_DAY);
+                        return addNewTask(
+                            task, context, false, DateFormat.ABBR_MONTH_DAY);
                       }).toList(),
                     ),
                   ),
@@ -810,8 +808,9 @@ class _CalendarState extends State<Calendar> {
     );
   }
 
-  Container addNewTask(QueryDocumentSnapshot<Map<String, dynamic>> task, BuildContext context, bool check, String timeTask) {
-     return Container(
+  Container addNewTask(QueryDocumentSnapshot<Map<String, dynamic>> task,
+      BuildContext context, bool check, String timeTask) {
+    return Container(
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.only(bottom: 10),
       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -878,6 +877,13 @@ class _CalendarState extends State<Calendar> {
                       ),
                       textAlign: TextAlign.start,
                     ),
+                    Text(
+                      'Fecha: ${DateTime.now()}',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Color.fromARGB(255, 0, 255, 221),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -893,6 +899,15 @@ class _CalendarState extends State<Calendar> {
                   children: [
                     //chip,
                     SizedBox(width: 10),
+                    IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Color.fromARGB(255, 200, 78, 69),
+                      ),
+                      onPressed: () {
+                        _mostrarDialogoEliminar(context, task.id);
+                      },
+                    ),
                     Image.asset(
                       'assets/elements/flecha-hacia-abajo-para-navegar (1).png',
                       width: 18,

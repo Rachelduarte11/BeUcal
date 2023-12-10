@@ -218,15 +218,130 @@ class HomeTeacherScreen extends StatelessWidget {
                                         fontSize: 20)),
                               ),
                               Container(
-                                margin: EdgeInsets.only(right: 210),
+                                margin: EdgeInsets.only(right: 233),
                                 child: const Text(
-                                  "Sección I03",
+                                  "Sección: ",
                                   style: TextStyle(
                                     color: Color.fromARGB(171, 255, 255, 255),
                                     fontSize: 18,
                                   ),
                                 ),
-                              )
+                              ),
+                              SizedBox(height: 5),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.lightBlue,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: const Center(
+                                        child: Text('I01', style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Mitr',
+                                          fontSize: 17,
+                                          )
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                        child: const Center(
+                                        child: Text('I01', style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Mitr',
+                                          fontSize: 17,
+                                          )
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.yellow,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.lightGreen,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),

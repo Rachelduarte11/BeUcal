@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
                 displayColor: const Color.fromARGB(255, 26, 25, 25),
               )),
-      home: Login(),
+      home: HomeTeacherScreen(),
       routes: {
         // Define tus rutas aquí
       },

@@ -11,7 +11,13 @@ class HomeTeacherScreen extends StatelessWidget {
     int hour = now.hour;
 
     String greeting = getGreeting(hour);
+    final double progress = 70;
+    final int alumnosEntregaron = 28;
+    final int totalAlumnos = 32;
 
+    final double progress2 = 50;
+    final int alumnosEntregaron2 = 20;
+    final int totalAlumnos2 = 40;
     CustomAppBarTeacher(greeting);
     return Scaffold(
       backgroundColor: const Color(0xffEDFFFB),
@@ -201,7 +207,7 @@ class HomeTeacherScreen extends StatelessWidget {
                       Transform.translate(
                         offset: Offset(28, -90),
                         child: Container(
-                          height: 150,
+                          height: 180,
                           width: 340,
                           decoration: BoxDecoration(
                               color: Color.fromARGB(255, 155, 144, 232),
@@ -218,128 +224,430 @@ class HomeTeacherScreen extends StatelessWidget {
                                         fontSize: 20)),
                               ),
                               Container(
-                                margin: EdgeInsets.only(right: 233),
-                                child: const Text(
-                                  "Sección: ",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(171, 255, 255, 255),
-                                    fontSize: 18,
+                                margin: EdgeInsets.only(right: 215),
+                                child: const Text("Sección: I03",
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 19, 208, 183),
+                                        fontFamily: '',
+                                        fontSize: 17)),
+                              ),
+                               Column(
+                                children: [
+                                  Transform.translate(
+                                    offset: Offset(-45, -23),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Transform.translate(
+                                offset: Offset(0, -40),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 0),
+                                      Transform.translate(
+                                        offset: Offset(210, 45),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              width: 80,
+                                              height: 80,
+                                              child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Container(
+                                                    width: 70,
+                                                    height: 70,
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color:
+                                                            Colors.grey[300]!,
+                                                        width: 10,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  CircularProgressIndicator(
+                                                    value: progress / 100,
+                                                    strokeWidth: 5,
+                                                    valueColor:
+                                                        const AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      Color(0xff0BB49D),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '${progress.toString()}%',
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Transform.translate(
+                                        offset: Offset(-100, 0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Transform.translate(
+                                              offset: Offset(5, 20),
+                                              child: Text(
+                                                'Entregaron la tarea: $alumnosEntregaron/$totalAlumnos',
+                                                style: const TextStyle(
+                                                    fontSize: 17,
+                                                    fontFamily: '',
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            SizedBox(height: 12),
+                                            Transform.translate(
+                                              offset: Offset(10, 35),
+                                              child: Container(
+                                                width: 200,
+                                                height: 20,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey[300],
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                      width: 180 *
+                                                          (alumnosEntregaron /
+                                                              totalAlumnos),
+                                                      height: 20,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xff0BB49D),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: const Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 40,
+                                                                top: 2),
+                                                        child: Text(
+                                                          '70%',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 16),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      /*
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.lightBlue,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.yellow,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.lightGreen,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.orange,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Center(
+                                          child: Text('I01',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mitr',
+                                                fontSize: 17,
+                                              )),
+                                        ),
+                                      ),*/
+                                    ],
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 5),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.lightBlue,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: const Center(
-                                        child: Text('I01', style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Mitr',
-                                          fontSize: 17,
-                                          )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Transform.translate(
+                        offset: Offset(28, -90),
+                        child: Container(
+                          height: 180,
+                          width: 340,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 163, 232, 144),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Container(
+                                margin: EdgeInsets.only(right: 110),
+                                child: const Text("Pruebas de Software",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Mitr',
+                                        fontSize: 20)),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 215),
+                                child: const Text("Sección: OA1",
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 25, 166, 147),
+                                        fontFamily: '',
+                                        fontSize: 17)),
+                              ),
+                              Column(
+                                children: [
+                                  Transform.translate(
+                                    offset: Offset(-45, -23),
+                                    child: const Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Transform.translate(
+                                offset: Offset(0, -40),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 0),
+                                      Transform.translate(
+                                        offset: Offset(210, 45),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              width: 80,
+                                              height: 80,
+                                              child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Container(
+                                                    width: 70,
+                                                    height: 70,
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color:
+                                                            Colors.grey[200]!,
+                                                        width: 10,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  CircularProgressIndicator(
+                                                    value: progress2 / 100,
+                                                    strokeWidth: 5,
+                                                    valueColor:
+                                                        const AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      Color(0xff0BB49D),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '${progress2.toString()}%',
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        child: const Center(
-                                        child: Text('I01', style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Mitr',
-                                          fontSize: 17,
-                                          )
+                                      Transform.translate(
+                                        offset: Offset(-100, 0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Transform.translate(
+                                              offset: Offset(5, 20),
+                                              child: Text(
+                                                'Entregaron la tarea: $alumnosEntregaron2/$totalAlumnos2',
+                                                style: const TextStyle(
+                                                    fontSize: 17,
+                                                    fontFamily: '',
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            SizedBox(height: 12),
+                                            Transform.translate(
+                                              offset: Offset(10, 35),
+                                              child: Container(
+                                                width: 200,
+                                                height: 20,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey[300],
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                      width: 240 *
+                                                          (alumnosEntregaron2 /
+                                                              totalAlumnos2),
+                                                      height: 20,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xff0BB49D),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: const Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 15,
+                                                                top: 2),
+                                                        child: Text(
+                                                          '50%',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 16),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.yellow,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.lightGreen,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.orange,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

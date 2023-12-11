@@ -14,7 +14,7 @@ import 'package:becertus_proyecto/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp(isLoggedIn: false));
+    await tester.pumpWidget(MyApp());
 
     //Verify that our counter starts at 0.
     expect(find.byType(Login), findsOneWidget);

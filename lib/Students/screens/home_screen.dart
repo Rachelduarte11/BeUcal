@@ -1,4 +1,3 @@
-
 import 'package:becertus_proyecto/Students/screens/calendar.dart';
 import 'package:becertus_proyecto/Students/screens/home.dart';
 import 'package:becertus_proyecto/Students/screens/performance_screen.dart';
@@ -16,7 +15,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   
   List<Widget> fragments =  [HomePage(), MyPerformance(), Calendar(), MyProfile(),];
-  
+ 
+
   int currentIndex = 0;
 
   @override
@@ -26,21 +26,27 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Color(0xfffafafa),
       ),
       child: Scaffold(
-        
         backgroundColor: Color.fromARGB(255, 248, 248, 248),
-        // appBar: CustomAppBar(),
         bottomNavigationBar: CustomeNavigationBar(onTab),
-        body: fragments[currentIndex]
+        // Usar AnimatedSwitcher para la transición de desvanecimiento
+        body: AnimatedSwitcher(
+          duration: Duration(
+              milliseconds: 400), // Duración de la animación de desvanecimiento
+          child: fragments[currentIndex],
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        ),
       ),
     );
   }
 
   onTab(int index) {
-    
     setState(() {
       currentIndex = index;
     });
   }
 }
-
-

@@ -11,8 +11,6 @@ import 'package:becertus_proyecto/Students/dashboard/global/range_jobs.dart';
 import 'package:becertus_proyecto/Students/jobs/widgets/Graphics/counter_way.dart';
 import 'package:becertus_proyecto/Students/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../screens/performance_screen.dart';
 

@@ -1,20 +1,17 @@
-
-import 'package:becertus_proyecto/Students/screens/home_teacher.dart';
+import 'package:becertus_proyecto/Students/screens/home_screen.dart';
+import 'package:becertus_proyecto/Students/screens/login_screen.dart';
+import 'package:becertus_proyecto/Teachers/screens/home_teacher.dart';
+import 'package:becertus_proyecto/Teachers/screens/profile.dart';
 import 'package:becertus_proyecto/db.dart';
 import 'package:becertus_proyecto/firebase.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
-import 'package:becertus_proyecto/Students/screens/home_screen.dart';
-import 'package:becertus_proyecto/Students/screens/login_screen.dart';
-import 'package:becertus_proyecto/Students/screens/performance_screen.dart';
-import 'package:becertus_proyecto/Students/dashboard/global/range_jobs.dart';
-import 'package:becertus_proyecto/Students/jobs/jobs_screen.dart/analisis_datos.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,38 +21,51 @@ void main() async {
   );
   await initializeDateFormatting('es', null);
 
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NotasProvider()),
         // Otros proveedores aquí si es necesario
       ],
-      child: MyApp(isLoggedIn: isLoggedIn),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final bool isLoggedIn;
-  const MyApp({super.key, required this.isLoggedIn});
-
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter demo',
-      theme: ThemeData(
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
           textTheme: Theme.of(context).textTheme.apply(
                 bodyColor: const Color.fromARGB(255, 230, 230, 230),
-                displayColor: const Color.fromARGB(255, 26, 25, 25),
-              )),
-      home: Login(),
-      routes: {
-        // Define tus rutas aquí
-      },
-    );
+                displayColor: Colors.white,
+              ),
+        ),
+        home: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              User? user = snapshot.data;
+              if (user == null) {
+                return Login();
+              }
+              return HomeScreen();
+            } else {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          },
+        ),
+        routes: <String, WidgetBuilder>{
+          '/login': (context) => Login(),
+          '/home': (context) => HomeScreen(),
+          // Añade las rutas para las otras pantallas según sea necesario
+        });
   }
 }

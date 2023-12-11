@@ -51,7 +51,6 @@ class _CalendarState extends State<Calendar> {
   bool isSwiped = false;
   TextEditingController notesController = TextEditingController();
 
-
   void _deleteEvent(Event event) {
     setState(() {
       events[_selectedDay!]?.remove(event);
@@ -121,556 +120,550 @@ class _CalendarState extends State<Calendar> {
     return Scaffold(
       backgroundColor: const Color(0xffEDFFFB),
       appBar: CustomAppBar(),
-      //bottomNavigationBar: showBottomNavBar ?   CustomeNavigationBar(onTab): null ,
-      body: viewCalendar(context),
-    );
-  }
-
-  ListView viewCalendar(BuildContext context) {
-    return ListView(
-      children: [
-        SizedBox(height: 0),
-        Container(
-          height: 540,
-          decoration: const BoxDecoration(
-            color: Color(0xffEDFFFB),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-            ),
-            boxShadow: [
-              //BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
-            ],
-          ),
-          child: Column(
-            children: [
-              //Segunda fila (Botones)
-              /*
-              Container(
-                height: 30,
-                width: 335,
-                decoration: const BoxDecoration(
-                  color: Color(0XFFE7E2E2),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                child: Center(
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 0;
-                          });
-                        },
-                        child: Container(
-                          height: 25,
-                          width: 111.6,
-                          decoration: BoxDecoration(
-                            color: selectedND == 0
-                                ? Color(0xFFFD6A6A)
-                                : Color(0XFFE7E2E2),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Todos",
-                              style: TextStyle(
-                                color: selectedND == 0
-                                    ? Color(0XFFE7E2E2)
-                                    : Colors.black,
-                                fontSize: 14,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 1;
-                          });
-                        },
-                        child: Container(
-                          height: 25,
-                          width: 111.6,
-                          decoration: BoxDecoration(
-                            color: selectedND == 1
-                                ? Color(0xFFFD6A6A)
-                                : Color(0XFFE7E2E2),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Tareas",
-                              style: TextStyle(
-                                color: selectedND == 1
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 14,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedND = 2;
-                          });
-                        },
-                        child: Container(
-                          width: 111.6,
-                          height: 25,
-                          decoration: BoxDecoration(
-                            color: selectedND == 2
-                                ? Color(0xFFFD6A6A)
-                                : Color(0XFFE7E2E2),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Info",
-                              style: TextStyle(
-                                color: selectedND == 2
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 14,
-                                fontFamily: "Mitr",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+      body: ListView(
+        children: [
+          SizedBox(height: 0),
+          Container(
+            height: 540,
+            decoration: const BoxDecoration(
+              color: Color(0xffEDFFFB),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
               ),
-              */
-              // Celendario -----
-              const SizedBox(height: 10),
-              SizedBox(height: 20),
-              GestureDetector(
-                child: Container(
-                  height: 485,
+              boxShadow: [
+                //BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
+              ],
+            ),
+            child: Column(
+              children: [
+                //Segunda fila (Botones)
+                /*
+                Container(
+                  height: 30,
+                  width: 335,
                   decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 3, spreadRadius: 0, color: Colors.grey),
-                    ],
+                    color: Color(0XFFE7E2E2),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 60,
-                        decoration: const BoxDecoration(
-                          color: const Color.fromRGBO(18, 177, 158, 1),
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(0)),
-                        ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.calendar_today,
-                              color: Colors.white,
+                  child: Center(
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 0;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            width: 111.6,
+                            decoration: BoxDecoration(
+                              color: selectedND == 0
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
                             ),
-                            SizedBox(width: 5),
-                            Text(
-                              'Calendario',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            child: Center(
+                              child: Text(
+                                "Todos",
+                                style: TextStyle(
+                                  color: selectedND == 0
+                                      ? Color(0XFFE7E2E2)
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Column(
-                        children: [
-                          Row(
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 1;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            width: 111.6,
+                            decoration: BoxDecoration(
+                              color: selectedND == 1
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Tareas",
+                                style: TextStyle(
+                                  color: selectedND == 1
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedND = 2;
+                            });
+                          },
+                          child: Container(
+                            width: 111.6,
+                            height: 25,
+                            decoration: BoxDecoration(
+                              color: selectedND == 2
+                                  ? Color(0xFFFD6A6A)
+                                  : Color(0XFFE7E2E2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Info",
+                                style: TextStyle(
+                                  color: selectedND == 2
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: "Mitr",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                */
+                // Celendario -----
+                const SizedBox(height: 10),
+                SizedBox(height: 20),
+                GestureDetector(
+                  child: Container(
+                    height: 485,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(25)),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 3, spreadRadius: 0, color: Colors.grey),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 60,
+                          decoration: const BoxDecoration(
+                            color: const Color.fromRGBO(18, 177, 158, 1),
+                            borderRadius:
+                                BorderRadius.vertical(top: Radius.circular(0)),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(height: 20),
-                                  Row(
-                                    children: [
-                                      SizedBox(width: 20),
-                                      Column(
-                                        children: [
-                                          Container(
-                                            padding: EdgeInsets.all(10),
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color.fromRGBO(
-                                                      18, 177, 158, 1),
-                                                  Color.fromRGBO(
-                                                      18, 177, 158, 1),
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.horizontal(
-                                                      right: Radius.circular(
-                                                          50)),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey,
-                                                  spreadRadius: 1,
-                                                  blurRadius: 2,
-                                                  offset: Offset(0, 3),
-                                                ),
-                                              ],
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                const Icon(
-                                                  Icons.calendar_view_day,
-                                                  color: Colors.white,
-                                                ),
-                                                SizedBox(width: 10),
-                                                Text(
-                                                  "Día seleccionado: " +
-                                                      _selectedDay
-                                                          .toString()
-                                                          .split(" ")[0],
-                                                  style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18,
-                                                    fontFamily: "Arimo",
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 10),
-                                      Column(
-                                        children: [
-                                          FloatingActionButton(
-                                            onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    scrollable: true,
-                                                    title: const Text(
-                                                      "Agendar reunión",
-                                                      style: TextStyle(
-                                                        fontSize: 19,
-                                                        color: Colors.black,
-                                                        fontFamily: "Mitr",
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    content: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(0),
-                                                      child: TextField(
-                                                        controller:
-                                                            _eventController,
-                                                        style:
-                                                            const TextStyle(
-                                                          fontFamily: "Mitr",
-                                                          fontSize: 19,
-                                                          color: Colors.black,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          // Cerrar el cuadro
-                                                          Navigator.of(
-                                                                  context)
-                                                              .pop();
-                                                        },
-                                                        child: const Text(
-                                                          "Cancelar",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.red),
-                                                        ),
-                                                      ),
-                                                      ElevatedButton(
-                                                        onPressed: () {
-                                                          // Agregar la reunión a la lista de eventos
-                                                          _selectedEvents
-                                                                  .value =
-                                                              List.from(
-                                                                  _selectedEvents
-                                                                      .value)
-                                                                ..add(Event(
-                                                                    _eventController
-                                                                        .text));
-                                                          Navigator.of(
-                                                                  context)
-                                                              .pop();
-                                                        },
-                                                        child: Text("Enviar"),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Icon(
-                                                Icons.note_alt_rounded,
-                                                size: 25),
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    255, 225, 110, 56),
-                                            foregroundColor: Colors.white,
-                                            heroTag: true,
-                                            mini: true,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              Icon(
+                                Icons.calendar_today,
+                                color: Colors.white,
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                'Calendario',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
-                          )
-                        ],
-                      ),
-                      TableCalendar(
-                        locale: 'es_ES',
-                        firstDay: DateTime.utc(2010, 10, 16),
-                        lastDay: DateTime.utc(2030, 3, 14),
-                        focusedDay: _focusedDay,
-                        onDaySelected: _onDaySelected,
-                        selectedDayPredicate: (day) =>
-                            isSameDay(day, _selectedDay),
-                        rowHeight: 45,
-                        //Evento:
-                        eventLoader: _getEventsForDay,
-                        calendarStyle: const CalendarStyle(
-                          defaultTextStyle: TextStyle(color: Colors.black),
-                          weekendTextStyle: TextStyle(color: Colors.black),
-                          selectedDecoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color.fromRGBO(18, 177, 158, 1),
-                          ),
-                          selectedTextStyle: TextStyle(color: Colors.white),
-                          todayDecoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color.fromARGB(110, 18, 177, 158),
-                          ),
-                          todayTextStyle: TextStyle(color: Colors.white),
-                        ),
-                        headerStyle: const HeaderStyle(
-                          titleCentered: true,
-                          formatButtonVisible: false,
-                          titleTextStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        calendarBuilders: CalendarBuilders(
-                          headerTitleBuilder: (context, DateTime focusDay) {
-                            return Text(
-                              DateFormat.yMMM('es_ES')
-                                  .format(focusDay)
-                                  .replaceFirstMapped(
-                                      RegExp(r'^[a-z]'),
-                                      (match) =>
-                                          match.group(0)!.toUpperCase()),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            );
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 20),
+                                        Column(
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: const BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color.fromRGBO(
+                                                        18, 177, 158, 1),
+                                                    Color.fromRGBO(
+                                                        18, 177, 158, 1),
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.horizontal(
+                                                        right: Radius.circular(
+                                                            50)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey,
+                                                    spreadRadius: 1,
+                                                    blurRadius: 2,
+                                                    offset: Offset(0, 3),
+                                                  ),
+                                                ],
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const Icon(
+                                                    Icons.calendar_view_day,
+                                                    color: Colors.white,
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Text(
+                                                    "Día seleccionado: " +
+                                                        _selectedDay
+                                                            .toString()
+                                                            .split(" ")[0],
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                      fontFamily: "Arimo",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          children: [
+                                            FloatingActionButton(
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      scrollable: true,
+                                                      title: const Text(
+                                                        "Agendar reunión",
+                                                        style: TextStyle(
+                                                          fontSize: 19,
+                                                          color: Colors.black,
+                                                          fontFamily: "Mitr",
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                      content: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(0),
+                                                        child: TextField(
+                                                          controller:
+                                                              _eventController,
+                                                          style:
+                                                              const TextStyle(
+                                                            fontFamily: "Mitr",
+                                                            fontSize: 19,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            // Cerrar el cuadro
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child: const Text(
+                                                            "Cancelar",
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.red),
+                                                          ),
+                                                        ),
+                                                        ElevatedButton(
+                                                          onPressed: () {
+                                                            // Agregar la reunión a la lista de eventos
+                                                            _selectedEvents
+                                                                    .value =
+                                                                List.from(
+                                                                    _selectedEvents
+                                                                        .value)
+                                                                  ..add(Event(
+                                                                      _eventController
+                                                                          .text));
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child: Text("Enviar"),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Icon(
+                                                  Icons.note_alt_rounded,
+                                                  size: 25),
+                                              backgroundColor:
+                                                  const Color.fromARGB(
+                                                      255, 225, 110, 56),
+                                              foregroundColor: Colors.white,
+                                              heroTag: true,
+                                              mini: true,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        TableCalendar(
+                          locale: 'es_ES',
+                          firstDay: DateTime.utc(2010, 10, 16),
+                          lastDay: DateTime.utc(2030, 3, 14),
+                          focusedDay: _focusedDay,
+                          onDaySelected: _onDaySelected,
+                          selectedDayPredicate: (day) =>
+                              isSameDay(day, _selectedDay),
+                          rowHeight: 45,
+                          //Evento:
+                          eventLoader: _getEventsForDay,
+                          calendarStyle: const CalendarStyle(
+                            defaultTextStyle: TextStyle(color: Colors.black),
+                            weekendTextStyle: TextStyle(color: Colors.black),
+                            selectedDecoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: const Color.fromRGBO(18, 177, 158, 1),
+                            ),
+                            selectedTextStyle: TextStyle(color: Colors.white),
+                            todayDecoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color.fromARGB(110, 18, 177, 158),
+                            ),
+                            todayTextStyle: TextStyle(color: Colors.white),
+                          ),
+                          headerStyle: const HeaderStyle(
+                            titleCentered: true,
+                            formatButtonVisible: false,
+                            titleTextStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          calendarBuilders: CalendarBuilders(
+                            headerTitleBuilder: (context, DateTime focusDay) {
+                              return Text(
+                                DateFormat.yMMM('es_ES')
+                                    .format(focusDay)
+                                    .replaceFirstMapped(
+                                        RegExp(r'^[a-z]'),
+                                        (match) =>
+                                            match.group(0)!.toUpperCase()),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              );
+                            },
+                          ),
+                          onFormatChanged: (format) {
+                            if (_calendarFormat != format) {
+                              setState(() {
+                                _calendarFormat = format;
+                              });
+                            }
+                          },
+                          onPageChanged: (focusedDay) {
+                            _focusedDay = focusedDay;
                           },
                         ),
-                        onFormatChanged: (format) {
-                          if (_calendarFormat != format) {
-                            setState(() {
-                              _calendarFormat = format;
-                            });
-                          }
-                        },
-                        onPageChanged: (focusedDay) {
-                          _focusedDay = focusedDay;
-                        },
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        // Tareas recien agregadas -----
-        Container(
-          margin: const EdgeInsets.only(left: 15),
-          child: const Text(
-            "Tareas recién agregadas",
-            style: TextStyle(
-              fontSize: 19,
-              fontFamily: 'Mitr',
-              color: Color.fromARGB(255, 108, 106, 106),
+              ],
             ),
           ),
-        ),
-        SizedBox(height: 10),
-        Container(
-          height: 315,
-          width: 300,
-         
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 3,
-                spreadRadius: 0,
-                color: Colors.grey.shade400,
+          // Tareas recien agregadas -----
+          Container(
+            margin: const EdgeInsets.only(left: 15),
+            child: const Text(
+              "Tareas recién agregadas",
+              style: TextStyle(
+                fontSize: 19,
+                fontFamily: 'Mitr',
+                color: Color.fromARGB(255, 108, 106, 106),
               ),
-            ],
+            ),
           ),
-          child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('estudiantes')
-                .doc('eGYtAQiyan12554BOG6D')
-                .collection('tareas')
-                .snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              }
+          SizedBox(height: 10),
+          Container(
+            height: 315,
+            width: 300,
+           
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 3,
+                  spreadRadius: 0,
+                  color: Colors.grey.shade400,
+                ),
+              ],
+            ),
+            child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('estudiantes')
+                  .doc('eGYtAQiyan12554BOG6D')
+                  .collection('tareas')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
 
-              if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'No hay tareas agregadas',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                      fontFamily: 'Arimo',
+                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'No hay tareas agregadas',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontFamily: 'Arimo',
+                      ),
+                    ),
+                  );
+                }
+                var tasks = snapshot.data!.docs;
+                return SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: tasks.map((task) {
+                        return addNewTask(task, context, false, DateFormat.ABBR_MONTH_DAY);
+                      }).toList(),
                     ),
                   ),
                 );
-              }
-              var tasks = snapshot.data!.docs;
-              return SingleChildScrollView(
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: tasks.map((task) {
-                      return addNewTask(task, context, false, DateFormat.ABBR_MONTH_DAY);
-                    }).toList(),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-        // Reunionnes -----------
-        SizedBox(height: 20),
-        Container(
-          margin: const EdgeInsets.only(left: 15),
-          child: const Text(
-            "Reuniones",
-            style: TextStyle(
-              fontSize: 19,
-              fontFamily: 'Mitr',
-              color: Color.fromARGB(255, 108, 106, 106),
+              },
             ),
           ),
-        ),
-        SizedBox(height: 10),
-        Container(
-          height: 120,
-          width: 240,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(25),
+          // Reunionnes -----------
+          SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.only(left: 15),
+            child: const Text(
+              "Reuniones",
+              style: TextStyle(
+                fontSize: 19,
+                fontFamily: 'Mitr',
+                color: Color.fromARGB(255, 108, 106, 106),
+              ),
             ),
-            boxShadow: [
-              BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
-            ],
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Expanded(
-                child: ValueListenableBuilder<List<Event>>(
-                  valueListenable: _selectedEvents,
-                  builder: (context, value, _) {
-                    if (value.isEmpty) {
-                      return const Center(
-                        child: Text(
-                          'No hay reuniones agregadas para esta fecha',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontFamily: 'Arimo',
-                            fontSize: 15.5,
-                          ),
-                        ),
-                      );
-                    }
-                    return ListView.builder(
-                      itemCount: value.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 20,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromRGBO(18, 177, 158, 1),
-                          ),
-                          child: ListTile(
-                            onTap: () => print(""),
-                            title: Text(
-                              '${value[index].title}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Mitr',
-                              ),
-                            ),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete),
-                              color: Colors.white,
-                              onPressed: () {
-                                _showDeleteDialog(context, value[index]);
-                              },
+          SizedBox(height: 10),
+          Container(
+            height: 120,
+            width: 240,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(25),
+              ),
+              boxShadow: [
+                BoxShadow(blurRadius: 2, spreadRadius: 0, color: Colors.grey),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ValueListenableBuilder<List<Event>>(
+                    valueListenable: _selectedEvents,
+                    builder: (context, value, _) {
+                      if (value.isEmpty) {
+                        return const Center(
+                          child: Text(
+                            'No hay reuniones agregadas para esta fecha',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontFamily: 'Arimo',
+                              fontSize: 15.5,
                             ),
                           ),
                         );
-                      },
-                    );
-                  },
+                      }
+                      return ListView.builder(
+                        itemCount: value.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 20,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color.fromRGBO(18, 177, 158, 1),
+                            ),
+                            child: ListTile(
+                              onTap: () => print(""),
+                              title: Text(
+                                '${value[index].title}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Mitr',
+                                ),
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete),
+                                color: Colors.white,
+                                onPressed: () {
+                                  _showDeleteDialog(context, value[index]);
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
 
         // Horario ----
         SizedBox(height: 30),
@@ -840,13 +833,13 @@ class _CalendarState extends State<Calendar> {
         ),
         const SizedBox(height: 0),
       ],
+      )
     );
   }
 
 
 
   Container addNewTask(QueryDocumentSnapshot<Map<String, dynamic>> task, BuildContext context, bool check, String timeTask) {
-    
      return Container(
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.only(bottom: 10),
@@ -905,14 +898,23 @@ class _CalendarState extends State<Calendar> {
                       height: 6,
                     ),
                     Text(
-                      '${task['timestamp']}',
+                      '${DateTime.now()}',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontFamily: 'Arimo',
+                        color: Color(0xFF323232),
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    Text(
+                      '${task['notas']}',
                       style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Arimo',
                         color: Color(0xFF323232),
                         fontWeight: FontWeight.w500,
                       ),
-                      textAlign: TextAlign.start,
                     ),
                   ],
                 ),
@@ -929,6 +931,15 @@ class _CalendarState extends State<Calendar> {
                   children: [
                     //chip,
                     SizedBox(width: 10),
+                    IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Color.fromARGB(255, 200, 78, 69),
+                      ),
+                      onPressed: () {
+                        _mostrarDialogoEliminar(context, task.id);
+                      },
+                    ),
                     Image.asset(
                       'assets/elements/flecha-hacia-abajo-para-navegar (1).png',
                       width: 18,

@@ -24,17 +24,11 @@ class _GroupMainState extends State<GroupMain> {
     double? EG = notasProvider.EG;
 
     
-    if (ED == null) {
-      ED = 0.0; // Asigna un valor predeterminado si ED es nulo
-    }
+    ED ??= 0.0;
 
-    if (FP == null) {
-      FP = 0.0; // Asigna un valor predeterminado si FP es nulo
-    }
+    FP ??= 0.0;
 
-    if (EG == null) {
-      EG = 0.0; // Asigna un valor predeterminado si EG es nulo
-    }
+    EG ??= 0.0;
     final average = (ED + FP + EG) / 3;
     String averageString = average.toStringAsFixed(2);
 
@@ -68,13 +62,7 @@ class _GroupMainState extends State<GroupMain> {
                     ],
                     stops: <double>[0, 0.984],
                   ),
-                  /*boxShadow: [
-                    const BoxShadow(
-                      color: Color(0x3f000000),
-                      offset: Offset(1, 3),
-                      blurRadius: 3.5,
-                    ),
-                  ],*/
+                
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

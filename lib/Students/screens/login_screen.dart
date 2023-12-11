@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:ffi';
-import 'package:becertus_proyecto/Students/screens/home_teacher.dart';
+import 'package:becertus_proyecto/Students/screens/home_screen.dart';
+import 'package:becertus_proyecto/Teachers/home.dart';
+import 'package:becertus_proyecto/Teachers/screens/home_teacher.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
-import 'package:becertus_proyecto/Students/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,7 @@ Future<String?> obtenerIdEstudiante(String email, String password) async {
     return null;
   }
 }
+
 Future<String?> obtenerIdDocente(String email, String password) async {
   try {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
@@ -74,7 +76,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEDFFFB),
+      backgroundColor: const Color(0xffEDFFFB),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -138,41 +140,49 @@ class _LoginState extends State<Login> {
                             color: Color(0xff000000),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        ToggleButtons(
-                          borderColor: Colors.grey,
-                          fillColor: Color(0xff323232),
-                          borderWidth: 2,
-                          selectedBorderColor: Color(0xff323232),
-                          selectedColor: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('Estudiante'),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('Docente'),
-                            ),
-                          ],
-                          onPressed: (int index) {
-                            setState(() {
-                              for (int buttonIndex = 0;
-                                  buttonIndex < isSelected.length;
-                                  buttonIndex++) {
-                                if (buttonIndex == index) {
-                                  isSelected[buttonIndex] = true;
-                                } else {
-                                  isSelected[buttonIndex] = false;
+                        const SizedBox(height: 20),
+                        Container(
+                          height: 40,
+                          child: ToggleButtons(
+                            borderColor: Colors.grey,
+                            fillColor: const Color(0xff323232),
+                            borderWidth: 2,
+                            selectedBorderColor: const Color(0xff323232),
+                            selectedColor: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            onPressed: (int index) {
+                              setState(() {
+                                for (int buttonIndex = 0;
+                                    buttonIndex < isSelected.length;
+                                    buttonIndex++) {
+                                  if (buttonIndex == index) {
+                                    isSelected[buttonIndex] = true;
+                                  } else {
+                                    isSelected[buttonIndex] = false;
+                                  }
                                 }
-                              }
-                            });
-                          },
-                          isSelected: isSelected,
+                              });
+                            },
+                            isSelected: isSelected,
+                            children: const <Widget>[
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Estudiante',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Docente',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                              ),
+                            ],
+                          ),
                         ),
+
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Column(
@@ -200,7 +210,7 @@ class _LoginState extends State<Login> {
                                       color: Colors.grey.withOpacity(0.5),
                                       spreadRadius: 0,
                                       blurRadius: 5,
-                                      offset: Offset(0,
+                                      offset: const Offset(0,
                                           1.5), // changes the position of the shadow
                                     ),
                                   ],
@@ -217,13 +227,13 @@ class _LoginState extends State<Login> {
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide:
-                                          BorderSide(color: Colors.black),
+                                          const BorderSide(color: Colors.black),
                                     ),
                                     labelStyle:
-                                        TextStyle(color: Color(0xff323232)),
+                                        const TextStyle(color: Color(0xff323232)),
                                     prefix: RichText(
                                       // Utilizando RichText para incluir el Icon y el Text
-                                      text: TextSpan(
+                                      text: const TextSpan(
                                         children: [
                                           WidgetSpan(
                                             child: Icon(
@@ -239,10 +249,10 @@ class _LoginState extends State<Login> {
                                       ),
                                     ),
                                   ),
-                                  style: TextStyle(color: Colors.black),
+                                  style: const TextStyle(color: Colors.black),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Container(
@@ -259,7 +269,7 @@ class _LoginState extends State<Login> {
                                       color: Colors.grey.withOpacity(0.5),
                                       spreadRadius: 0,
                                       blurRadius: 5,
-                                      offset: Offset(0,
+                                      offset: const Offset(0,
                                           1.5), // changes the position of the shadow
                                     ),
                                   ],
@@ -282,13 +292,13 @@ class _LoginState extends State<Login> {
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                         borderSide:
-                                            BorderSide(color: Colors.black),
+                                            const BorderSide(color: Colors.black),
                                       ),
                                       labelStyle:
-                                          TextStyle(color: Color(0xff323232)),
+                                          const TextStyle(color: Color(0xff323232)),
                                       prefix: RichText(
                                         // Utilizando RichText para incluir el Icon y el Text
-                                        text: TextSpan(
+                                        text: const TextSpan(
                                           children: [
                                             WidgetSpan(
                                               child: Icon(
@@ -304,7 +314,7 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                     ),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                     )),
                               ),
@@ -320,26 +330,26 @@ class _LoginState extends State<Login> {
                               ElevatedButton(
                                 onPressed: () async {
                                   if (isSelected[1]) {
-                                     String? docenteId =
-                                        await obtenerIdDocente(
+                                    String? docenteId = await obtenerIdDocente(
                                       emailController.text,
                                       passwordController.text,
                                     );
-                                    if(docenteId != null){
+                                    if (docenteId != null) {
                                       Navigator.push(
                                         context,
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
-                                          child: HomeTeacherScreen(),
-                                          duration: Duration(milliseconds: 400),
+                                          child: const HomeScreenTeacher(),
+                                          duration: const Duration(milliseconds: 400),
                                         ),
                                       );
-                                    }else{
+                                    } else {
+                                      // ignore: use_build_context_synchronously
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            title: Text(
+                                            title: const Text(
                                               'Error',
                                               style: TextStyle(
                                                 color: Colors
@@ -347,7 +357,7 @@ class _LoginState extends State<Login> {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            content: Text(
+                                            content: const Text(
                                               'Credenciales inválidas',
                                               style: TextStyle(
                                                 color: Colors
@@ -356,7 +366,7 @@ class _LoginState extends State<Login> {
                                             ),
                                             actions: <Widget>[
                                               TextButton(
-                                                child: Text('Cerrar'),
+                                                child: const Text('Cerrar'),
                                                 onPressed: () {
                                                   Navigator.of(context).pop();
                                                 },
@@ -377,19 +387,19 @@ class _LoginState extends State<Login> {
                                         Provider.of<NotasProvider>(context,
                                             listen: false);
 
-                                  if (studentId != null) {
-                                    await notasProvider
-                                        .obtenerNotasEstudiante(studentId);
-                                    await notasProvider
-                                        .obtenerDatosEstudiante(studentId);
-                                    String? photoUrl = notasProvider.photoUrl;
+                                    if (studentId != null) {
+                                      await notasProvider
+                                          .obtenerNotasEstudiante(studentId);
+                                      await notasProvider
+                                          .obtenerDatosEstudiante(studentId);
+                                      String? photoUrl = notasProvider.photoUrl;
 
-                                    print(photoUrl);
-                                    print(
-                                        "Acceso permitido, ID del estudiante: $studentId");
-                                    SharedPreferences prefs =
-                                        await SharedPreferences.getInstance();
-                                    await prefs.setBool('isLoggedIn', true);
+                                      print(photoUrl);
+                                      print(
+                                          "Acceso permitido, ID del estudiante: $studentId");
+                                      SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      await prefs.setBool('isLoggedIn', true);
 
                                       // Limpia los controladores y navega a HomeScreen
                                       emailController.clear();
@@ -398,8 +408,8 @@ class _LoginState extends State<Login> {
                                         context,
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
-                                          child: HomeScreen(),
-                                          duration: Duration(milliseconds: 400),
+                                          child: const HomeScreen(),
+                                          duration: const Duration(milliseconds: 400),
                                         ),
                                       );
                                       emailController.clear();
@@ -409,7 +419,7 @@ class _LoginState extends State<Login> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            title: Text(
+                                            title: const Text(
                                               'Error',
                                               style: TextStyle(
                                                 color: Colors
@@ -417,7 +427,7 @@ class _LoginState extends State<Login> {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            content: Text(
+                                            content: const Text(
                                               'Credenciales inválidas',
                                               style: TextStyle(
                                                 color: Colors
@@ -426,7 +436,7 @@ class _LoginState extends State<Login> {
                                             ),
                                             actions: <Widget>[
                                               TextButton(
-                                                child: Text('Cerrar'),
+                                                child: const Text('Cerrar'),
                                                 onPressed: () {
                                                   Navigator.of(context).pop();
                                                 },
@@ -439,7 +449,7 @@ class _LoginState extends State<Login> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    primary: Color(
+                                    primary: const Color(
                                         0xff39373E), // Color de fondo del botón
                                     onPrimary: Colors.white,
                                     shape: RoundedRectangleBorder(
@@ -486,10 +496,10 @@ class _LoginState extends State<Login> {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
             borderSide:
-                BorderSide(color: Colors.white), // Bordes cuando está enfocado
+                const BorderSide(color: Colors.white), // Bordes cuando está enfocado
           ),
         ),
-        style: TextStyle(color: Color.fromARGB(13, 57, 55, 62)));
+        style: const TextStyle(color: Color.fromARGB(13, 57, 55, 62)));
   }
 }
 
@@ -503,7 +513,7 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          fontFamily: 'Mitr', fontSize: fontSize, color: Color(0xff39373E)),
+          fontFamily: 'Mitr', fontSize: fontSize, color: const Color(0xff39373E)),
       textAlign: TextAlign.start,
     );
   }

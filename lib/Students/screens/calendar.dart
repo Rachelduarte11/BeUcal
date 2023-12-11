@@ -907,7 +907,7 @@ class _CalendarState extends State<Calendar> {
                       ),
                       textAlign: TextAlign.start,
                     ),
-                    Text(
+                  /*  Text(
                       '${task['notas']}',
                       style: const TextStyle(
                         fontSize: 12,
@@ -915,7 +915,7 @@ class _CalendarState extends State<Calendar> {
                         color: Color(0xFF323232),
                         fontWeight: FontWeight.w500,
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),

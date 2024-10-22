@@ -23,14 +23,14 @@ BeUcal is a mobile application designed to help students manage their grades, tr
     ```
 2. **Navigate to the project directory:**
    ```bash
-cd BeUcal
+   cd BeUcal
     ```
 3. **Install the necessary dependencies and run:**
    ```bash
-flutter pub get
+   flutter pub get
    ```
    ```bash
-flutter run
+   flutter run
    ```
 
 4. **Configure Firebase:**
@@ -52,13 +52,13 @@ Contributions are welcome! If you want to collaborate on the project, please fol
 Create a new branch:
 
    ```bash
-git checkout -b feature/new-feature
- ```
+   git checkout -b feature/new-feature
+    ```
 
 Make your changes and commit:
    ```bash
-git commit -m "Added new feature"
- ```
+   git commit -m "Added new feature"
+    ```
 
 Push the changes to your repository:
    ```bash

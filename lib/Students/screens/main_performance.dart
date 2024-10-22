@@ -1,4 +1,3 @@
-import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:becertus_proyecto/Students/screens/home.dart';
 import 'package:becertus_proyecto/Students/widgets/Graphics/charts.dart';
 import 'package:becertus_proyecto/Students/widgets/Graphics/column_chart.dart';
@@ -7,7 +6,7 @@ import 'package:becertus_proyecto/Students/widgets/chip_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../functions/Provider.dart';
-import '../jobs/model/courses.dart';
+import '../models/courses.dart';
 
 class MainPerformance extends StatefulWidget {
   const MainPerformance({super.key});

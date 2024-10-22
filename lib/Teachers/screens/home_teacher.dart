@@ -1,11 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:becertus_proyecto/Students/models/colors.dart';
-import 'package:becertus_proyecto/Students/screens/calendar.dart';
-import 'package:becertus_proyecto/Students/screens/home.dart';
-import 'package:becertus_proyecto/Students/screens/performance_screen.dart';
-import 'package:becertus_proyecto/Students/screens/profile.dart';
-import 'package:becertus_proyecto/Students/widgets/navigation_bar.dart';
-import 'package:becertus_proyecto/Teachers/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:glassmorphism/glassmorphism.dart';
@@ -557,7 +551,7 @@ Row activitysTeachers2(BuildContext context, String seccion, String title, Color
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width *0.46,
                     height: MediaQuery.of(context).size.height *0.4,
                     child: Column(
@@ -608,7 +602,7 @@ Row activitysTeachers2(BuildContext context, String seccion, String title, Color
                           ),
                         ),
                         
-                        Container(
+                        SizedBox(
                           height: MediaQuery.of(context).size.height * 0.23,
                           width: MediaQuery.of(context).size.width * 0.46,
                           child: Container(
@@ -661,7 +655,7 @@ Row activitysTeachers2(BuildContext context, String seccion, String title, Color
                     ),
                   ),
                   const SizedBox(width: 10,),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width *0.46,
                     height: MediaQuery.of(context).size.height *0.4,
                     child: Column(
@@ -714,7 +708,7 @@ Row activitysTeachers2(BuildContext context, String seccion, String title, Color
                           ),
                         ),
                         
-                        Container(
+                        SizedBox(
                           height: MediaQuery.of(context).size.height * 0.16,
                           width: MediaQuery.of(context).size.width * 0.46,
                           child: Container(

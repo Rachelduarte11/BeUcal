@@ -2,7 +2,7 @@ import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../jobs/model/courses.dart';
+import '../../../models/courses.dart';
 
 class ND2GenColumnChart extends StatefulWidget {
   final String? selectedCourseKey;

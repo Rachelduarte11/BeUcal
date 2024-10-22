@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:becertus_proyecto/Students/dashboard/global/range_jobs.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:flutter/material.dart';
@@ -39,15 +41,12 @@ class _AverageFutureJobState extends State<AverageFutureJob> {
        
         await notasProvider.obtenerDatosJobs(documentId);
         String? photoUrlJob = notasProvider.photoUrlJob;
-
-        print(photoUrlJob);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => widget.pageJob));
+        
       },
       style: ElevatedButton.styleFrom(
           primary: Colors.transparent,
           elevation: 0,
-          padding: EdgeInsets.all(4)),
+          padding: const EdgeInsets.all(4)),
       child: Container(
           height: MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width * 0.45,
@@ -100,12 +99,10 @@ class _AverageFutureJobState extends State<AverageFutureJob> {
               ),
               textAlign: TextAlign.center,
             ),
-            Container(
-              child: Text(
-                'Ver Más',
-                style: TextStyle(color: Color(0xff0BB49D), fontSize: 12),
-                textAlign: TextAlign.end,
-              ),
+            const Text(
+              'Ver Más',
+              style: TextStyle(color: Color(0xff0BB49D), fontSize: 12),
+              textAlign: TextAlign.end,
             )
           ],
         ),
@@ -122,14 +119,14 @@ class _AverageFutureJobState extends State<AverageFutureJob> {
       },
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.50,
             child: Text(
               alternateText,
-              style: TextStyle(fontSize: 18, color: Color(0xff323232)),
+              style: const TextStyle(fontSize: 18, color: Color(0xff323232)),
             ),
           ),
-          Icon(Icons
+          const Icon(Icons
               .arrow_back_ios_rounded), // Cambiar a la flecha hacia la izquierda
         ],
       ),

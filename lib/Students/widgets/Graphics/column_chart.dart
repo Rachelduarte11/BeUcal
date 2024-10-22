@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../functions/Provider.dart';
-import '../../jobs/model/courses.dart';
+import '../../models/courses.dart';
 
 
 class GenColumnChart extends StatefulWidget {

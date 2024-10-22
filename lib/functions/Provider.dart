@@ -1,8 +1,6 @@
-import 'package:becertus_proyecto/functions/data.dart';
-import 'package:becertus_proyecto/Students/screens/login_screen.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NotasEstudiante {
   NotasEstudiante();
@@ -55,52 +53,7 @@ class NotasEstudiante {
   }
 }
 
-/*
-class MyApptry extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    String userId;
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Notas de Estudiante'),
-        ),
-        body: Center(
-          child: FutureBuilder<NotasEstudiante>(
-            future: Provider.of<NotasProvider>(context).obtenerNotasEstudiante(user),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else if (!snapshot.hasData || snapshot.data == null) {
-                return Text('No se encontraron datos');
-              } else {
-                final notas = snapshot.data!;
 
-                // Ahora puedes acceder a las notas en cualquier parte de tu aplicación.
-                final nd1ProII = notas.nd1ProII;
-                final nd2CreaII = notas.nd2CreaII;
-                // ...
-
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Notas del estudiante:'),
-                    Text('nd1ProII: $nd1ProII'),
-                    Text('nd2CreaII: $nd2CreaII'),
-                    // ...
-                  ],
-                );
-              }
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
 class NotasProvider with ChangeNotifier {
   String? _photoUrl;
   String? _photoUrlJob;

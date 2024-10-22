@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_nullable_for_final_variable_declarations
+
 import 'package:becertus_proyecto/Students/jobs/model/competences_maps.dart';
 import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:flutter/material.dart';
@@ -55,16 +57,16 @@ class _CompetenciasColumnChartState extends State<CompetenciasColumnChart> {
 
     return Column(
       children: [
-        SizedBox(height: 6,),
+        const SizedBox(height: 6,),
          Container(alignment: Alignment.topRight, child: _showAverage()),
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * 0.22,
           child: SfCartesianChart(
             primaryYAxis: NumericAxis(
               labelFormat:
                   '{value}%', // Formato de etiqueta para mostrar el porcentaje
               maximum: 100,
-              majorTickLines: MajorTickLines(size: 2),
+              majorTickLines: const MajorTickLines(size: 2),
             ),
             primaryXAxis: CategoryAxis(
               isVisible: false,
@@ -81,9 +83,9 @@ class _CompetenciasColumnChartState extends State<CompetenciasColumnChart> {
                   isVisible: showLabels,
                   labelAlignment: ChartDataLabelAlignment.outer,
                   opacity: 1,
-                  textStyle: TextStyle(fontSize: 12, fontFamily: 'Arimo'),
+                  textStyle: const TextStyle(fontSize: 12, fontFamily: 'Arimo'),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
               )
             ],
           ),
@@ -94,8 +96,8 @@ class _CompetenciasColumnChartState extends State<CompetenciasColumnChart> {
 
   Container _showAverage() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal:5),
-      padding: EdgeInsets.symmetric(horizontal: 2),
+      margin: const EdgeInsets.symmetric(horizontal:5),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.2),
         borderRadius: BorderRadius.circular(2),
@@ -112,7 +114,7 @@ class _CompetenciasColumnChartState extends State<CompetenciasColumnChart> {
         },
         child: Text(
           showLabels ? 'Ocultar Etiquetas' : 'Mostrar Etiquetas',
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'Arimo',
             height: 0.8,
             color: Color.fromARGB(255, 100, 100, 100),

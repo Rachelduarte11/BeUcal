@@ -25,9 +25,7 @@ class _GroupMainState extends State<GroupMain> {
 
     
     ED ??= 0.0;
-
     FP ??= 0.0;
-
     EG ??= 0.0;
     final average = (ED + FP + EG) / 3;
     String averageString = average.toStringAsFixed(2);
@@ -131,7 +129,7 @@ class _GroupMainState extends State<GroupMain> {
           ),
 
           //recursos
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.42,
             height: double.infinity,
             child: Column(
@@ -150,7 +148,7 @@ class _GroupMainState extends State<GroupMain> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         height: 54,
                         child: Stack(

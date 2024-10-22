@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:becertus_proyecto/Students/jobs/model/competences_maps.dart';
 import 'package:becertus_proyecto/Students/jobs/widgets/Graphics/graphics_and_maps.dart';
-import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:becertus_proyecto/Students/screens/calendar.dart';
 import 'package:becertus_proyecto/Students/screens/home.dart';
@@ -11,8 +10,6 @@ import 'package:becertus_proyecto/Students/dashboard/global/range_jobs.dart';
 import 'package:becertus_proyecto/Students/jobs/widgets/Graphics/counter_way.dart';
 import 'package:becertus_proyecto/Students/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class AnalisisDatos extends StatefulWidget {
   const AnalisisDatos({super.key});

@@ -1,8 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:becertus_proyecto/Students/jobs/jobs_screen.dart/analisis_datos.dart';
 import 'package:becertus_proyecto/Students/jobs/model/competences_maps.dart';
 import 'package:becertus_proyecto/Students/jobs/widgets/Graphics/graphics_and_maps.dart';
-import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:becertus_proyecto/Students/screens/calendar.dart';
 import 'package:becertus_proyecto/Students/screens/home.dart';
@@ -91,7 +89,7 @@ class _RRHHState extends State<RRHH> {
         SliverToBoxAdapter(
           child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-          child: Container(
+          child: SizedBox(
             // Tu contenido aquí
             height: MediaQuery.of(context).size.height*1.1 ,
            

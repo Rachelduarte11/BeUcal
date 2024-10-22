@@ -1,15 +1,12 @@
-import 'package:becertus_proyecto/Students/models/colors.dart';
 import 'package:becertus_proyecto/Students/models/to_do_card.dart';
 import 'package:becertus_proyecto/Students/screens/home.dart';
 import 'package:becertus_proyecto/Students/screens/performance_screen.dart';
 import 'package:becertus_proyecto/Students/screens/profile.dart';
 import 'package:becertus_proyecto/Students/widgets/chip_data.dart';
 import 'package:becertus_proyecto/Students/widgets/header_section.dart';
-import 'package:becertus_proyecto/Students/widgets/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -28,10 +25,10 @@ class _CalendarState extends State<Calendar> {
    bool showBottomNavBar= true;
  
   final List<Widget> screens = [
-    HomePage(),
-    MyPerformance(),
+    const HomePage(),
+    const MyPerformance(),
     Calendar(),
-    MyProfile(),
+    const MyProfile(),
   ];
 
   int currentIndex = 5;
@@ -119,10 +116,10 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffEDFFFB),
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: ListView(
         children: [
-          SizedBox(height: 0),
+          const SizedBox(height: 0),
           Container(
             height: 540,
             decoration: const BoxDecoration(
@@ -137,119 +134,10 @@ class _CalendarState extends State<Calendar> {
             ),
             child: Column(
               children: [
-                //Segunda fila (Botones)
-                /*
-                Container(
-                  height: 30,
-                  width: 335,
-                  decoration: const BoxDecoration(
-                    color: Color(0XFFE7E2E2),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Center(
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedND = 0;
-                            });
-                          },
-                          child: Container(
-                            height: 25,
-                            width: 111.6,
-                            decoration: BoxDecoration(
-                              color: selectedND == 0
-                                  ? Color(0xFFFD6A6A)
-                                  : Color(0XFFE7E2E2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Todos",
-                                style: TextStyle(
-                                  color: selectedND == 0
-                                      ? Color(0XFFE7E2E2)
-                                      : Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: "Mitr",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedND = 1;
-                            });
-                          },
-                          child: Container(
-                            height: 25,
-                            width: 111.6,
-                            decoration: BoxDecoration(
-                              color: selectedND == 1
-                                  ? Color(0xFFFD6A6A)
-                                  : Color(0XFFE7E2E2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Tareas",
-                                style: TextStyle(
-                                  color: selectedND == 1
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: "Mitr",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedND = 2;
-                            });
-                          },
-                          child: Container(
-                            width: 111.6,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              color: selectedND == 2
-                                  ? Color(0xFFFD6A6A)
-                                  : Color(0XFFE7E2E2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Info",
-                                style: TextStyle(
-                                  color: selectedND == 2
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: "Mitr",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                */
+                
                 // Celendario -----
                 const SizedBox(height: 10),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GestureDetector(
                   child: Container(
                     height: 485,
@@ -266,7 +154,7 @@ class _CalendarState extends State<Calendar> {
                         Container(
                           height: 60,
                           decoration: const BoxDecoration(
-                            color: const Color.fromRGBO(18, 177, 158, 1),
+                            color: Color.fromRGBO(18, 177, 158, 1),
                             borderRadius:
                                 BorderRadius.vertical(top: Radius.circular(0)),
                           ),
@@ -299,11 +187,11 @@ class _CalendarState extends State<Calendar> {
                                     const SizedBox(height: 20),
                                     Row(
                                       children: [
-                                        SizedBox(width: 20),
+                                        const SizedBox(width: 20),
                                         Column(
                                           children: [
                                             Container(
-                                              padding: EdgeInsets.all(10),
+                                              padding: const EdgeInsets.all(10),
                                               decoration: const BoxDecoration(
                                                 gradient: LinearGradient(
                                                   colors: [
@@ -335,12 +223,11 @@ class _CalendarState extends State<Calendar> {
                                                     Icons.calendar_view_day,
                                                     color: Colors.white,
                                                   ),
-                                                  SizedBox(width: 10),
+                                                  const SizedBox(width: 10),
                                                   Text(
-                                                    "Día seleccionado: " +
-                                                        _selectedDay
+                                                    "Día seleccionado: ${_selectedDay
                                                             .toString()
-                                                            .split(" ")[0],
+                                                            .split(" ")[0]}",
                                                     style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 18,
@@ -354,7 +241,7 @@ class _CalendarState extends State<Calendar> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(width: 10),
+                                        const SizedBox(width: 10),
                                         Column(
                                           children: [
                                             FloatingActionButton(
@@ -376,7 +263,7 @@ class _CalendarState extends State<Calendar> {
                                                       ),
                                                       content: Padding(
                                                         padding:
-                                                            EdgeInsets.all(0),
+                                                            const EdgeInsets.all(0),
                                                         child: TextField(
                                                           controller:
                                                               _eventController,
@@ -418,22 +305,22 @@ class _CalendarState extends State<Calendar> {
                                                                     context)
                                                                 .pop();
                                                           },
-                                                          child: Text("Enviar"),
+                                                          child: const Text("Enviar"),
                                                         ),
                                                       ],
                                                     );
                                                   },
                                                 );
                                               },
-                                              child: Icon(
-                                                  Icons.note_alt_rounded,
-                                                  size: 25),
                                               backgroundColor:
                                                   const Color.fromARGB(
                                                       255, 225, 110, 56),
                                               foregroundColor: Colors.white,
                                               heroTag: true,
                                               mini: true,
+                                              child: const Icon(
+                                                  Icons.note_alt_rounded,
+                                                  size: 25),
                                             ),
                                           ],
                                         ),
@@ -461,7 +348,7 @@ class _CalendarState extends State<Calendar> {
                             weekendTextStyle: TextStyle(color: Colors.black),
                             selectedDecoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: const Color.fromRGBO(18, 177, 158, 1),
+                              color: Color.fromRGBO(18, 177, 158, 1),
                             ),
                             selectedTextStyle: TextStyle(color: Colors.white),
                             todayDecoration: BoxDecoration(
@@ -526,7 +413,7 @@ class _CalendarState extends State<Calendar> {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             height: 315,
             width: 300,
@@ -550,7 +437,7 @@ class _CalendarState extends State<Calendar> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
@@ -580,7 +467,7 @@ class _CalendarState extends State<Calendar> {
             ),
           ),
           // Reunionnes -----------
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.only(left: 15),
             child: const Text(
@@ -592,7 +479,7 @@ class _CalendarState extends State<Calendar> {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             height: 120,
             width: 240,
@@ -666,9 +553,9 @@ class _CalendarState extends State<Calendar> {
           ),
 
         // Horario ----
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         Container(
-          margin: EdgeInsets.only(left: 15),
+          margin: const EdgeInsets.only(left: 15),
           child: const Text("Mi Horario",
               style: TextStyle(
                 fontSize: 19,
@@ -676,7 +563,7 @@ class _CalendarState extends State<Calendar> {
                 color: Color.fromARGB(255, 108, 106, 106),
               )),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           height: 385,
           width: 400,
@@ -688,17 +575,17 @@ class _CalendarState extends State<Calendar> {
               ]),
           child: Column(
             children: [
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Row(
                 children: [
                   Container(
                     height: 20,
                     width: 40,
                     decoration: const BoxDecoration(
-                      color: const Color.fromRGBO(18, 177, 158, 1),
+                      color: Color.fromRGBO(18, 177, 158, 1),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   const Text("8:00",
                       style: TextStyle(
                           color: Colors.black,
@@ -714,7 +601,7 @@ class _CalendarState extends State<Calendar> {
                   ),
                 ],
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               Row(
                 children: [
                   Container(
@@ -724,7 +611,7 @@ class _CalendarState extends State<Calendar> {
                       color: Color.fromARGB(255, 225, 110, 56),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   const Text("10:00",
                       style: TextStyle(
                           color: Colors.black,
@@ -740,7 +627,7 @@ class _CalendarState extends State<Calendar> {
                   ),
                 ],
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               Row(
                 children: [
                   Container(
@@ -748,7 +635,7 @@ class _CalendarState extends State<Calendar> {
                     width: 40,
                     decoration: const BoxDecoration(color: Colors.lightBlue),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   const Text("12:00",
                       style: TextStyle(
                           color: Colors.black,
@@ -764,7 +651,7 @@ class _CalendarState extends State<Calendar> {
                   ),
                 ],
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               Row(
                 children: [
                   Container(
@@ -772,7 +659,7 @@ class _CalendarState extends State<Calendar> {
                     width: 40,
                     decoration: const BoxDecoration(color: Colors.yellow),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   const Text("2:00",
                       style: TextStyle(
                           color: Colors.black,
@@ -792,9 +679,9 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         //Tareas retrasdas -----
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         Container(
-          margin: EdgeInsets.only(left: 15),
+          margin: const EdgeInsets.only(left: 15),
           child: const Text("Tareas retrasadas",
               style: TextStyle(
                 color: Color.fromARGB(255, 108, 106, 106),
@@ -802,7 +689,7 @@ class _CalendarState extends State<Calendar> {
                 fontSize: 19,
               )),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           height: 260,
           decoration: const BoxDecoration(
@@ -842,15 +729,15 @@ class _CalendarState extends State<Calendar> {
   Container addNewTask(QueryDocumentSnapshot<Map<String, dynamic>> task, BuildContext context, bool check, String timeTask) {
      return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       height:
           isExpanded ? 120 : 65, // Cambiar la altura según si está expandido
       decoration: BoxDecoration(
-        color: Color(0xffFFFFFF),
+        color: const Color(0xffFFFFFF),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
             color: Color.fromARGB(51, 0, 0, 0),
             offset: Offset(0, 3),
             blurRadius: 4,
@@ -864,22 +751,22 @@ class _CalendarState extends State<Calendar> {
           Row(
             children: [
               Theme(
+                data: ThemeData(
+                  primarySwatch: Colors.green,
+                  unselectedWidgetColor: const Color(0xff44DECC),
+                ),
                 child: Transform.scale(
                   scale: 1.5,
                   child: Checkbox(
-                    shape: CircleBorder(),
-                    activeColor: Color(0xff44DECC),
-                    checkColor: Color.fromARGB(255, 249, 249, 249),
+                    shape: const CircleBorder(),
+                    activeColor: const Color(0xff44DECC),
+                    checkColor: const Color.fromARGB(255, 249, 249, 249),
                     value: check,
                     onChanged: (Bool) {},
                   ),
                 ),
-                data: ThemeData(
-                  primarySwatch: Colors.green,
-                  unselectedWidgetColor: Color(0xff44DECC),
-                ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
@@ -919,7 +806,7 @@ class _CalendarState extends State<Calendar> {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -930,9 +817,9 @@ class _CalendarState extends State<Calendar> {
                 child: Row(
                   children: [
                     //chip,
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete,
                         color: Color.fromARGB(255, 200, 78, 69),
                       ),
@@ -954,10 +841,10 @@ class _CalendarState extends State<Calendar> {
           if (isExpanded)
             Container(
               // Aquí puedes agregar detalles adicionales cuando está expandido
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Text(
                 '${task['notas']}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFF323232),
                 ),
@@ -977,7 +864,7 @@ class _CalendarState extends State<Calendar> {
         return AlertDialog(
           title: const Text("Se eleminará la Reunión.",
               style: TextStyle(color: Colors.black)),
-          content: Text(
+          content: const Text(
             "¿Estás seguro de que quieres eliminar este evento?",
             style: TextStyle(color: Colors.red),
           ),
@@ -986,14 +873,14 @@ class _CalendarState extends State<Calendar> {
               onPressed: () {
                 Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
               },
-              child: Text("Cancelar"),
+              child: const Text("Cancelar"),
             ),
             ElevatedButton(
               onPressed: () {
                 _deleteEvent(event);
                 Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
               },
-              child: Text("Eliminar"),
+              child: const Text("Eliminar"),
             ),
           ],
         );
@@ -1011,9 +898,7 @@ void _borrarTareaFirestore(String tareaId) async {
         .collection('tareas')
         .doc(tareaId)
         .delete();
-    print('Tarea borrada exitosamente');
   } catch (error) {
-    print('Error al borrar la tarea: $error');
   }
 }
 
@@ -1026,7 +911,7 @@ void _mostrarDialogoEliminar(BuildContext context, String tareaId) {
             style: TextStyle(
               color: Colors.black,
             )),
-        content: Text(
+        content: const Text(
           '¿Estás seguro de que deseas eliminar esta tarea?',
           style: TextStyle(color: Colors.black),
         ),
@@ -1035,7 +920,7 @@ void _mostrarDialogoEliminar(BuildContext context, String tareaId) {
             onPressed: () {
               Navigator.of(context).pop(); // Cerrar el diálogo
             },
-            child: Text('Cancelar'),
+            child: const Text('Cancelar'),
           ),
           TextButton(
             onPressed: () {
@@ -1070,7 +955,7 @@ class _ToDoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         children: [
           ToDoCard(

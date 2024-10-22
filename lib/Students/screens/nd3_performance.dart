@@ -3,7 +3,7 @@ import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:becertus_proyecto/Students/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../jobs/model/courses.dart';
+import '../models/courses.dart';
 import '../widgets/Graphics/periodos/nd3.dart';
 import '../widgets/Graphics/periodos/nd3_columns.dart';
 import '../widgets/chip_data.dart';
@@ -97,7 +97,7 @@ class _MainPerformanceState extends State<ND3Performance> {
     return Column(
       children: [
         Titles(
-          text: 'Arquitectura',
+          text: 'Ingeniería Industrial',
           size: 24,
           fontFamily: 'Mitr',
         ),

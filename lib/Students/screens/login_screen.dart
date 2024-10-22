@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:becertus_proyecto/Students/screens/home_screen.dart';
 import 'package:becertus_proyecto/Teachers/home.dart';
-import 'package:becertus_proyecto/Teachers/screens/home_teacher.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:becertus_proyecto/functions/Provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -98,7 +96,6 @@ class _LoginState extends State<Login> {
                           width: 350,
                         ),
                       )
-                      // Sustituye 'assets/image1.png' con la ruta de tu primera imagen
                       ),
                   Positioned(
                     bottom: 0,

@@ -61,8 +61,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         image: selectedND > 0
-                            ? AssetImage('assets/images/main2.png')
-                            : AssetImage('assets/images/main.png'),
+                            ? const AssetImage('assets/images/main2.png')
+                            : const AssetImage('assets/images/main.png'),
                         fit: BoxFit.cover),
                   ),
                   child: Column(
@@ -101,7 +101,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
 
             child: Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 4),
                   child: Text(
                     'POSIBLES PUESTOS LABORALES',
@@ -112,7 +112,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -124,27 +124,27 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                         progressValue: jobList[0].progressValue?? 0,
                         pathImages:
                             'assets/images/jobs/analista-inventario.png',
-                        pageJob: AnalisisInventario(),
+                        pageJob: const AnalisisInventario(),
                         documentId: 'analista de datos',
                       ),
                       AverageFutureJob(
                         textFutureJob: 'Asistente de consultorías',
                         progressValue: jobList[1].progressValue?? 0,
                         pathImages: 'assets/images/jobs/asistente.png',
-                        pageJob: Asistente(),
+                        pageJob: const Asistente(),
                         documentId: 'analista de inventario',
                       ),
                       AverageFutureJob(
                           textFutureJob: 'Analista de datos',
                           progressValue: jobList[2].progressValue?? 0,
                           pathImages: 'assets/images/jobs/analista-datos.png',
-                          pageJob: AnalisisDatos(),
+                          pageJob: const AnalisisDatos(),
                           documentId: 'asistente de consultorias'),
                       AverageFutureJob(
                           textFutureJob: 'Especialista en RR.HH',
                           progressValue: jobList[3].progressValue?? 0,
                           pathImages: 'assets/images/jobs/rrhh.png',
-                          pageJob: RRHH(),
+                          pageJob: const RRHH(),
                           documentId: 'rrhh'),
                     ],
                   ),
@@ -277,7 +277,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      margin: EdgeInsets.only(left: 6, top: 4),
+                      margin: const EdgeInsets.only(left: 6, top: 4),
                       alignment: Alignment.topLeft,
                       child: const Text(
                         'ESPECIFICAS',
@@ -299,7 +299,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GlassmorphicContainer(
-                  margin: EdgeInsets.only(top: 5),
+                  margin: const EdgeInsets.only(top: 5),
                   width: MediaQuery.of(context).size.width * 0.92,
                   height: MediaQuery.of(context).size.height * 0.28,
                   borderRadius: 10,
@@ -326,7 +326,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
-                        margin: EdgeInsets.only(left: 6, top: 4),
+                        margin: const EdgeInsets.only(left: 6, top: 4),
                         alignment: Alignment.topLeft,
                         child: const Text(
                           'TERMÓMETRO DE RENDIMINETO',
@@ -380,7 +380,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
           Flexible(
             child: Text(
               variableCompetencia,
-              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
             ),
           ),
         ],
@@ -390,7 +390,7 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
 
   Container _competencias() {
     return Container(
-      margin: EdgeInsets.only(top: 5, bottom: 5),
+      margin: const EdgeInsets.only(top: 5, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -401,8 +401,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.only(right: 4, left: 4),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.only(right: 4, left: 4),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -414,8 +414,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                     ),
                   ],
                   color: selectedND == 0
-                      ? Color(0xFF0BB49D)
-                      : Color.fromARGB(255, 242, 242, 242),
+                      ? const Color(0xFF0BB49D)
+                      : const Color.fromARGB(255, 242, 242, 242),
                   borderRadius: BorderRadius.circular(10)),
               child: Image.asset(
                 selectedND == 0
@@ -431,8 +431,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -444,8 +444,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 1
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
@@ -464,8 +464,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -477,8 +477,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 2
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
@@ -510,8 +510,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 3
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
@@ -530,8 +530,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -543,8 +543,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 4
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
@@ -563,8 +563,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -576,8 +576,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 5
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
@@ -596,8 +596,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -609,8 +609,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 6
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
@@ -629,8 +629,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
               });
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.5),
-              padding: EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 3.5),
+              padding: const EdgeInsets.all(14),
               width: 52,
               height: 52,
               decoration: BoxDecoration(
@@ -642,8 +642,8 @@ class _GroupHabilitysState extends State<GroupHabilitys> {
                   ),
                 ],
                 color: selectedND == 7
-                    ? Color(0xFF0BB49D)
-                    : Color.fromARGB(255, 242, 242, 242),
+                    ? const Color(0xFF0BB49D)
+                    : const Color.fromARGB(255, 242, 242, 242),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(

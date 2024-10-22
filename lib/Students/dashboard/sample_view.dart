@@ -33,13 +33,13 @@ class _SemiDoughnutChartState extends State<SemiDoughnutChart> {
           Positioned(
               top: 15,
               left: -150,
-              child: Container(
+              child: SizedBox(
                 width: 300,
                 height: 300,
                 //alignment: Alignment.topRight,
                 child: SfCircularChart(
                   title: ChartTitle(text: ''),
-                  legend: Legend(isVisible: false),
+                  legend: const Legend(isVisible: false),
                   centerY: '60%',
                   series: _getSemiDoughnutSeries(),
                   tooltipBehavior: TooltipBehavior(enable: true),

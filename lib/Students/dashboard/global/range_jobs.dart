@@ -12,6 +12,7 @@ class ProgressBarDeterminateStyle extends StatefulWidget {
       : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProgressBarDeterminateStyleState createState() =>
       _ProgressBarDeterminateStyleState();
 }
@@ -63,7 +64,7 @@ class _ProgressBarDeterminateStyleState
               GaugeAnnotation(
                 positionFactor: 0.1,
                 widget: Text(
-                  progressValue.toStringAsFixed(0) + '%',
+                  '${progressValue.toStringAsFixed(0)}%',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -119,7 +120,7 @@ class ProgressBarRange extends StatelessWidget {
                   gradient: SweepGradient(colors: <Color>[
                     gradientColor1,
                     gradientColor2.withOpacity(0.8)
-                  ], stops: <double>[
+                  ], stops: const <double>[
                     0.25,
                     0.75
                   ]))
@@ -129,7 +130,7 @@ class ProgressBarRange extends StatelessWidget {
                 positionFactor: 0.2,
                 widget: Center(
                   child: Text(
-                    progressValue.toStringAsFixed(0) + '%',
+                    '${progressValue.toStringAsFixed(0)}%',
                     style: const TextStyle(
                       color: Color(0xff323232),
                       fontSize: 14,

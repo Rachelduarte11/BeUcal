@@ -88,6 +88,8 @@ Map<String, List<Map<String, dynamic>>> jobCompetencias = {
     },
   ]
 };
+
+
 class CircleAndText extends StatelessWidget {
   final String text;
   final Color color;

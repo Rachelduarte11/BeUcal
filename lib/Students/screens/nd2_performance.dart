@@ -4,7 +4,7 @@ import 'package:becertus_proyecto/Students/screens/home.dart';
 import 'package:becertus_proyecto/Students/widgets/Graphics/periodos/nd2_columns.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../jobs/model/courses.dart';
+import '../models/courses.dart';
 import '../widgets/Graphics/periodos/nd2.dart';
 import '../widgets/chip_data.dart';
 
@@ -99,7 +99,7 @@ class _ND2PerformanceState extends State<ND2Performance> {
     return Column(
       children: [
         Titles(
-          text: 'Arquitectura',
+          text: 'Ingeniería Industrial',
           size: 24,
           fontFamily: 'Mitr',
         ),

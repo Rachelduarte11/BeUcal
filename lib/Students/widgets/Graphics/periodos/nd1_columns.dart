@@ -1,5 +1,5 @@
 import 'package:becertus_proyecto/Students/models/colors.dart';
-import 'package:becertus_proyecto/Students/jobs/model/courses.dart';
+import 'package:becertus_proyecto/Students/models/courses.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

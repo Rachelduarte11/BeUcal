@@ -20,19 +20,18 @@ BeUcal is a mobile application designed to help students manage their grades, tr
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-username/BeUcal.git
- ```
+    ```
 2. **Navigate to the project directory:**
    ```bash
 cd BeUcal
- ```
+    ```
 3. **Install the necessary dependencies and run:**
    ```bash
 flutter pub get
-```
-
+   ```
    ```bash
 flutter run
-```
+   ```
 
 4. **Configure Firebase:**
 

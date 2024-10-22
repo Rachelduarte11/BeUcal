@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "251736088914",
+    "firebase_url": "https://beucal-e20dc-default-rtdb.firebaseio.com",
+    "project_id": "beucal-e20dc",
+    "storage_bucket": "beucal-e20dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251736088914:android:00b6bcb3b2b07a15e09a8b",
+        "android_client_info": {
+          "package_name": "com.example.becertus_proyecto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAI3tjguAB8PxMM_kDoStNBtryQ27DECo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

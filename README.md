@@ -53,17 +53,19 @@ Create a new branch:
 
    ```bash
    git checkout -b feature/new-feature
-    ```
+   ```
 
 Make your changes and commit:
+
    ```bash
    git commit -m "Added new feature"
-    ```
+   ```
 
 Push the changes to your repository:
    ```bash
 git push origin feature/new-feature
- ```
+   ```
+
 Open a Pull Request on GitHub.
 License 📄
 This project is licensed under the MIT License – see the LICENSE file for more details.
